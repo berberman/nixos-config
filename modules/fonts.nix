@@ -3,7 +3,7 @@
 {
   fonts = {
     fontconfig.defaultFonts = {
-      monospace = [ "Cascadia Code" ];
+      monospace = [ "Caskaydia Cove Nerd Font" ];
       sansSerif = [ "Noto Sans CJK SC" ];
       serif = [ "Noto Sans CJK SC" ];
     };
@@ -11,6 +11,7 @@
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
+      (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
       cascadia-code
       symbola
     ];
