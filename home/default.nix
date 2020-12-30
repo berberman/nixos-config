@@ -44,7 +44,7 @@
   programs.rofi.enable = true;
 
   # adi1090x/rofi theme 
-  xdg.configFile."rofi/launchers/colorful/style.rasi".source = ./style.rasi;
+  xdg.configFile."rofi/colorful/style.rasi".source = ./style.rasi;
 
   # alacritty
   programs.alacritty = {
