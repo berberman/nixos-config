@@ -9,8 +9,10 @@
     userEmail = "1793913507@qq.com";
   };
 
-  # Don't manage extensions
-  programs.vscode.enable = true;
+  programs.vscode = {
+    enable = true;
+    extensions = with pkgs.vscode-extensions; [ WakaTime.vscode-wakatime ];
+  };
 
   programs.home-manager.enable = true;
   programs.htop.enable = true;
@@ -25,6 +27,7 @@
     filelight
     okular
     peek
+    wakatime
     haskellPackages.ghc
     haskellPackages.cabal-install
     haskellPackages.cabal-fmt

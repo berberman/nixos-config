@@ -1,8 +1,7 @@
 {
 
   inputs = {
-    nixpkgs.url =
-      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/nixos-unstable/nixexprs.tar.xz";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
   };
 
