@@ -28,10 +28,10 @@
     okular
     peek
     wakatime
+    haskellPackages.ormolu
     haskellPackages.ghc
-    haskellPackages.cabal-install
     haskellPackages.cabal-fmt
-    haskell-language-server
+    haskellPackages.cabal-plan
   ];
 
   # ghci
