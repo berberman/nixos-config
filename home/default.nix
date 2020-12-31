@@ -28,6 +28,9 @@
     okular
     peek
     wakatime
+    enpass
+    google-chrome
+    element-desktop
     haskellPackages.ormolu
     haskellPackages.ghc
     haskellPackages.cabal-fmt

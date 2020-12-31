@@ -32,9 +32,9 @@ myKeys =
   [ ((mod4Mask, xK_r), spawn "rofi -no-lazy-grab -show drun -modi drun -theme ~/.config/rofi/colorful/style.rasi"),
     ((mod4Mask .|. controlMask, xK_r), spawn "xmonad --recompile && xmonad --restart" 
         >> spawn "killall picom && picom --experimental-backends &"),
-    ((mod4Mask .|. controlMask, xK_l), spawn "killall latte-dock && kstart5 latte-dock"),
-    ((mod4Mask .|. controlMask, xK_p), mySpawnOn "Web" firefox),
+    ((mod4Mask .|. controlMask, xK_p), mySpawnOn "Web" chrome),
     ((mod4Mask .|. controlMask, xK_t), mySpawnOn "IM" tg),
+    ((mod4Mask .|. controlMask, xK_e), mySpawnOn "IM" element),
     ((mod4Mask .|. controlMask, xK_d), spawn "dolphin"),
     ((mod4Mask .|. controlMask, xK_s), spawn "systemsettings5")
   ]
@@ -51,8 +51,10 @@ myManageHook =
     floatByClass = ["peek"]
     floatByName = ["Media viewer"]
     ignoreByClass = ["plasmashell"]
-    webApps = [firefox]
-    imApps = [tg]
+    webApps = [firefox, chrome]
+    imApps = [tg, element]
 firefox = "firefox"
+chrome = "google-chrome-stable"
 tg = "telegram-desktop"
+element = "element-desktop"
 mySpawnOn workspace program = spawn program >> (windows $ W.greedyView workspace)
