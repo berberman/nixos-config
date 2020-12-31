@@ -29,6 +29,7 @@
     peek
     wakatime
     enpass
+    slack
     google-chrome
     element-desktop
     haskellPackages.ormolu
