@@ -7,6 +7,11 @@
     enable = true;
     userName = "Potato Hatsue";
     userEmail = "1793913507@qq.com";
+    signing = {
+      key = "C4F93F1ED397E8CF";
+      signByDefault = true;
+    };
+
   };
 
   programs.vscode = {
@@ -16,6 +21,8 @@
 
   programs.home-manager.enable = true;
   programs.htop.enable = true;
+
+  programs.gpg.enable = true;
 
   home.packages = with pkgs; [
     picom
@@ -30,6 +37,9 @@
     wakatime
     enpass
     slack
+    vlc
+    kate
+    kgpg
     google-chrome
     element-desktop
     haskellPackages.ormolu
@@ -82,6 +92,21 @@
           white = "#e5e5e5";
         };
       };
+    };
+  };
+
+  programs.ssh = {
+    enable = true;
+    matchBlocks = {
+      PVE = {
+        hostname = "192.168.31.10";
+        user = "root";
+      };
+      OpenWRT = { hostname = "192.168.31.1"; };
+      POTATO-A = { hostname = "192.168.31.88"; };
+      POTATO-HZ = { hostname = "hz.typed.icu"; };
+      POTATO-DE = { hostname = "de.berberman.space"; };
+
     };
   };
 }
