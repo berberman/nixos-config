@@ -102,7 +102,10 @@
         hostname = "192.168.31.10";
         user = "root";
       };
-      OpenWRT = { hostname = "192.168.31.1"; };
+      OpenWRT = {
+        hostname = "192.168.31.1";
+        user = "root";
+      };
       POTATO-A = { hostname = "192.168.31.88"; };
       POTATO-HZ = { hostname = "hz.typed.icu"; };
       POTATO-DE = { hostname = "de.berberman.space"; };

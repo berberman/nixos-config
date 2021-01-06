@@ -14,6 +14,7 @@
     ./modules/system.nix
     ./modules/users.nix
     ./modules/X.nix
+    ./cachix.nix
   ];
 
   environment.pathsToLink = [ "/share/zsh" ];
