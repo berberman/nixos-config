@@ -14,6 +14,7 @@
       (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
       cascadia-code
       symbola
+      dejavu_fonts
     ];
   };
 }

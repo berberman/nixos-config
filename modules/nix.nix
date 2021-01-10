@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   nix = {
@@ -7,7 +7,7 @@
       experimental-features = nix-command flakes
     '';
     binaryCaches =
-      [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" ];
+      lib.mkBefore [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" ];
     trustedUsers = [ "root" "berberman" ];
   };
 
