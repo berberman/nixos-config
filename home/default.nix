@@ -25,6 +25,7 @@
   programs.gpg.enable = true;
 
   home.packages = with pkgs; [
+    zsh-powerlevel10k
     picom
     flameshot
     nixfmt
