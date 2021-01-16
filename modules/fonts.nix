@@ -5,7 +5,7 @@
     fontconfig.defaultFonts = {
       monospace = [ "Caskaydia Cove Nerd Font" ];
       sansSerif = [ "Noto Sans CJK SC" ];
-      serif = [ "Noto Sans CJK SC" ];
+      serif = [ "Noto Serif CJK SC" ];
     };
     fonts = with pkgs; [
       noto-fonts

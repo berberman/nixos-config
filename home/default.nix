@@ -43,6 +43,8 @@
     kgpg
     google-chrome
     element-desktop
+    clementine
+    feeluown
     haskellPackages.ormolu
     haskellPackages.ghc
     haskellPackages.cabal-fmt
