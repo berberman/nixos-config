@@ -11,4 +11,17 @@ self: super:
       fetchSubmodules = true;
     };
   });
+
+  # qbittorrent = (super.qbittorrent.override {
+  #      libtorrent-rasterbar = super.libtorrentRasterbar-1_2_x;
+  #    }).overrideAttrs (old: rec {
+  #      version = "4.3.2.10";
+  #      src = super.fetchFromGitHub {
+  #        owner = "c0re100";
+  #        repo = "qBittorrent-Enhanced-Edition";
+  #        rev = "release-${version}";
+  #        sha256 = "l31sV97XoBsrecMV81CsbKtIQuAeLVMDmolmgIDIItY=";
+  #      };
+  #    });
+ 
 }

@@ -9,8 +9,8 @@
   services.openssh.enable = true;
 
   i18n.inputMethod = {
-    enabled = "fcitx";
-    fcitx.engines = with pkgs.fcitx-engines; [ rime ];
+    enabled = "fcitx5";
+    fcitx5.addons = with pkgs; [ fcitx5-chinese-addons fcitx5-material-color ];
   };
 
   environment.systemPackages = with pkgs; [

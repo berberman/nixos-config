@@ -45,11 +45,25 @@
     element-desktop
     clementine
     feeluown
+    weechat
+    qbittorrent
+    pavucontrol
     haskellPackages.ormolu
     haskellPackages.ghc
     haskellPackages.cabal-fmt
     haskellPackages.cabal-plan
   ];
+
+  # fcitx5 theme
+  xdg.configFile."fcitx5/conf/classicui.conf".text = ''
+    Vertical Candidate List=False
+
+    PerScreenDPI=True
+
+    Font="Noto Sans CJK SC 12"
+
+    Theme=Material-Color-Indigo
+  '';
 
   # ghci
   home.file.".ghc/ghci.conf".text = ''
