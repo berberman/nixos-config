@@ -15,6 +15,8 @@
       cascadia-code
       symbola
       dejavu_fonts
+      liberation_ttf
+      freefont_ttf
     ];
   };
 }
