@@ -12,7 +12,9 @@
     overlays = [
       (final: prev: import ./overlays.nix final prev)
       berberman.overlay
-      (final: prev: { inherit (poscat.overlay final prev) fcitx5-material-color; })
+      (final: prev: {
+        inherit (poscat.overlay final prev) fcitx5-material-color;
+      })
     ];
 
     nixosConfigurations.POTATO-NN = nixpkgs.lib.nixosSystem {
@@ -28,6 +30,5 @@
         { nixpkgs.overlays = self.overlays; }
       ];
     };
-
   };
 }

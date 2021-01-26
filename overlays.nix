@@ -12,24 +12,6 @@ self: super:
     };
   });
 
-  # See https://github.com/NixOS/nixpkgs/pull/109649
-  # fcitx5 still needs start from command line
-
-  fcitx5-qt = super.libsForQt5.fcitx5-qt.overrideAttrs (old: {
-
-    preConfigure = ''
-      substituteInPlace qt5/platforminputcontext/CMakeLists.txt \
-        --replace \$"{CMAKE_INSTALL_QT5PLUGINDIR}" $out/${super.qt5.qtbase.qtPluginPrefix}
-    '';
-
-  });
-
-  fcitx5-chinese-addons =
-    super.fcitx5-chinese-addons.override { fcitx5-qt = self.fcitx5-qt; };
-
-  fcitx5-with-addons =
-    super.fcitx5-with-addons.override { fcitx5-qt = self.fcitx5-qt; };
-
   # qbittorrent = (super.qbittorrent.override {
   #      libtorrent-rasterbar = super.libtorrentRasterbar-1_2_x;
   #    }).overrideAttrs (old: rec {

@@ -48,6 +48,8 @@
     weechat
     qbittorrent
     pavucontrol
+    qliveplayer
+    obs-studio
     haskellPackages.ormolu
     haskellPackages.ghc
     haskellPackages.cabal-fmt
