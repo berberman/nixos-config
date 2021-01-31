@@ -42,6 +42,7 @@
     kate
     kgpg
     google-chrome
+    ncdu
     element-desktop
     clementine
     feeluown

@@ -12,6 +12,12 @@ self: super:
     };
   });
 
+  # https://github.com/NixOS/nixpkgs/pull/108713
+  enpass = super.enpass.overrideAttrs (old: {
+    installPhase = (self.lib.removeSuffix "\n" old.installPhase) + " \\\n"
+      + "  --unset QML2_IMPORT_PATH \\\n" + "  --unset QT_PLUGIN_PATH";
+  });
+
   # qbittorrent = (super.qbittorrent.override {
   #      libtorrent-rasterbar = super.libtorrentRasterbar-1_2_x;
   #    }).overrideAttrs (old: rec {

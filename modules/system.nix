@@ -8,6 +8,11 @@
 
   services.openssh.enable = true;
 
+  services.printing = {
+    enable = true;
+    drivers = [ pkgs.hplip ];
+  };
+
   i18n.inputMethod = {
     enabled = "fcitx5";
 
