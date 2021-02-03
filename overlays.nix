@@ -12,10 +12,11 @@ self: super:
     };
   });
 
-  # https://github.com/NixOS/nixpkgs/pull/108713
-  enpass = super.enpass.overrideAttrs (old: {
-    installPhase = (self.lib.removeSuffix "\n" old.installPhase) + " \\\n"
-      + "  --unset QML2_IMPORT_PATH \\\n" + "  --unset QT_PLUGIN_PATH";
+  vscode-extensions.WakaTime.vscode-wakatime = super.vscode-extensions.WakaTime.vscode-wakatime.overrideAttrs (old: {
+    postPatch = ''
+      mkdir wakatime-cli
+      ln -s ${self.wakatime}/bin/wakatime ./wakatime-cli/wakatime-cli 
+    '';
   });
 
   # qbittorrent = (super.qbittorrent.override {

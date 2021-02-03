@@ -34,6 +34,8 @@
     rsync
     neofetch
     git
+    zsh
+    gparted
   ];
 
 }

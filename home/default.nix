@@ -29,13 +29,13 @@
     picom
     flameshot
     nixfmt
+    postman
     tdesktop
     ark
     gwenview
     filelight
     okular
     peek
-    wakatime
     enpass
     slack
     vlc
