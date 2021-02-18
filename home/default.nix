@@ -19,6 +19,16 @@
     extensions = with pkgs.vscode-extensions; [ WakaTime.vscode-wakatime ];
   };
 
+  programs.emacs = {
+    enable = true;
+    package = (pkgs.emacsWithPackagesFromUsePackage {
+      package = pkgs.emacs;
+      alwaysEnsure = true;
+      extraEmacsPackages = p: with p; [ use-package ];
+      config = ./emacs.el;
+    });
+  };
+
   programs.home-manager.enable = true;
   programs.htop.enable = true;
 
@@ -51,6 +61,9 @@
     pavucontrol
     qliveplayer
     obs-studio
+    typora
+    discord
+    jetbrains.idea-ultimate
     haskellPackages.ormolu
     haskellPackages.ghc
     haskellPackages.cabal-fmt

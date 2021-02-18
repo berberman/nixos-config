@@ -2,19 +2,20 @@
 
 {
   fonts = {
-    fontconfig.defaultFonts = {
-      monospace = [ "Caskaydia Cove Nerd Font" ];
-      sansSerif = [ "Noto Sans CJK SC" ];
-      serif = [ "Noto Serif CJK SC" ];
+    fontconfig = {
+      enable = true;
+      defaultFonts = {
+        monospace = [ "Caskaydia Cove Nerd Font" ];
+        sansSerif = [ "Noto Sans CJK SC" ];
+        serif = [ "Noto Serif CJK SC" ];
+        emoji = [ "Apple Color Emoji" ];
+      };
     };
     fonts = with pkgs; [
-      noto-fonts
       noto-fonts-cjk
-      noto-fonts-emoji
+      apple-emoji
       (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
       cascadia-code
-      symbola
-      dejavu_fonts
       liberation_ttf
       freefont_ttf
     ];

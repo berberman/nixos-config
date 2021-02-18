@@ -13,6 +13,8 @@
     drivers = [ pkgs.hplip ];
   };
 
+  programs.java.enable = true;
+
   i18n.inputMethod = {
     enabled = "fcitx5";
 
@@ -36,6 +38,7 @@
     git
     zsh
     gparted
+    ripgrep
   ];
 
 }

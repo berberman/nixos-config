@@ -2,14 +2,24 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    berberman.url = "github:berberman/flakes";
-    home-manager.url = "github:nix-community/home-manager";
+    berberman = {
+      url = "github:berberman/flakes";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    emacs.url = "github:nix-community/emacs-overlay";
   };
 
-  outputs = { self, nixpkgs, berberman, home-manager, ... }: {
+  outputs = { self, nixpkgs, berberman, home-manager, emacs }: {
 
-    overlays =
-      [ (final: prev: import ./overlays.nix final prev) berberman.overlay ];
+    overlays = [
+      (final: prev: import ./overlays.nix final prev)
+      berberman.overlay
+      emacs.overlay
+    ];
 
     nixosConfigurations.POTATO-NN = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
