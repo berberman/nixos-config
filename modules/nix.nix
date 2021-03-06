@@ -3,6 +3,7 @@
 {
   nix = {
     package = pkgs.nixFlakes;
+    nixPath = [ "nixpkgs=${pkgs.path}" ];
     extraOptions = ''
       experimental-features = nix-command flakes
     '';

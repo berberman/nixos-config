@@ -64,6 +64,7 @@
     typora
     discord
     jetbrains.idea-ultimate
+    fastocr
     haskellPackages.ormolu
     haskellPackages.ghc
     haskellPackages.cabal-fmt
