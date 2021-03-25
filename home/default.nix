@@ -14,6 +14,11 @@
 
   };
 
+  programs.direnv = {
+    enable = true;
+    enableNixDirenvIntegration = true;
+  };
+
   programs.vscode = {
     enable = true;
     extensions = with pkgs.vscode-extensions; [ WakaTime.vscode-wakatime ];

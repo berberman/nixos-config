@@ -4,7 +4,14 @@
   time.timeZone = "Asia/Shanghai";
 
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+
+  hardware = {
+    pulseaudio.enable = true;
+    opengl = {
+      enable = true;
+      extraPackages = with pkgs; [ vaapiIntel vaapiVdpau libvdpau-va-gl ];
+    };
+  };
 
   services.openssh.enable = true;
 
@@ -12,6 +19,8 @@
     enable = true;
     drivers = [ pkgs.hplip ];
   };
+
+  services.gnome3.gnome-keyring.enable = true;
 
   programs.java.enable = true;
 
