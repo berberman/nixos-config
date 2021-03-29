@@ -7,7 +7,7 @@
     enableAutosuggestions = true;
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "colored-man-pages" "sudo" "nix" ];
+      plugins = [ "git" "colored-man-pages" "sudo" ];
       theme = "agnoster";
     };
     # https://github.com/NixOS/nix/blob/master/misc/zsh/completion.zsh
