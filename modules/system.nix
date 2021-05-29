@@ -20,9 +20,10 @@
     drivers = [ pkgs.hplip ];
   };
 
-  services.gnome3.gnome-keyring.enable = true;
+  services.gnome.gnome-keyring.enable = true;
 
   programs.java.enable = true;
+  programs.adb.enable = true;
 
   i18n.inputMethod = {
     enabled = "fcitx5";
@@ -48,6 +49,7 @@
     zsh
     gparted
     ripgrep
+    kdeconnect
   ];
 
 }

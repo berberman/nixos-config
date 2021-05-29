@@ -11,6 +11,7 @@ in {
       default = myProxy;
       noProxy = "127.0.0.1,localhost,internal.domain";
     };
+    firewall.enable = false;
   };
 
   systemd.services.nix-daemon.environment = {
