@@ -22,7 +22,11 @@
 
   services.gnome.gnome-keyring.enable = true;
 
-  programs.java.enable = true;
+  programs.java = {
+    enable = true;
+    package = pkgs.jdk8;
+  };
+
   programs.adb.enable = true;
 
   i18n.inputMethod = {

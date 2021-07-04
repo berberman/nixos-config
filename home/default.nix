@@ -16,7 +16,7 @@
 
   programs.direnv = {
     enable = true;
-    enableNixDirenvIntegration = true;
+    nix-direnv.enable = true;
   };
 
   programs.vscode = {
@@ -40,6 +40,7 @@
   programs.gpg.enable = true;
 
   home.packages = with pkgs; [
+    home-manager
     zsh-powerlevel10k
     picom
     flameshot
@@ -70,7 +71,8 @@
     discord
     jetbrains.idea-ultimate
     fastocr
-    haskellPackages.ormolu
+    androidStudioPackages.beta
+    proxychains
     haskellPackages.ghc
     haskellPackages.cabal-fmt
     haskellPackages.cabal-plan
@@ -85,6 +87,23 @@
     Font="Noto Sans CJK SC 12"
 
     Theme=Material-Color-Indigo
+  '';
+
+  # proxychains config
+  home.file.".proxychains/proxychains.conf".text = ''
+    strict_chain
+
+    proxy_dns 
+
+    remote_dns_subnet 224
+
+    tcp_read_time_out 15000
+    tcp_connect_time_out 8000
+
+    localnet 127.0.0.0/255.0.0.0
+
+    [ProxyList]
+    socks5 192.168.31.88 1080
   '';
 
   # ghci
