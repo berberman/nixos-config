@@ -1,17 +1,10 @@
 { config, pkgs, ... }:
 
 {
-  time.timeZone = "Asia/Shanghai";
 
   sound.enable = true;
 
-  hardware = {
-    pulseaudio.enable = true;
-    opengl = {
-      enable = true;
-      extraPackages = with pkgs; [ vaapiIntel vaapiVdpau libvdpau-va-gl ];
-    };
-  };
+  hardware.pulseaudio.enable = true;
 
   services.openssh.enable = true;
 

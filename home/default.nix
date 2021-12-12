@@ -67,11 +67,9 @@
     pavucontrol
     qliveplayer
     obs-studio
-    typora
     discord
     jetbrains.idea-ultimate
     fastocr
-    androidStudioPackages.beta
     proxychains
     haskellPackages.ghc
     haskellPackages.cabal-fmt

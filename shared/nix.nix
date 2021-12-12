@@ -10,8 +10,6 @@
       keep-derivations = true
     '';
     autoOptimiseStore = true;
-    binaryCaches = lib.mkBefore
-      [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" ];
     trustedUsers = [ "root" "berberman" ];
   };
 
