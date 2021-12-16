@@ -21,7 +21,7 @@
 
   programs.java = {
     enable = true;
-    package = pkgs.jdk8;
+    package = pkgs.jdk11;
   };
 
   programs.adb.enable = true;

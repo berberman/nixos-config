@@ -11,34 +11,16 @@ self: super:
       fetchSubmodules = true;
     };
   });
-  
-#   vscode = super.vscode.overrideAttrs (old: rec{
-#     version = "1.55.2";
-#     
-#     src = super.fetchurl {
-#     name = "VSCode_${version}_linux-x64.tar.gz";
-#     url = "https://update.code.visualstudio.com/${version}/linux-x64/stable";
-#     sha256 = "08151qdhf4chg9gfbs0dl0v0k5vla2gz5dfy439jzdg1d022d5rw";
-#     };
-#   });
 
-#   vscode-extensions.WakaTime.vscode-wakatime = super.vscode-extensions.WakaTime.vscode-wakatime.overrideAttrs (old: {
-#     postPatch = ''
-#       mkdir wakatime-cli
-#       ln -s ${self.wakatime}/bin/wakatime ./wakatime-cli/wakatime-cli 
-#     '';
-#   });
-
-  # qbittorrent = (super.qbittorrent.override {
-  #      libtorrent-rasterbar = super.libtorrentRasterbar-1_2_x;
-  #    }).overrideAttrs (old: rec {
-  #      version = "4.3.2.10";
-  #      src = super.fetchFromGitHub {
-  #        owner = "c0re100";
-  #        repo = "qBittorrent-Enhanced-Edition";
-  #        rev = "release-${version}";
-  #        sha256 = "l31sV97XoBsrecMV81CsbKtIQuAeLVMDmolmgIDIItY=";
-  #      };
-  #    });
+  mathematica = super.mathematica.overrideAttrs (old: rec {
+    version = "12.3.0";
+    name = "mathematica-${version}";
+    src = super.requireFile rec {
+      name = "Mathematica_${version}_LINUX.sh";
+      message = "${name} is required!";
+      sha256 =
+        "045df045f6e796ded59f64eb2e0f1949ac88dcba1d5b6e05fb53ea0a4aed7215";
+    };
+  });
 
 }

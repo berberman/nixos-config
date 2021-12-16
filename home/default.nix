@@ -74,6 +74,7 @@
     haskellPackages.ghc
     haskellPackages.cabal-fmt
     haskellPackages.cabal-plan
+    mathematica
   ];
 
   # fcitx5 theme
