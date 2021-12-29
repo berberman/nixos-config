@@ -69,6 +69,7 @@
     obs-studio
     discord
     jetbrains.idea-ultimate
+    jetbrains.pycharm-professional
     fastocr
     proxychains
     haskellPackages.ghc
