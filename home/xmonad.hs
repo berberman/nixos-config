@@ -36,7 +36,7 @@ myLayoutHook = spac ((ThreeCol 1 (3 / 100) (1 / 2) ||| ThreeColMid 1 (3 / 100) (
 myKeys =
   [ ((mod4Mask, xK_r), spawn "rofi -no-lazy-grab -show drun -modi drun -theme ~/.config/rofi/colorful/style.rasi"),
     ( (mod4Mask .|. controlMask, xK_r),
-      spawn "xmonad --recompile && xmonad --restart"
+      spawn "xmonad --restart"
         >> spawn "killall picom && picom --experimental-backends &"
     ),
     ((mod4Mask .|. controlMask, xK_p), mySpawnOn "Web" chrome),
