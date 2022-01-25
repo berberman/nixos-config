@@ -51,6 +51,7 @@
     gparted
     ripgrep
     kdeconnect
+    pciutils
   ];
 
 }
