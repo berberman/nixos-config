@@ -21,7 +21,7 @@
 
   programs.vscode = {
     enable = true;
-    extensions = with pkgs.vscode-extensions; [ WakaTime.vscode-wakatime ];
+#     extensions = with pkgs.vscode-extensions; [ WakaTime.vscode-wakatime ];
   };
 
   programs.emacs = {
@@ -76,6 +76,7 @@
     haskellPackages.cabal-fmt
     haskellPackages.cabal-plan
     mathematica
+    netbeans
   ];
 
   # fcitx5 theme
@@ -126,7 +127,7 @@
     enable = true;
     # vscode terminal style
     settings = {
-      background_opacity = 0.65;
+      window.opacity = 0.65;
       colors = {
         primary.background = "#1e1e1e";
         normal = {

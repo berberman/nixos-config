@@ -23,4 +23,11 @@ self: super:
     };
   });
 
+  netbeans = super.netbeans.overrideAttrs (old: {
+    nativeBuildInputs = old.nativeBuildInputs ++ [ self.makeWrapper ];
+    buildCommand = old.buildCommand + ''
+      wrapProgram $out/bin/netbeans \
+        --set _JAVA_AWT_WM_NONREPARENTING 1 
+    '';
+  });
 }

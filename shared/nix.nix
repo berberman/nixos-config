@@ -9,8 +9,10 @@
       keep-outputs = true
       keep-derivations = true
     '';
-    autoOptimiseStore = true;
-    trustedUsers = [ "root" "berberman" ];
+    settings = {
+      trusted-users = [ "root" "berberman" ];
+      auto-optimise-store = true;
+    };
   };
 
   nixpkgs.config.allowUnfree = true;
