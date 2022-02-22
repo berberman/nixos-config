@@ -77,6 +77,7 @@
     haskellPackages.cabal-plan
     mathematica
     netbeans
+    texlive.combined.scheme-full
   ];
 
   # fcitx5 theme
