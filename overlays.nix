@@ -2,12 +2,12 @@ self: super:
 
 {
   picom = super.picom.overrideAttrs (old: {
-    version = "8.3-next";
+    version = "9.1-next";
     src = super.fetchFromGitHub {
       owner = "yshui";
       repo = "picom";
-      rev = "d974367a0446f4f1939daaada7cb6bca84c893ef";
-      sha256 = "mx60aWR+4hlwMHwEhYSNXZfHfGog5c2aHolMtgkpVVY=";
+      rev = "7e56843ebfc0837d70deb9d73b36ae706462bd21";
+      sha256 = "Fqk6bPAOg4muxmSP+ezpGUNw6xrMWchZACKemeA08mA=";
       fetchSubmodules = true;
     };
   });

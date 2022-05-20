@@ -65,7 +65,6 @@
     weechat
     qbittorrent
     pavucontrol
-    qliveplayer
     obs-studio
     discord
     jetbrains.idea-ultimate
@@ -78,6 +77,7 @@
     mathematica
     netbeans
     texlive.combined.scheme-full
+    zydra
   ];
 
   # fcitx5 theme
