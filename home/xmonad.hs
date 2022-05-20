@@ -11,13 +11,12 @@ import XMonad.Util.EZConfig (additionalKeys)
 import XMonad.Util.SpawnOnce
 
 main =
-  xmonad . ewmh . docks $
+  xmonad . ewmhFullscreen . ewmh . docks $
     kde4Config
       { modMask = mod4Mask,
         focusFollowsMouse = False,
         manageHook = manageHook kde4Config <+> myManageHook <+> manageDocks,
         layoutHook = myLayoutHook,
-        handleEventHook = fullscreenEventHook,
         workspaces = myWorkspaces,
         startupHook = startupHook kde4Config >> spawn "picom --experimental-backends &",
         borderWidth = 0,
@@ -57,7 +56,7 @@ myManageHook =
     ]
   where
     name = stringProperty "WM_NAME"
-    floatByClass = ["peek"]
+    floatByClass = ["peek", "ksmserver-logout-greeter"]
     floatByName = ["Media viewer"]
     ignoreByClass = ["plasmashell"]
     webApps = [chrome]
