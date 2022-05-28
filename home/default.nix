@@ -30,9 +30,11 @@
       package = pkgs.emacs;
       alwaysEnsure = true;
       extraEmacsPackages = p: with p; [ use-package ];
-      config = ./emacs.el;
+      config = ./init.el;
     });
   };
+
+  home.file.".emacs".source = ./init.el;
 
   programs.home-manager.enable = true;
   programs.htop.enable = true;
