@@ -122,5 +122,38 @@
 
 (use-package flycheck :hook (prog-mode . flycheck-mode))
 
+(use-package nix-mode
+  :mode (".nix\\'" . nix-mode)
+  :init (setq nix-indent-function 'nix-indent-line))
+
+(use-package markdown-mode
+  :mode (("\\.md\\'" . gfm-mode)
+         ("\\.markdown\\'" . gfm-mode)))
+
+(use-package yaml-mode)
+
+(use-package diff-hl
+  :hook ((dired-mode . diff-hl-dired-mode)
+	 (magit-post-refresh . diff-hl-magit-post-refresh))
+  :config
+  (global-diff-hl-mode))
+
+(use-package dired
+  :ensure nil
+  :config
+  (setq dired-recursive-deletes 'always
+        dired-recursive-copies 'always))
+
+(use-package dired-single)
+
+(use-package diredfl
+  :init (diredfl-global-mode 1))
+
+(use-package all-the-icons-dired
+  :hook (dired-mode . all-the-icons-dired-mode))
+
+(use-package dired-hide-dotfiles
+  :hook (dired-mode . dired-hide-dotfiles-mode))
+
 (provide 'init)
 ;;; init.el ends here
