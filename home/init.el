@@ -155,5 +155,19 @@
 (use-package dired-hide-dotfiles
   :hook (dired-mode . dired-hide-dotfiles-mode))
 
+(use-package telega
+  :commands (telega))
+
+(electric-pair-mode 1)
+(show-paren-mode 1)
+(save-place-mode 1)
+(delete-selection-mode 1)
+(global-auto-revert-mode 1)
+
+(use-package wakatime-mode
+  :diminish
+  :config
+  (global-wakatime-mode t))
+
 (provide 'init)
 ;;; init.el ends here
