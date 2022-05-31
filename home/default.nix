@@ -92,6 +92,7 @@
     netbeans
     texlive.combined.scheme-full
     wakatime
+    (agda.withPackages (p: [ p.standard-library ]))
   ];
 
   # fcitx5 theme

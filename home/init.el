@@ -108,14 +108,11 @@
 (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
 
 (use-package company
-  :after lsp-mode
-  :hook (prog-mode . company-mode)
+  :hook (after-init . global-company-mode)
   :bind (:map company-active-map
               ("<tab>" . company-complete-selection)
 	      ("C-n" . #'company-select-next)
-	      ("C-p" . #'company-select-previous))
-        (:map lsp-mode-map
-         ("<tab>" . company-indent-or-complete-common)))
+	      ("C-p" . #'company-select-previous)))
 
 (use-package company-box
   :hook (company-mode . company-box-mode))
@@ -133,10 +130,11 @@
 (use-package yaml-mode)
 
 (use-package diff-hl
-  :hook ((dired-mode . diff-hl-dired-mode)
+  :hook ((after-init . global-diff-hl-mode)
+	 (dired-mode . diff-hl-dired-mode)
 	 (magit-post-refresh . diff-hl-magit-post-refresh))
   :config
-  (global-diff-hl-mode))
+  (diff-hl-flydiff-mode 1))
 
 (use-package dired
   :ensure nil
@@ -168,6 +166,9 @@
   :diminish
   :config
   (global-wakatime-mode t))
+
+(load-file (let ((coding-system-for-read 'utf-8))
+	     (shell-command-to-string "agda-mode locate")))
 
 (provide 'init)
 ;;; init.el ends here
