@@ -93,6 +93,7 @@
     texlive.combined.scheme-full
     wakatime
     (agda.withPackages (p: [ p.standard-library ]))
+    zotero
   ];
 
   # fcitx5 theme

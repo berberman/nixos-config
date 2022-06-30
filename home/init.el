@@ -93,19 +93,25 @@
 
 (use-package magit)
 
+(use-package haskell-mode)
+
 (use-package lsp-mode
   :init
   (setq lsp-keymap-prefix "C-c l")
   :hook (
-	 ((haskell-literate-mode-hook haskell-mode-hook) . lsp-deferred)
+	 ((haskell-literate-mode haskell-mode) . lsp-deferred)
 	 (lsp-mode . lsp-enable-which-key-integration))
-  :commands lsp lsp-deferred)
+  :commands lsp lsp-deferred
+  :config
+  (define-key lsp-mode-map (kbd "C-c l") lsp-command-map))
 
 (use-package lsp-ui :commands lsp-ui-mode)
 
 (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
 
 (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+
+(use-package lsp-haskell)
 
 (use-package company
   :hook (after-init . global-company-mode)
