@@ -11,7 +11,17 @@
   };
 
   services.openssh.enable = true;
+  services.pcscd.enable = true;
+  services.udev.packages = [ pkgs.yubikey-personalization ];
 
+  programs = {
+    ssh.startAgent = false;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+  };
+  
   services.printing = {
     enable = true;
     drivers = [ pkgs.hplip ];
@@ -52,6 +62,9 @@
     ripgrep
     kdeconnect
     pciutils
+    pcsctools
+    yubikey-personalization
+    yubikey-personalization-gui
   ];
 
 }

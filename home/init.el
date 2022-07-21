@@ -135,6 +135,8 @@
 
 (use-package yaml-mode)
 
+(use-package racket-mode)
+
 (use-package diff-hl
   :hook ((after-init . global-diff-hl-mode)
 	 (dired-mode . diff-hl-dired-mode)

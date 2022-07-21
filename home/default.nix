@@ -94,6 +94,7 @@
     wakatime
     (agda.withPackages (p: [ p.standard-library ]))
     zotero
+    racket
   ];
 
   # fcitx5 theme
