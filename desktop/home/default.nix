@@ -21,7 +21,7 @@
 
   programs.vscode = {
     enable = true;
-#     extensions = with pkgs.vscode-extensions; [ WakaTime.vscode-wakatime ];
+    #     extensions = with pkgs.vscode-extensions; [ WakaTime.vscode-wakatime ];
   };
 
   programs.emacs = {
@@ -31,19 +31,20 @@
       alwaysEnsure = true;
       extraEmacsPackages = p: with p; [ use-package ];
       config = ./init.el;
-      override = epkgs: epkgs // {
-      telega = epkgs.melpaPackages.telega.override {
-          tdlib = pkgs.tdlib.overrideAttrs (old: rec {
-            version = "1.8.0";
-            src = pkgs.fetchFromGitHub {
-              owner = "tdlib";
-              repo = "td";
-              rev = "v${version}";
-              sha256 = "OBgzFBi+lIBbKnHDm5D/F3Xi4s1x4geb+1OoBP3F+qY=";
-            };
-          });
+      override = epkgs:
+        epkgs // {
+          telega = epkgs.melpaPackages.telega.override {
+            tdlib = pkgs.tdlib.overrideAttrs (old: rec {
+              version = "1.8.0";
+              src = pkgs.fetchFromGitHub {
+                owner = "tdlib";
+                repo = "td";
+                rev = "v${version}";
+                sha256 = "OBgzFBi+lIBbKnHDm5D/F3Xi4s1x4geb+1OoBP3F+qY=";
+              };
+            });
+          };
         };
-      };
     });
   };
 
@@ -186,7 +187,9 @@
       POTATO-A = { hostname = "192.168.31.88"; };
       POTATO-HZ = { hostname = "hz.typed.icu"; };
       POTATO-DE = { hostname = "de.berberman.space"; };
-
+      POTATO-O0 = { hostname = "o0.typed.icu"; };
     };
   };
+
+  home.stateVersion = "22.05";
 }

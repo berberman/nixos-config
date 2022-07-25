@@ -7,10 +7,10 @@
 {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./modules/boot.nix
-    ./modules/networking.nix
-    ./modules/nix.nix
-    ./modules/system.nix
+    ./boot.nix
+    ./networking.nix
+    ./nix.nix
+    ./system.nix
   ];
 
   environment.pathsToLink = [ "/share/zsh" ];
