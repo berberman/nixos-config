@@ -4,7 +4,7 @@
     berberman = {
       url = "github:berberman/flakes";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.utils.follows = "flake-utils";
+      inputs.flake-utils.follows = "flake-utils";
     };
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -17,12 +17,23 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-utils.url = "github:numtide/flake-utils";
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    ircbot = {
+      url = "github:unsafeIO/ircbot";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
   };
 
-  outputs =
-    { self, nixpkgs, berberman, home-manager, emacs, deploy-rs, flake-utils }:
+  outputs = inputs@{ self, nixpkgs, berberman, home-manager, emacs, deploy-rs
+    , flake-utils, agenix, ircbot }:
     let
       cachix = ./cachix;
+      secrets = ./secrets;
+      global = import ./global.nix;
       overlay = { nixpkgs.overlays = [ self.overlays.default ]; };
       desktop = rec {
         home = {
@@ -32,14 +43,32 @@
         };
         shared = let dir = ./desktop/shared;
         in with builtins; map (x: dir + ("/" + x)) (attrNames (readDir dir));
-        modules = [ home home-manager.nixosModules.home-manager cachix overlay ]
-          ++ shared;
+        modules = [
+          secrets
+          agenix.nixosModule
+          home
+          home-manager.nixosModules.home-manager
+          cachix
+          overlay
+        ] ++ shared;
       };
       server = rec {
         shared = let dir = ./server/shared;
         in with builtins; map (x: dir + ("/" + x)) (attrNames (readDir dir));
-        modules = [ cachix overlay ] ++ shared;
+        modules = [ secrets agenix.nixosModule cachix overlay ] ++ shared;
       };
+      mkDesktopSystem = { system, modules }:
+        nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit global inputs; };
+          inherit system;
+          modules = desktop.modules ++ modules;
+        };
+      mkServerSystem = { system, modules }:
+        nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit global inputs; };
+          inherit system;
+          modules = server.modules ++ modules;
+        };
     in flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (system:
       let
         pkgs = import nixpkgs {
@@ -50,6 +79,7 @@
         legacyPackages = pkgs;
         devShells.default = pkgs.mkShell {
           buildInputs = [
+            agenix.defaultPackage.${system}
             pkgs.deploy-rs.deploy-rs
             (pkgs.haskellPackages.ghcWithPackages
               (p: with p; [ xmonad xmonad-contrib ]))
@@ -66,20 +96,17 @@
           ]) final prev;
 
         nixosConfigurations = {
-          POTATO-NN = nixpkgs.lib.nixosSystem {
+          POTATO-NN = mkDesktopSystem {
             system = "x86_64-linux";
-            modules = desktop.modules
-              ++ [ ./desktop/machines/nn/configuration.nix ];
+            modules = [ ./desktop/machines/nn/configuration.nix ];
           };
-          POTATO-NR = nixpkgs.lib.nixosSystem {
+          POTATO-NR = mkDesktopSystem {
             system = "x86_64-linux";
-            modules = desktop.modules
-              ++ [ ./desktop/machines/nr/configuration.nix ];
+            modules = [ ./desktop/machines/nr/configuration.nix ];
           };
-          POTATO-O0 = nixpkgs.lib.nixosSystem {
+          POTATO-O0 = mkServerSystem {
             system = "x86_64-linux";
-            modules = server.modules
-              ++ [ ./server/machines/o0/configuration.nix ];
+            modules = [ ./server/machines/o0/configuration.nix ];
           };
         };
 

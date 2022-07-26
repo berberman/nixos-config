@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "agenix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1652712410,
+        "narHash": "sha256-hMJ2TqLt0DleEnQFGUHK9sV2aAzJPU8pZeiZoqRozbE=",
+        "owner": "ryantm",
+        "repo": "agenix",
+        "rev": "7e5e58b98c3dcbf497543ff6f22591552ebfe65b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ryantm",
+        "repo": "agenix",
+        "type": "github"
+      }
+    },
     "berberman": {
       "inputs": {
         "nixpkgs": [
@@ -162,6 +182,30 @@
         "type": "github"
       }
     },
+    "ircbot": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "pixiv": "pixiv"
+      },
+      "locked": {
+        "lastModified": 1658871050,
+        "narHash": "sha256-L85foyIOi4UTgL5HHLg3PizHGn8NzNzmarA8xp35/Z4=",
+        "owner": "unsafeIO",
+        "repo": "ircbot",
+        "rev": "834bdab5cbfced241209f10a2106c2c45c898a9e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "unsafeIO",
+        "repo": "ircbot",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1658644204,
@@ -215,13 +259,40 @@
         "type": "github"
       }
     },
+    "pixiv": {
+      "inputs": {
+        "flake-utils": [
+          "ircbot",
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "ircbot",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1658777580,
+        "narHash": "sha256-+M/5VoK7hvyE65pYbZ3FvLQE3bHDaw7cHmk5pkMhGxI=",
+        "owner": "The-closed-eye-of-love",
+        "repo": "pixiv",
+        "rev": "3f36fefe8724c830153fcb00a8cea7fad3662e8f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "The-closed-eye-of-love",
+        "repo": "pixiv",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
+        "agenix": "agenix",
         "berberman": "berberman",
         "deploy-rs": "deploy-rs",
         "emacs": "emacs",
         "flake-utils": "flake-utils_3",
         "home-manager": "home-manager",
+        "ircbot": "ircbot",
         "nixpkgs": "nixpkgs_2"
       }
     },

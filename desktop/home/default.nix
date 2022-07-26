@@ -84,7 +84,6 @@
     discord
     jetbrains.idea-ultimate
     jetbrains.pycharm-professional
-    fastocr
     proxychains
     haskellPackages.ghc
     haskellPackages.cabal-fmt
@@ -187,7 +186,10 @@
       POTATO-A = { hostname = "192.168.31.88"; };
       POTATO-HZ = { hostname = "hz.typed.icu"; };
       POTATO-DE = { hostname = "de.berberman.space"; };
-      POTATO-O0 = { hostname = "o0.typed.icu"; };
+      POTATO-O0 = {
+        hostname = "o0.typed.icu";
+        user = "root";
+      };
     };
   };
 

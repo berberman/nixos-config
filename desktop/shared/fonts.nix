@@ -5,9 +5,9 @@
     fontconfig = {
       enable = true;
       defaultFonts = {
-        monospace = [ "VictorMono Nerd Font" ];
-        sansSerif = [ "Noto Sans CJK SC" ];
-        serif = [ "Noto Serif CJK SC" ];
+        monospace = [ "VictorMono Nerd Font" "Noto Sans CJK SC" ];
+        sansSerif = [ "Noto Sans" "Noto Sans CJK SC" ];
+        serif = [ "Noto Serif" "Noto Serif CJK SC" ];
         emoji = [ "Apple Color Emoji" ];
       };
     };
