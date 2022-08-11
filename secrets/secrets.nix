@@ -4,4 +4,5 @@ in {
   "google-key.age".publicKeys = keys;
   "google-cx.age".publicKeys = keys;
   "telegraph-token.age".publicKeys = keys;
+  "matrix-synapse-registration.age".publicKeys = keys;
 }
