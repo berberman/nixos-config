@@ -112,6 +112,10 @@
             system = "x86_64-linux";
             modules = [ ./server/machines/o0/configuration.nix ];
           };
+          POTATO-HZ4 = mkServerSystem {
+            system = "x86_64-linux";
+            modules = [ ./server/machines/hz4/configuration.nix ];
+          };
         };
 
         deploy.nodes = {
