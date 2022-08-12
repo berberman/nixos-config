@@ -50,7 +50,10 @@ in {
         root = pkgs.element-web.override {
           conf = {
             default_server_config = {
-              "m.homeserver".base_url = "https://matrix.${serverName}";
+              "m.homeserver" = {
+                base_url = "https://matrix.${serverName}";
+                server_name = serverName;
+              };
             };
           };
         };
