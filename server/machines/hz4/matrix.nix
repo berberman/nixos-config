@@ -65,6 +65,10 @@ in {
     enable = true;
     withJemalloc = true;
     settings = {
+      enable_registration = true;
+      dynamic_thumbnails = true;
+      url_preview_enabled = true;
+      registration_requires_token = true;
       server_name = serverName;
       listeners = [{
         port = 8008;
