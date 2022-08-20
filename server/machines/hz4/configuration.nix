@@ -1,5 +1,5 @@
 { ... }: {
-  imports = [ ./hardware-configuration.nix ./matrix.nix ];
+  imports = [ ./hardware-configuration.nix ./matrix.nix ./secrets.nix ];
   networking.hostName = "POTATO-HZ4";
   networking.useDHCP = false;
   networking.interfaces.ens3.useDHCP = true;

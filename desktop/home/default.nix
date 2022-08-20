@@ -190,6 +190,10 @@
         hostname = "o0.typed.icu";
         user = "root";
       };
+      POTATO-HZ4 = {
+        hostname = "hz4.typed.icu";
+        user = "root";
+      };
     };
   };
 

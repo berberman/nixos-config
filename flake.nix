@@ -36,7 +36,6 @@
     , flake-utils, agenix, ircbot }:
     let
       cachix = ./cachix;
-      secrets = ./secrets;
       global = import ./global.nix;
       overlay = { nixpkgs.overlays = [ self.overlays.default ]; };
       desktop = rec {
@@ -48,7 +47,6 @@
         shared = let dir = ./desktop/shared;
         in with builtins; map (x: dir + ("/" + x)) (attrNames (readDir dir));
         modules = [
-          secrets
           agenix.nixosModule
           home
           home-manager.nixosModules.home-manager
@@ -59,7 +57,7 @@
       server = rec {
         shared = let dir = ./server/shared;
         in with builtins; map (x: dir + ("/" + x)) (attrNames (readDir dir));
-        modules = [ secrets agenix.nixosModule cachix overlay ] ++ shared;
+        modules = [ agenix.nixosModule cachix overlay ] ++ shared;
       };
       mkDesktopSystem = { system, modules }:
         nixpkgs.lib.nixosSystem {
@@ -125,6 +123,13 @@
               self.nixosConfigurations.POTATO-O0;
             hostname = "o0.typed.icu";
           };
+          POTATO-HZ4 = {
+            sshUser = "root";
+            profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos
+              self.nixosConfigurations.POTATO-HZ4;
+            hostname = "hz4.typed.icu";
+          };
+
         };
       };
 }
