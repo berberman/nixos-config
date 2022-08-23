@@ -114,6 +114,10 @@
             system = "x86_64-linux";
             modules = [ ./server/machines/hz4/configuration.nix ];
           };
+          POTATO-M = mkServerSystem {
+            system = "x86_64-linux";
+            modules = [ ./server/machines/m/configuration.nix ];
+          };
         };
 
         deploy.nodes = {
@@ -129,7 +133,13 @@
               self.nixosConfigurations.POTATO-HZ4;
             hostname = "hz4.typed.icu";
           };
-
+          POTATO-M = {
+            sshUser = "root";
+            sshOpts = [ "-p" "20998" ];
+            profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos
+              self.nixosConfigurations.POTATO-M;
+            hostname = "m.typed.icu";
+          };
         };
       };
 }
