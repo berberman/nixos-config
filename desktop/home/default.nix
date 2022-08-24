@@ -200,7 +200,7 @@
         port = 20998;
       };
       POTATO-O1 = {
-        hostname = "o0.typed.icu";
+        hostname = "o1.typed.icu";
         user = "root";
       };
     };
