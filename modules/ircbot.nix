@@ -58,7 +58,8 @@ in with lib; {
       '';
     in {
       wantedBy = [ "multi-user.target" ];
-      after = [ "network.target" ];
+      wants = [ "network-online.target" ];
+      after = [ "network-online.target" ];
       description = "ircbot";
       serviceConfig = {
         ExecStart = run;

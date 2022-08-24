@@ -1,6 +1,6 @@
 { pkgs, config, ... }: {
 
-  imports = [ ./hardware-configuration.nix ./ircbot.nix ./secrets.nix ];
+  imports = [ ./hardware-configuration.nix ./secrets.nix ];
 
   networking.hostName = "POTATO-O0";
 

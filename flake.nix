@@ -47,6 +47,7 @@
         shared = let dir = ./desktop/shared;
         in with builtins; map (x: dir + ("/" + x)) (attrNames (readDir dir));
         modules = [
+          self.nixosModules.default
           agenix.nixosModule
           home
           home-manager.nixosModules.home-manager
@@ -57,7 +58,9 @@
       server = rec {
         shared = let dir = ./server/shared;
         in with builtins; map (x: dir + ("/" + x)) (attrNames (readDir dir));
-        modules = [ agenix.nixosModule cachix overlay ] ++ shared;
+        modules =
+          [ self.nixosModules.default agenix.nixosModule cachix overlay ]
+          ++ shared;
       };
       mkDesktopSystem = { system, modules }:
         nixpkgs.lib.nixosSystem {
@@ -89,6 +92,8 @@
         };
       }) // {
 
+        nixosModules.default = import ./modules;
+
         overlays.default = final: prev:
           (nixpkgs.lib.composeManyExtensions [
             (final: prev: import ./overlays.nix final prev)
@@ -118,6 +123,10 @@
             system = "x86_64-linux";
             modules = [ ./server/machines/m/configuration.nix ];
           };
+          POTATO-O1 = mkServerSystem {
+            system = "x86_64-linux";
+            modules = [ ./server/machines/o1/configuration.nix ];
+          };
         };
 
         deploy.nodes = {
@@ -139,6 +148,12 @@
             profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos
               self.nixosConfigurations.POTATO-M;
             hostname = "m.typed.icu";
+          };
+          POTATO-O1 = {
+            sshUser = "root";
+            profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos
+              self.nixosConfigurations.POTATO-O1;
+            hostname = "o1.typed.icu";
           };
         };
       };
