@@ -194,6 +194,15 @@
         hostname = "hz4.typed.icu";
         user = "root";
       };
+      POTATO-M = {
+        hostname = "m.typed.icu";
+        user = "root";
+        port = 20998;
+      };
+      POTATO-O1 = {
+        hostname = "o0.typed.icu";
+        user = "root";
+      };
     };
   };
 
