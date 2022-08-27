@@ -26,5 +26,7 @@
     ripgrep
     wget
     bat
+    iperf
+    speedtest-cli
   ];
 }

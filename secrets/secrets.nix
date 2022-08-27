@@ -5,4 +5,5 @@ in {
   "google-cx.age".publicKeys = keys;
   "telegraph-token.age".publicKeys = keys;
   "matrix-synapse-registration.age".publicKeys = keys;
+  "nextcloud-admin-password.age".publicKeys = keys;
 }
