@@ -16,4 +16,8 @@ rec {
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMCGWBq8CwZJa/TcI63gZQM61exLYaHBxPeX8/hU9W/9 POTATO-O1"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMKIkqj9mfV/UHSLq07xxFdMmi3kOKlyWi7qQcjUvkIr POTATO-M"
   ];
+  wg.public = {
+    o1 = "0tlbloisrfwumvqhZGirdyDg05S9Ex9LEGGG+8vsNFg=";
+    m = "fxv+DpMAXw71JuiO/kNMUwhOzFVPOcVVpm1zLBaJKH8=";
+  };
 }

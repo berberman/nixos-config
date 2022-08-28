@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, global, ... }:
 
 {
   imports = [ ./hardware-configuration.nix ./nextcloud.nix ./secrets.nix ];
@@ -37,4 +37,22 @@
   };
 
   networking.firewall.enable = false;
+
+  networking.wireguard.interfaces = {
+    wg0 = {
+      ips = [ "10.100.0.2/24" ];
+      listenPort = 20988;
+      privateKeyFile = config.age.secrets.wg-m-private.path;
+
+      peers = [{
+        publicKey = global.wg.public.o1;
+
+        allowedIPs = [ "10.100.0.1" ];
+
+        endpoint = "o1.typed.icu:20988";
+
+        persistentKeepalive = 25;
+      }];
+    };
+  };
 }

@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: {
   nix = {
     extraOptions = ''
       experimental-features = nix-command flakes
@@ -9,5 +9,6 @@
       dates = "weekly";
     };
     nixPath = [ "nixpkgs=${pkgs.path}" ];
+    registry.nixpkgs.flake = inputs.nixpkgs;
   };
 }

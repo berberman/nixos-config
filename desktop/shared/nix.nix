@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   nix = {
@@ -13,6 +13,7 @@
       trusted-users = [ "root" "berberman" ];
       auto-optimise-store = true;
     };
+    registry.nixpkgs.flake = inputs.nixpkgs;
   };
 
   nixpkgs.config.allowUnfree = true;
