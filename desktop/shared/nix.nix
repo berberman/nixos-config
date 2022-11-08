@@ -2,7 +2,7 @@
 
 {
   nix = {
-    package = pkgs.nixFlakes;
+    package = pkgs.nixVersions.stable;
     nixPath = [ "nixpkgs=${pkgs.path}" ];
     extraOptions = ''
       experimental-features = nix-command flakes

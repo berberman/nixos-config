@@ -57,7 +57,7 @@
 
   home.packages = with pkgs; [
     home-manager
-    picom
+    picom-next
     flameshot
     nixfmt
     postman
@@ -89,12 +89,12 @@
     haskellPackages.cabal-fmt
     haskellPackages.cabal-plan
     mathematica
-    netbeans
     texlive.combined.scheme-full
     wakatime
     (agda.withPackages (p: [ p.standard-library ]))
     zotero
     racket
+    marktext
   ];
 
   # fcitx5 theme

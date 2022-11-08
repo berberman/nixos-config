@@ -60,7 +60,7 @@
     zsh
     gparted
     ripgrep
-    kdeconnect
+    plasma5Packages.kdeconnect-kde
     pciutils
     pcsctools
     yubikey-personalization

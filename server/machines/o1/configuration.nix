@@ -13,6 +13,11 @@
     defaults.email = "o1@typed.icu";
   };
 
+  services.frps = {
+    enable = true;
+    config = { common = { bind_port = 7654; }; };
+  };
+
   networking.wireguard.interfaces = {
     wg0 = {
       ips = [ "10.100.0.1/24" ];

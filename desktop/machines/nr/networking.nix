@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 {
+  systemd.services.NetworkManager-wait-online.enable = false;
   networking = {
     hostName = "POTATO-NR";
     useDHCP = false;
