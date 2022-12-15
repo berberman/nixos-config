@@ -2,8 +2,8 @@
 
   services.nextcloud = {
     enable = true;
-    hostName = "nc.berberman.space";
-    package = pkgs.nextcloud24;
+    hostName = "nc.typed.icu";
+    package = pkgs.nextcloud25;
     config.adminpassFile = config.age.secrets.nextcloud-admin-password.path;
   };
 

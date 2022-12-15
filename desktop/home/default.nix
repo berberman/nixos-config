@@ -185,7 +185,7 @@
       };
       POTATO-A = { hostname = "192.168.31.88"; };
       POTATO-HZ = { hostname = "hz.typed.icu"; };
-      POTATO-DE = { hostname = "de.berberman.space"; };
+      POTATO-DE = { hostname = "de.typed.icu"; };
       POTATO-O0 = {
         hostname = "o0.typed.icu";
         user = "root";
@@ -201,6 +201,10 @@
       };
       POTATO-O1 = {
         hostname = "o1.typed.icu";
+        user = "root";
+      };
+      POTATO-OA = {
+        hostname = "oa.typed.icu";
         user = "root";
       };
     };

@@ -4,7 +4,6 @@
     berberman = {
       url = "github:berberman/flakes";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
     };
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -98,7 +97,7 @@
         overlays.default = final: prev:
           (nixpkgs.lib.composeManyExtensions [
             (final: prev: import ./overlays.nix final prev)
-            berberman.overlay
+            berberman.overlays.default
             emacs.overlay
             deploy-rs.overlay
           ]) final prev;
@@ -128,6 +127,10 @@
             system = "x86_64-linux";
             modules = [ ./server/machines/o1/configuration.nix ];
           };
+          POTATO-OA = mkServerSystem {
+            system = "aarch64-linux";
+            modules = [ ./server/machines/oa/configuration.nix ];
+          };
         };
 
         deploy.nodes = {
@@ -155,6 +158,12 @@
             profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos
               self.nixosConfigurations.POTATO-O1;
             hostname = "o1.typed.icu";
+          };
+          POTATO-OA = {
+            sshUser = "root";
+            profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos
+              self.nixosConfigurations.POTATO-OA;
+            hostname = "oa.typed.icu";
           };
         };
       };

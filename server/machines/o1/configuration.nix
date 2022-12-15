@@ -42,7 +42,7 @@
     enable = true;
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
-    virtualHosts."nc.berberman.space" = {
+    virtualHosts."nc.typed.icu" = {
       enableACME = true;
       forceSSL = true;
       locations."/".proxyPass = "http://10.100.0.2";
