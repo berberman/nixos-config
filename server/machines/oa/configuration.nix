@@ -1,5 +1,5 @@
 { pkgs, config, global, ... }: {
-  imports = [ ./hardware-configuration.nix ./secrets.nix ];
+  imports = [ ./hardware-configuration.nix ./secrets.nix ./matrix.nix ];
 
   networking.hostName = "POTATO-OA";
   networking.firewall.enable = false;
