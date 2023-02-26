@@ -47,7 +47,7 @@
         in with builtins; map (x: dir + ("/" + x)) (attrNames (readDir dir));
         modules = [
           self.nixosModules.default
-          agenix.nixosModule
+          agenix.nixosModules.default
           home
           home-manager.nixosModules.home-manager
           cachix
@@ -58,7 +58,7 @@
         shared = let dir = ./server/shared;
         in with builtins; map (x: dir + ("/" + x)) (attrNames (readDir dir));
         modules =
-          [ self.nixosModules.default agenix.nixosModule cachix overlay ]
+          [ self.nixosModules.default agenix.nixosModules.default cachix overlay ]
           ++ shared;
       };
       mkDesktopSystem = { system, modules }:
@@ -83,7 +83,7 @@
         legacyPackages = pkgs;
         devShells.default = pkgs.mkShell {
           buildInputs = [
-            agenix.defaultPackage.${system}
+            agenix.packages.${system}.default
             pkgs.deploy-rs.deploy-rs
             pkgs.wireguard-tools
             (pkgs.haskellPackages.ghcWithPackages
