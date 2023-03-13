@@ -9,7 +9,7 @@
   zramSwap.enable = true;
 
   services.openssh.enable = true;
-  services.openssh.passwordAuthentication = false;
+  services.openssh.settings.PasswordAuthentication = false;
 
   users.users.root.openssh.authorizedKeys.keys = global.pubKeys;
 
