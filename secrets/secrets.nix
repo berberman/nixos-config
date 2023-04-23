@@ -8,4 +8,5 @@ in {
   "nextcloud-admin-password.age".publicKeys = keys;
   "wg-o1-private.age".publicKeys = keys;
   "wg-m-private.age".publicKeys = keys;
+  "minio-credentials.age".publicKeys = keys;
 }

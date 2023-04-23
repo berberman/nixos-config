@@ -47,6 +47,26 @@
       forceSSL = true;
       locations."/".proxyPass = "http://10.100.0.2";
     };
+    virtualHosts."s3.typed.icu" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = { proxyPass = "http://10.100.0.2:9000"; };
+      extraConfig = ''
+        client_max_body_size 0;
+        proxy_buffering off;
+        proxy_request_buffering off;
+        ignore_invalid_headers off;
+        chunked_transfer_encoding off;
+      '';
+    };
+    virtualHosts."s3c.typed.icu" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://10.100.0.2:9001";
+        proxyWebsockets = true;
+      };
+    };
   };
 
 }
