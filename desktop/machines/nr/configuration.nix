@@ -10,6 +10,7 @@
     ./boot.nix
     ./networking.nix
     ./system.nix
+    ./secrets.nix
   ];
 
   environment.pathsToLink = [ "/share/zsh" ];

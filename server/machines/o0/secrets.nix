@@ -4,5 +4,6 @@
     "google-key"
     "pixiv-token"
     "telegraph-token"
+    "wg-o0-private"
   ];
 }

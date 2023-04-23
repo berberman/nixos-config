@@ -41,19 +41,8 @@
 
   networking.wireguard.interfaces = {
     wg0 = {
-      ips = [ "10.100.0.2/24" ];
-      listenPort = 20988;
-      privateKeyFile = config.age.secrets.wg-m-private.path;
-
-      peers = [{
-        publicKey = global.wg.public.o1;
-
-        allowedIPs = [ "10.100.0.1" ];
-
-        endpoint = "o1.typed.icu:20988";
-
-        persistentKeepalive = 25;
-      }];
+      inherit (global.wg.m) ips listenPort peers;
+      privateKeyFile = global.wg.m.privateKeyFile config;
     };
   };
 }

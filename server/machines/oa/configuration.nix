@@ -8,4 +8,10 @@
   security.acme.defaults.email = "acme@typed.icu";
   boot.zfs.devNodes = "/dev";
   networking.hostId = "c271c48d";
+  networking.wireguard.interfaces = {
+    wg0 = {
+      inherit (global.wg.oa) ips listenPort peers;
+      privateKeyFile = global.wg.oa.privateKeyFile config;
+    };
+  };
 }

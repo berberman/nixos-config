@@ -20,21 +20,14 @@
 
   networking.wireguard.interfaces = {
     wg0 = {
-      ips = [ "10.100.0.1/24" ];
-      listenPort = 20988;
+      inherit (global.wg.o1) ips listenPort peers;
+      privateKeyFile = global.wg.o1.privateKeyFile config;
       postSetup = ''
         ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.100.0.0/24 -o ens3 -j MASQUERADE
       '';
       postShutdown = ''
         ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.100.0.0/24 -o ens3 -j MASQUERADE
       '';
-
-      privateKeyFile = config.age.secrets.wg-o1-private.path;
-
-      peers = [{
-        publicKey = global.wg.public.m;
-        allowedIPs = [ "10.100.0.2/32" ];
-      }];
     };
   };
 

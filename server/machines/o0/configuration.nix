@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, global, ... }: {
 
   imports = [ ./hardware-configuration.nix ./secrets.nix ];
 
@@ -18,4 +18,10 @@
     telegraphTokenFile = config.age.secrets.telegraph-token.path;
   };
 
+  networking.wireguard.interfaces = {
+    wg0 = {
+      inherit (global.wg.o0) ips listenPort peers;
+      privateKeyFile = global.wg.o0.privateKeyFile config;
+    };
+  };
 }

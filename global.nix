@@ -16,8 +16,51 @@ rec {
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMKIkqj9mfV/UHSLq07xxFdMmi3kOKlyWi7qQcjUvkIr POTATO-M"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILVnYqmTUjCR+RJxXwHJyJrX0u3qjXrnPFwPIBOCfXHu POTATO-OA"
   ];
-  wg.public = {
-    o1 = "0tlbloisrfwumvqhZGirdyDg05S9Ex9LEGGG+8vsNFg=";
-    m = "fxv+DpMAXw71JuiO/kNMUwhOzFVPOcVVpm1zLBaJKH8=";
+  wg = let
+    listenPort = 20988;
+    mkPeer = { public, private, ip, endpoint ? null, nat ? false }: {
+      inherit public endpoint listenPort ip;
+      ips = [ (ip + "/24") ];
+      privateKeyFile = config: config.age.secrets.${private}.path;
+      peers = with builtins;
+        map (x:
+          {
+            publicKey = x.public;
+            allowedIPs = [ (x.ip + "/32") ];
+          } // (if nat then { persistentKeepalive = 25; } else { })
+          // (if x.endpoint != null then { inherit (x) endpoint; } else { }))
+        (filter (x: x.ip != ip) (attrValues wg));
+    };
+  in {
+    o1 = mkPeer {
+      ip = "10.100.0.1";
+      public = "0tlbloisrfwumvqhZGirdyDg05S9Ex9LEGGG+8vsNFg=";
+      private = "wg-o1-private";
+      endpoint = "o1.typed.icu:${toString listenPort}";
+    };
+    m = mkPeer {
+      ip = "10.100.0.2";
+      public = "fxv+DpMAXw71JuiO/kNMUwhOzFVPOcVVpm1zLBaJKH8=";
+      private = "wg-m-private";
+      endpoint = "m.typed.icu:${toString listenPort}";
+    };
+    o0 = mkPeer {
+      ip = "10.100.0.3";
+      public = "+jnxWjZFK9h4OlwuwcoNOM4wQmQvuzOXudRthTa9PSQ=";
+      private = "wg-o0-private";
+      endpoint = "o0.typed.icu:${toString listenPort}";
+    };
+    oa = mkPeer {
+      ip = "10.100.0.4";
+      public = "Hq/HLG2S59Ter05v7WN+QfJRhO1l249V5qYsHtKY0V8=";
+      private = "wg-oa-private";
+      endpoint = "oa.typed.icu:${toString listenPort}";
+    };
+    nr = mkPeer {
+      ip = "10.100.0.5";
+      public = "JlYqeP3QvfY+YTHg1374+D/mz7QIqkIpXHayIqgnlWo=";
+      private = "wg-nr-private";
+      nat = true;
+    };
   };
 }
