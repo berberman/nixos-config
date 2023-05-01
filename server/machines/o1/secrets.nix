@@ -1,1 +1,3 @@
-{ global, ... }: { age.secrets = global.mkSecrets [ "wg-o1-private" ]; }
+{ global, ... }: {
+  age.secrets = global.mkSecrets [ "wg-o1-private" "telegram-token" ];
+}

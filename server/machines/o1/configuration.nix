@@ -28,6 +28,14 @@
     };
   };
 
+  services.yandere-pic-bot = {
+    enable = true;
+    telegramTokenFile = config.age.secrets.telegram-token.path;
+    dbPath = "/var/lib/yandere-pic-bot/db.sqlite";
+    chatUsername = "@azuuru_pics";
+    tag = "azuuru";
+  };
+
   services.nginx = {
     enable = true;
     recommendedProxySettings = true;

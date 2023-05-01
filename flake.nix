@@ -29,10 +29,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
+    yandere-pic-bot = {
+      url = "github:unsafeIO/yandere-pic-bot";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, berberman, home-manager, emacs, deploy-rs
-    , flake-utils, agenix, ircbot }:
+    , flake-utils, agenix, ... }:
     let
       cachix = ./cachix;
       global = import ./global.nix;
@@ -57,9 +62,12 @@
       server = rec {
         shared = let dir = ./server/shared;
         in with builtins; map (x: dir + ("/" + x)) (attrNames (readDir dir));
-        modules =
-          [ self.nixosModules.default agenix.nixosModules.default cachix overlay ]
-          ++ shared;
+        modules = [
+          self.nixosModules.default
+          agenix.nixosModules.default
+          cachix
+          overlay
+        ] ++ shared;
       };
       mkDesktopSystem = { system, modules }:
         nixpkgs.lib.nixosSystem {

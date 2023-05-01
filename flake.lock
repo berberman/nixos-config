@@ -291,7 +291,8 @@
         "flake-utils": "flake-utils_2",
         "home-manager": "home-manager",
         "ircbot": "ircbot",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "yandere-pic-bot": "yandere-pic-bot"
       }
     },
     "utils": {
@@ -306,6 +307,29 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "yandere-pic-bot": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1679620165,
+        "narHash": "sha256-jqEfKHNzZ0tKEeYWtyTElJ3KzX0d/bP4I+GF7UINgLo=",
+        "owner": "unsafeIO",
+        "repo": "yandere-pic-bot",
+        "rev": "c66cbf6a9cb4fc6ab9397c050830b7109398d1b2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "unsafeIO",
+        "repo": "yandere-pic-bot",
         "type": "github"
       }
     }
