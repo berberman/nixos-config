@@ -12,7 +12,8 @@
       };
     };
     fonts = with pkgs; [
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
       apple-emoji
       (nerdfonts.override { fonts = [ "CascadiaCode" "VictorMono"]; })
       cascadia-code

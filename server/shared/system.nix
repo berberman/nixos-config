@@ -30,5 +30,8 @@
     bat
     iperf
     speedtest-cli
+    tmux
   ];
+
+  services.tailscale.enable = true;
 }

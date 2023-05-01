@@ -1,12 +1,9 @@
 { pkgs, config, global, ... }: {
-  imports = [ ./hardware-configuration.nix ./secrets.nix ];
+  imports = [ ./hardware-configuration.nix ./secrets.nix ./headscale.nix ];
 
   networking.hostName = "POTATO-O1";
 
   networking.firewall.enable = false;
-  networking.nat.enable = true;
-  networking.nat.externalInterface = "ens3";
-  networking.nat.internalInterfaces = [ "wg0" ];
 
   security.acme = {
     acceptTerms = true;
@@ -23,10 +20,10 @@
       inherit (global.wg.o1) ips listenPort peers;
       privateKeyFile = global.wg.o1.privateKeyFile config;
       postSetup = ''
-        ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.100.0.0/24 -o ens3 -j MASQUERADE
+        ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -o ens3 -j MASQUERADE
       '';
       postShutdown = ''
-        ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.100.0.0/24 -o ens3 -j MASQUERADE
+        ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -o ens3 -j MASQUERADE
       '';
     };
   };

@@ -21,7 +21,7 @@
       enableSSHSupport = true;
     };
   };
-  
+
   services.printing = {
     enable = true;
     drivers = [ pkgs.hplip ];
@@ -67,4 +67,5 @@
     yubikey-personalization-gui
   ];
 
+  services.tailscale.enable = true;
 }

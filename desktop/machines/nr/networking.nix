@@ -12,6 +12,12 @@
         address = global.wg.nr.ips;
         privateKeyFile = global.wg.nr.privateKeyFile config;
         inherit (global.wg.nr) listenPort peers;
+        postUp = ''
+          ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -o enp6s0 -j MASQUERADE
+        '';
+        preDown = ''
+          ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -o enp6s0 -j MASQUERADE
+        '';
       };
       wgcf = {
         address =
