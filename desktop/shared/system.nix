@@ -65,6 +65,7 @@
     pcsctools
     yubikey-personalization
     yubikey-personalization-gui
+    remmina
   ];
 
   services.tailscale.enable = true;

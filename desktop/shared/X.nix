@@ -14,4 +14,6 @@
     # displayManager.defaultSession = "plasma5+xmonad";
 
   };
+  services.xrdp.enable = true;
+  services.xrdp.defaultWindowManager = "xmonad";
 }
