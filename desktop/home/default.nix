@@ -88,7 +88,6 @@
     haskellPackages.ghc
     haskellPackages.cabal-fmt
     haskellPackages.cabal-plan
-    mathematica
     texlive.combined.scheme-full
     wakatime
     (agda.withPackages (p: [ p.standard-library ]))
