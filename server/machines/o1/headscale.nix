@@ -8,6 +8,11 @@
       dns_config = { baseDomain = "ts.typed.icu"; };
       logtail = { enabled = false; };
       ip_prefixes = [ "100.64.0.0/10" "fdaf:3a5e:a286::/48" ];
+      derp.server = {
+        enable = true;
+        region_id = 999;
+        stun_listen_addr = "0.0.0.0:3478";
+      };
     };
   };
   environment.systemPackages = [ config.services.headscale.package ];
