@@ -22,6 +22,7 @@ rec {
       inherit public endpoint listenPort ip;
       ips = [ (ip + "/24") ];
       privateKeyFile = config: config.age.secrets.${private}.path;
+      dynamicEndpointRefreshSeconds = 5;
       peers = with builtins;
         map (x:
           {
