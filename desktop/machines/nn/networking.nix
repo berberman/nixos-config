@@ -2,7 +2,7 @@
 
 let myProxy = "http://192.168.31.88:8888";
 in {
-
+  systemd.services.NetworkManager-wait-online.enable = false;
   networking = {
     hostName = "POTATO-NN";
     useDHCP = false;

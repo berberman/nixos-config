@@ -8,7 +8,6 @@
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.utils.follows = "flake-utils";
     };
     emacs = {
       url = "github:nix-community/emacs-overlay";
@@ -23,6 +22,7 @@
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
     ircbot = {
       url = "github:unsafeIO/ircbot";

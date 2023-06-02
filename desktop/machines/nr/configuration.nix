@@ -11,7 +11,6 @@
     ./networking.nix
     ./system.nix
     ./secrets.nix
-    ./home.nix
   ];
 
   environment.pathsToLink = [ "/share/zsh" ];

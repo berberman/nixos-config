@@ -3,7 +3,7 @@
   services.nextcloud = {
     enable = true;
     hostName = "nc.typed.icu";
-    package = pkgs.nextcloud25;
+    package = pkgs.nextcloud26;
     config.adminpassFile = config.age.secrets.nextcloud-admin-password.path;
     enableBrokenCiphersForSSE = false;
   };

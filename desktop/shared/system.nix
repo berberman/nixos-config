@@ -8,6 +8,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    wireplumber.enable = true;
   };
 
   services.openssh.enable = true;
@@ -66,6 +67,7 @@
     yubikey-personalization
     yubikey-personalization-gui
     remmina
+    tmux
   ];
 
   services.tailscale.enable = true;

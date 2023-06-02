@@ -4,7 +4,7 @@
 
   i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" ];
 
-  boot.cleanTmpDir = true;
+  boot.tmp.cleanOnBoot = true;
 
   zramSwap.enable = true;
 

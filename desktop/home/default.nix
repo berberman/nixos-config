@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  imports = [ ./zsh.nix ./xmonad.nix ];
+  imports = [ ./xmonad.nix ];
 
   programs.git = {
     enable = true;
@@ -88,7 +88,8 @@
     haskellPackages.ghc
     haskellPackages.cabal-fmt
     haskellPackages.cabal-plan
-    texlive.combined.scheme-full
+    # texlive.combined.scheme-full
+    # mathematica
     wakatime
     (agda.withPackages (p: [ p.standard-library ]))
     zotero

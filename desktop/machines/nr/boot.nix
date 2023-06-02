@@ -11,7 +11,6 @@
       efiSupport = true;
       enable = true;
       useOSProber = true;
-      version = 2;
     };
   };
   boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
