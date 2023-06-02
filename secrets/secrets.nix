@@ -14,4 +14,6 @@ in {
   "minio-credentials.age".publicKeys = keys;
   "wgcf.age".publicKeys = keys;
   "telegram-token.age".publicKeys = keys;
+  "v2o0.age".publicKeys = keys;
+  "v2o0c.age".publicKeys = keys;
 }

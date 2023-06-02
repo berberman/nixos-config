@@ -25,4 +25,12 @@
     };
   };
   networking.firewall.enable = false;
+  services.v2ray = {
+    enable = true;
+    configFile = config.age.secrets.v2o0.path;
+  };
+  services.caddy = {
+    enable = true;
+    configFile = config.age.secrets.v2o0c.path;
+  };
 }
