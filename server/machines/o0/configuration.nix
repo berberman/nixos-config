@@ -24,4 +24,5 @@
       privateKeyFile = global.wg.o0.privateKeyFile config;
     };
   };
+  networking.firewall.enable = false;
 }
