@@ -34,4 +34,6 @@
   ];
 
   services.tailscale.enable = true;
+
+  users.defaultUserShell = pkgs.zsh;
 }
