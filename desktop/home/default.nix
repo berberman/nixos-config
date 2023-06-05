@@ -11,7 +11,7 @@
       key = "C4F93F1ED397E8CF";
       signByDefault = true;
     };
-
+    ignores = [ ".envrc" ".direnv" ];
   };
 
   programs.direnv = {

@@ -12,5 +12,11 @@
       plugins = [ "tmux" "systemd" "adb" "git" "colored-man-pages" "sudo" ];
       theme = "agnoster";
     };
+    interactiveShellInit = ''
+      eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
+    '';
   };
+  programs.bash.interactiveShellInit = ''
+    eval "$(${pkgs.direnv}/bin/direnv hook bash)"
+  '';
 }
