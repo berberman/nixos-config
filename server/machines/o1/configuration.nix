@@ -65,6 +65,11 @@
         proxyWebsockets = true;
       };
     };
+    virtualHosts."f5a.typed.icu" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = { proxyPass = "http://10.100.0.2:8008"; };
+    };
   };
 
 }

@@ -1,8 +1,13 @@
 { config, pkgs, global, ... }:
 
 {
-  imports =
-    [ ./hardware-configuration.nix ./nextcloud.nix ./secrets.nix ./minio.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ./nextcloud.nix
+    ./secrets.nix
+    ./minio.nix
+    ./fdroid.nix
+  ];
 
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
