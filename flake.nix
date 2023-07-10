@@ -157,12 +157,13 @@
               self.nixosConfigurations.POTATO-O1;
             hostname = "o1.typed.icu";
           };
-          # POTATO-OA = {
-          #   sshUser = "root";
-          #   profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos
-          #     self.nixosConfigurations.POTATO-OA;
-          #   hostname = "oa.typed.icu";
-          # };
+          POTATO-OA = {
+            sshUser = "root";
+            profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos
+              self.nixosConfigurations.POTATO-OA;
+            hostname = "oa.typed.icu";
+            remoteBuild = true;
+          };
         };
       };
 }

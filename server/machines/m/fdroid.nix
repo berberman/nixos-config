@@ -12,6 +12,7 @@ in {
     openssh.authorizedKeys.keys = [''
       ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ8B/MfMbtFfwF2YVlo5E4jFnJj0zcXgXQgCeBnAozS3 fdroid
     ''];
+    packages = with pkgs; [ fdroidserver openjdk11 ];
   };
   users.groups.fdroid = { };
   services.nginx.enable = true;
@@ -20,6 +21,30 @@ in {
       addr = "10.100.0.2";
       port = 8008;
     }];
-    root = fdroidDir;
+    locations."/" = { root = "${fdroidDir}/web"; };
+
+  };
+  nixpkgs = {
+    overlays = [
+      (final: prev:
+        with prev; {
+          androidComposition = androidenv.composeAndroidPackages {
+            platformVersions = [ "33" ];
+            buildToolsVersions = [ "33.0.1" ];
+            platformToolsVersion = "33.0.3";
+            includeNDK = false;
+            includeEmulator = false;
+            includeSources = false;
+          };
+          fdroidserver = writeScriptBin "fdroid" ''
+            export ANDROID_HOME="${final.androidComposition.androidsdk}/libexec/android-sdk"
+            exec -a "$0" ${fdroidserver}/bin/fdroid "$@"
+          '';
+        })
+    ];
+    config = {
+      android_sdk.accept_license = true;
+      allowUnfree = true;
+    };
   };
 }
