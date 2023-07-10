@@ -5,5 +5,11 @@
       owner = "matrix-synapse";
       group = "matrix-synapse";
     };
-  } // global.mkSecrets [ "wg-oa-private" ];
+  } // global.mkSecrets [
+    "wg-oa-private"
+    "google-cx"
+    "google-key"
+    "pixiv-token"
+    "telegraph-token"
+  ];
 }

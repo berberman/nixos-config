@@ -9,11 +9,5 @@
       file = global.secretFile "v2o0";
       mode = "744";
     };
-  } // global.mkSecrets [
-    "google-cx"
-    "google-key"
-    "pixiv-token"
-    "telegraph-token"
-    "wg-o0-private"
-  ];
+  } // global.mkSecrets [ "wg-o0-private" ];
 }
