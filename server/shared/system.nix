@@ -1,4 +1,4 @@
-{ config, pkgs, modulesPath, global, ... }: {
+{ lib, config, pkgs, modulesPath, global, ... }: {
 
   imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
 
@@ -36,4 +36,9 @@
   services.tailscale.enable = true;
 
   users.defaultUserShell = pkgs.zsh;
+  services.netdata-child = {
+    enable = lib.mkDefault true;
+    apiKey = global.netdataApiKey;
+    dest = "10.100.0.1:19999";
+  };
 }

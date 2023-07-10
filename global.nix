@@ -17,6 +17,7 @@ rec {
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILVnYqmTUjCR+RJxXwHJyJrX0u3qjXrnPFwPIBOCfXHu POTATO-OA"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA7tqOZvLlTcmx1j1LZUjIVqy+GnIfxTj5XOvWR6Ddcq POTATO-NN"
   ];
+  netdataApiKey = "b9a20226-d54a-49e0-b63b-8eed5234ac18";
   wg = let
     listenPort = 20988;
     mkPeer = { public, private, ip, endpoint ? null, nat ? false }: {

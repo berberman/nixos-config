@@ -70,6 +70,20 @@
       forceSSL = true;
       locations."/" = { proxyPass = "http://10.100.0.2:8008"; };
     };
+    virtualHosts."netdata.typed.icu" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = { proxyPass = "http://127.0.0.1:8009"; };
+    };
   };
+
+  services.netdata-child.enable = false;
+  services.netdata-parent = {
+    enable = true;
+    apiKey = global.netdataApiKey;
+    allowFrom = "10.*";
+  };
+  services.netdata.config.web."bind to" =
+    "127.0.0.1:8009=dashboard 10.100.0.1:19999=streaming";
 
 }
