@@ -66,7 +66,7 @@
     gwenview
     filelight
     okular
-    peek
+    # peek
     enpass
     slack
     vlc
