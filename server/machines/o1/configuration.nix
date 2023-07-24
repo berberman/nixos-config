@@ -40,11 +40,11 @@
     enable = true;
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
-    virtualHosts."nc.typed.icu" = {
-      enableACME = true;
-      forceSSL = true;
-      locations."/".proxyPass = "http://10.100.0.2";
-    };
+    # virtualHosts."nc.typed.icu" = {
+    #   enableACME = true;
+    #   forceSSL = true;
+    #   locations."/".proxyPass = "http://10.100.0.2";
+    # };
     virtualHosts."s3.typed.icu" = {
       enableACME = true;
       forceSSL = true;
@@ -74,6 +74,11 @@
       enableACME = true;
       forceSSL = true;
       locations."/" = { proxyPass = "http://127.0.0.1:8009"; };
+    };  
+    virtualHosts."bitwarden.typed.icu" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = { proxyPass = "http://10.100.0.2:8222"; };
     };
   };
 

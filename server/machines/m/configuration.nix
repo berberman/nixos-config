@@ -7,6 +7,7 @@
     ./secrets.nix
     ./minio.nix
     ./fdroid.nix
+    ./vaultwarden.nix
   ];
 
   boot.loader.grub.enable = true;

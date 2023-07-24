@@ -16,4 +16,5 @@ in {
   "telegram-token.age".publicKeys = keys;
   "v2o0.age".publicKeys = keys;
   "v2o0c.age".publicKeys = keys;
+  "vaultwarden.age".publicKeys = keys;
 }

@@ -1,9 +1,9 @@
 { pkgs, lib, config, ... }: {
 
   services.nextcloud = {
-    enable = true;
+    enable = false;
     hostName = "nc.typed.icu";
-    package = pkgs.nextcloud26;
+    package = pkgs.nextcloud27;
     config.adminpassFile = config.age.secrets.nextcloud-admin-password.path;
     enableBrokenCiphersForSSE = false;
   };

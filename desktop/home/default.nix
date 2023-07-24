@@ -95,6 +95,7 @@
     zotero
     racket
     marktext
+    bitwarden
   ];
 
   # fcitx5 theme
