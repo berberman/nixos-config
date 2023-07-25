@@ -74,11 +74,16 @@
       enableACME = true;
       forceSSL = true;
       locations."/" = { proxyPass = "http://127.0.0.1:8009"; };
-    };  
+    };
     virtualHosts."bitwarden.typed.icu" = {
       enableACME = true;
       forceSSL = true;
       locations."/" = { proxyPass = "http://10.100.0.2:8222"; };
+    };
+    virtualHosts."wakapi.typed.icu" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = { proxyPass = "http://10.100.0.2:8223"; };
     };
   };
 

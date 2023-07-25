@@ -8,6 +8,7 @@
     ./minio.nix
     ./fdroid.nix
     ./vaultwarden.nix
+    ./wakapi.nix
   ];
 
   boot.loader.grub.enable = true;
