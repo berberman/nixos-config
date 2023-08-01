@@ -11,7 +11,7 @@
         emoji = [ "Apple Color Emoji" ];
       };
     };
-    fonts = with pkgs; [
+    packages = with pkgs; [
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
       apple-emoji
