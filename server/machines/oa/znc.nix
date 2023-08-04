@@ -10,5 +10,18 @@
       forceSSL = true;
       locations."/".proxyPass = "http://127.0.0.1:1207";
     };
+    streamConfig = ''
+     upstream znc {
+          server 127.0.0.1:1207;
+      }
+      server {
+           listen                  1206 ssl;
+           ssl_certificate         /var/lib/acme/znc.typed.icu/fullchain.pem;
+           ssl_certificate_key     /var/lib/acme/znc.typed.icu/key.pem;
+           ssl_trusted_certificate /var/lib/acme/znc.typed.icu/chain.pem;
+           
+           proxy_pass znc;
+       } 
+    '';
   };
 }
