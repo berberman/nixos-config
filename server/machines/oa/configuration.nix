@@ -1,5 +1,6 @@
 { pkgs, config, global, ... }: {
-  imports = [ ./hardware-configuration.nix ./secrets.nix ./matrix.nix ];
+  imports =
+    [ ./hardware-configuration.nix ./secrets.nix ./matrix.nix ./znc.nix ];
 
   networking.hostName = "POTATO-OA";
   networking.firewall.enable = false;
@@ -26,5 +27,12 @@
     googleKeyFile = config.age.secrets.google-key.path;
     googleCxFile = config.age.secrets.google-cx.path;
     telegraphTokenFile = config.age.secrets.telegraph-token.path;
+  };
+  services.nginx = {
+    enable = true;
+    recommendedTlsSettings = true;
+    recommendedOptimisation = true;
+    recommendedGzipSettings = true;
+    recommendedProxySettings = true;
   };
 }
