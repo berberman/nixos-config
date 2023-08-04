@@ -7,9 +7,6 @@
     };
   } // global.mkSecrets [
     "wg-oa-private"
-    "google-cx"
-    "google-key"
-    "pixiv-token"
-    "telegraph-token"
+    "ircbot"
   ];
 }

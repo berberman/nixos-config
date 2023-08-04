@@ -1,9 +1,5 @@
 let keys = (import ../global.nix).pubKeys;
 in {
-  "pixiv-token.age".publicKeys = keys;
-  "google-key.age".publicKeys = keys;
-  "google-cx.age".publicKeys = keys;
-  "telegraph-token.age".publicKeys = keys;
   "matrix-synapse-registration.age".publicKeys = keys;
   "nextcloud-admin-password.age".publicKeys = keys;
   "wg-o1-private.age".publicKeys = keys;
@@ -17,4 +13,5 @@ in {
   "v2o0.age".publicKeys = keys;
   "v2o0c.age".publicKeys = keys;
   "vaultwarden.age".publicKeys = keys;
+  "ircbot.age".publicKeys = keys;
 }

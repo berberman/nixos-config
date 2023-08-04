@@ -212,11 +212,11 @@
         "pixiv": "pixiv"
       },
       "locked": {
-        "lastModified": 1690895167,
-        "narHash": "sha256-9fU5LBF7S+TNQrbs2Cit6I0g7+pwYJxcx/akLE3t0CU=",
+        "lastModified": 1691164693,
+        "narHash": "sha256-1rBqq6so7fyhLzYsxBnst1Jnm8LcCtErUagMrGp11S0=",
         "owner": "unsafeIO",
         "repo": "ircbot",
-        "rev": "851d64277243452d73afaa2314577a23a2305767",
+        "rev": "db856b110252f10798d481c9df9c275c0a8d1ab0",
         "type": "github"
       },
       "original": {
