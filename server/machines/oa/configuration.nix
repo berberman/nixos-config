@@ -4,7 +4,6 @@
 
   networking.hostName = "POTATO-OA";
   networking.firewall.enable = false;
-  networking.interfaces.ens3.useDHCP = true;
   security.acme.acceptTerms = true;
   security.acme.defaults.email = "acme@typed.icu";
   boot.zfs.devNodes = "/dev";
@@ -14,6 +13,14 @@
       inherit (global.wg.oa) ips listenPort peers;
       privateKeyFile = global.wg.oa.privateKeyFile config;
     };
+  };
+  networking.interfaces.enp0s3.ipv6.addresses = [{
+    address = "2603:c024:c008:faff:12f3:41a2:58e8:8125";
+    prefixLength = 128;
+  }];
+  networking.defaultGateway6 = {
+    address = "fe80::1";
+    interface = "enp0s3";
   };
 
   services.ircbot = {
