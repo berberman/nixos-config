@@ -31,20 +31,6 @@
       alwaysEnsure = true;
       extraEmacsPackages = p: with p; [ use-package ];
       config = ./init.el;
-      override = epkgs:
-        epkgs // {
-          telega = epkgs.melpaPackages.telega.override {
-            tdlib = pkgs.tdlib.overrideAttrs (old: rec {
-              version = "1.8.0";
-              src = pkgs.fetchFromGitHub {
-                owner = "tdlib";
-                repo = "td";
-                rev = "v${version}";
-                sha256 = "OBgzFBi+lIBbKnHDm5D/F3Xi4s1x4geb+1OoBP3F+qY=";
-              };
-            });
-          };
-        };
     });
   };
 
@@ -64,7 +50,6 @@
     tdesktop
     ark
     gwenview
-    filelight
     okular
     # peek
     enpass
@@ -88,8 +73,7 @@
     haskellPackages.ghc
     haskellPackages.cabal-fmt
     haskellPackages.cabal-plan
-    # texlive.combined.scheme-full
-    # mathematica
+    texlive.combined.scheme-full
     wakatime
     (agda.withPackages (p: [ p.standard-library ]))
     zotero
@@ -203,6 +187,10 @@
       POTATO-OA = {
         hostname = "oa.typed.icu";
         user = "root";
+      };
+      ArchCN = {
+        hostname = "build.archlinuxcn.org";
+        user = "berberman";
       };
     };
   };

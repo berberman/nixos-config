@@ -113,27 +113,31 @@
         nixosConfigurations = {
           POTATO-NN = mkDesktopSystem {
             system = "x86_64-linux";
-            modules = [ ./desktop/machines/nn/configuration.nix ];
+            modules = [ ./desktop/machines/nn ];
           };
           POTATO-NR = mkDesktopSystem {
             system = "x86_64-linux";
-            modules = [ ./desktop/machines/nr/configuration.nix ];
+            modules = [ ./desktop/machines/nr ];
+          };
+          POTATO-RM = mkDesktopSystem {
+            system = "x86_64-linux";
+            modules = [ ./desktop/machines/rm ];
           };
           POTATO-O0 = mkServerSystem {
             system = "x86_64-linux";
-            modules = [ ./server/machines/o0/configuration.nix ];
+            modules = [ ./server/machines/o0 ];
           };
           POTATO-M = mkServerSystem {
             system = "x86_64-linux";
-            modules = [ ./server/machines/m/configuration.nix ];
+            modules = [ ./server/machines/m ];
           };
           POTATO-O1 = mkServerSystem {
             system = "x86_64-linux";
-            modules = [ ./server/machines/o1/configuration.nix ];
+            modules = [ ./server/machines/o1 ];
           };
           POTATO-OA = mkServerSystem {
             system = "aarch64-linux";
-            modules = [ ./server/machines/oa/configuration.nix ];
+            modules = [ ./server/machines/oa ];
           };
         };
 
