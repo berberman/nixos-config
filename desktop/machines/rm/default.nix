@@ -9,6 +9,7 @@
     ./hardware-configuration.nix
     ./boot.nix
     ./system.nix
+    ./networking.nix
   ];
 
   # This value determines the NixOS release from which the default
