@@ -8,6 +8,7 @@ in {
     createHome = true;
     home = fdroidDir;
     group = "fdroid";
+    homeMode = "755";
     useDefaultShell = true;
     openssh.authorizedKeys.keys = [''
       ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ8B/MfMbtFfwF2YVlo5E4jFnJj0zcXgXQgCeBnAozS3 fdroid
