@@ -52,7 +52,6 @@
     gwenview
     okular
     # peek
-    enpass
     slack
     vlc
     kate
@@ -72,13 +71,12 @@
     proxychains
     haskellPackages.ghc
     haskellPackages.cabal-fmt
-    haskellPackages.cabal-plan
     texlive.combined.scheme-full
+    typst-lsp
     wakatime
     (agda.withPackages (p: [ p.standard-library ]))
     zotero
     racket
-    marktext
     bitwarden
   ];
 
