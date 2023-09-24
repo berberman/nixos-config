@@ -68,7 +68,14 @@
     yubikey-personalization-gui
     remmina
     tmux
+    nyx
+    tor-browser-bundle-bin
   ];
 
   services.tailscale.enable = true;
+  services.tor = {
+    enable = true;
+    client.enable = true;
+    settings.ControlPort = 9051;
+  };
 }
