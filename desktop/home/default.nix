@@ -46,7 +46,6 @@
     picom-next
     flameshot
     nixfmt
-    postman
     tdesktop
     ark
     gwenview
