@@ -9,7 +9,7 @@
     ./fdroid.nix
     ./vaultwarden.nix
     ./wakapi.nix
-    # ./transmission.nix
+    ./transmission.nix
   ];
 
   boot.loader.grub.enable = true;
@@ -63,27 +63,40 @@
     };
   };
 
-  systemd.services.netns-lu = {
-    # enable = true;
+  systemd.services.netns-lu = let
+    startScript = pkgs.writeShellScript "start-netns-lu" ''
+      ${pkgs.iproute2}/bin/ip netns add lu
+      ${pkgs.iproute2}/bin/ip link set ens19 netns lu
+      ${pkgs.iproute2}/bin/ip netns exec lu ${pkgs.iproute2}/bin/ip link set ens19 up
+      ${pkgs.iproute2}/bin/ip netns exec lu ${pkgs.iproute2}/bin/ip addr add 10.0.2.109/24 dev ens19
+      ${pkgs.iproute2}/bin/ip netns exec lu ${pkgs.iproute2}/bin/ip route add default via 10.0.2.1
+      
+      ${pkgs.iproute2}/bin/ip link add type veth
+      ${pkgs.iproute2}/bin/ip link set veth0 netns lu
+      ${pkgs.iproute2}/bin/ip netns exec lu ${pkgs.iproute2}/bin/ip link set veth0 up
+      ${pkgs.iproute2}/bin/ip netns exec lu ${pkgs.iproute2}/bin/ip addr add 10.0.9.1/24 dev veth0
+      ${pkgs.iproute2}/bin/ip link set veth1 up
+      ${pkgs.iproute2}/bin/ip addr add 10.0.9.2/24 dev veth1
+    '';
+    stopScript = pkgs.writeShellScript "stop-netns-lu" ''
+      ${pkgs.iproute2}/bin/ip netns exec lu ${pkgs.iproute2}/bin/ip link set ens19 down
+      ${pkgs.iproute2}/bin/ip netns exec lu ${pkgs.iproute2}/bin/ip link set ens19 netns 1
+
+      ${pkgs.iproute2}/bin/ip netns exec lu ${pkgs.iproute2}/bin/ip link set veth0 down
+      ${pkgs.iproute2}/bin/ip netns exec lu ${pkgs.iproute2}/bin/ip link delete veth0
+
+      ${pkgs.iproute2}/bin/ip netns delete lu
+    '';
+  in {
+    enable = true;
     after = [ "network-pre.target" ];
     before = [ "network.target" "network-online.target" ];
     wantedBy = [ "multi-user.target" "network-online.target" ];
     serviceConfig = {
       RemainAfterExit = true;
       Type = "oneshot";
-
-      ExecStop = ''
-        ${pkgs.iproute2}/bin/ip netns exec lu ${pkgs.iproute2}/bin/ip link set ens19 down
-        ${pkgs.iproute2}/bin/ip netns delete lu
-      '';
-
-      ExecStart = ''
-        ${pkgs.iproute2}/bin/ip netns add lu
-        ${pkgs.iproute2}/bin/ip link set ens19 netns lu
-        ${pkgs.iproute2}/bin/ip netns exec lu ${pkgs.iproute2}/bin/ip link set ens19 up
-        ${pkgs.iproute2}/bin/ip netns exec lu ${pkgs.iproute2}/bin/ip addr add 10.0.2.109/24 dev ens19
-        ${pkgs.iproute2}/bin/ip netns exec lu ${pkgs.iproute2}/bin/ip route add default via 10.0.2.1
-      '';
+      ExecStop = stopScript;
+      ExecStart = startScript;
     };
   };
 }
