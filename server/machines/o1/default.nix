@@ -68,7 +68,12 @@
     virtualHosts."f5a.typed.icu" = {
       enableACME = true;
       forceSSL = true;
-      locations."/" = { proxyPass = "http://10.100.0.2:8008"; };
+      locations."/" = {
+        proxyPass = "http://10.100.0.2:8008";
+        extraConfig = ''
+          proxy_redirect http://f5a.typed.icu:8008/ http://f5a.typed.icu/;
+        '';
+      };
     };
     virtualHosts."netdata.typed.icu" = {
       enableACME = true;
