@@ -22,7 +22,13 @@ in {
       addr = "10.100.0.2";
       port = 8008;
     }];
-    locations."/" = { root = "${fdroidDir}/web"; };
+    locations."/" = {
+      root = "${fdroidDir}/web";
+      extraConfig = ''
+        sub_filter_once off;
+        sub_filter '</body>' '<script src=../../fdroid-index.js></script></body>';
+      '';
+    };
 
   };
   nixpkgs = {
