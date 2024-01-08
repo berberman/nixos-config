@@ -39,25 +39,25 @@ rec {
       ip = "10.100.0.1";
       public = "0tlbloisrfwumvqhZGirdyDg05S9Ex9LEGGG+8vsNFg=";
       private = "wg-o1-private";
-      endpoint = "o1.typed.icu:${toString listenPort}";
+      endpoint = "o1.torus.icu:${toString listenPort}";
     };
     m = mkPeer {
       ip = "10.100.0.2";
       public = "fxv+DpMAXw71JuiO/kNMUwhOzFVPOcVVpm1zLBaJKH8=";
       private = "wg-m-private";
-      endpoint = "m.typed.icu:${toString listenPort}";
+      endpoint = "m.torus.icu:${toString listenPort}";
     };
     o0 = mkPeer {
       ip = "10.100.0.3";
       public = "+jnxWjZFK9h4OlwuwcoNOM4wQmQvuzOXudRthTa9PSQ=";
       private = "wg-o0-private";
-      endpoint = "o0.typed.icu:${toString listenPort}";
+      endpoint = "o0.torus.icu:${toString listenPort}";
     };
     oa = mkPeer {
       ip = "10.100.0.4";
       public = "Hq/HLG2S59Ter05v7WN+QfJRhO1l249V5qYsHtKY0V8=";
       private = "wg-oa-private";
-      endpoint = "oa.typed.icu:${toString listenPort}";
+      endpoint = "oa.torus.icu:${toString listenPort}";
     };
     nr = mkPeer {
       ip = "10.100.0.5";

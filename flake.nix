@@ -146,26 +146,26 @@
             sshUser = "root";
             profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos
               self.nixosConfigurations.POTATO-O0;
-            hostname = "o0.typed.icu";
+            hostname = "o0.torus.icu";
           };
           POTATO-M = {
             sshUser = "root";
             sshOpts = [ "-p" "20998" ];
             profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos
               self.nixosConfigurations.POTATO-M;
-            hostname = "m.typed.icu";
+            hostname = "m.torus.icu";
           };
           POTATO-O1 = {
             sshUser = "root";
             profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos
               self.nixosConfigurations.POTATO-O1;
-            hostname = "o1.typed.icu";
+            hostname = "o1.torus.icu";
           };
           POTATO-OA = {
             sshUser = "root";
             profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos
               self.nixosConfigurations.POTATO-OA;
-            hostname = "oa.typed.icu";
+            hostname = "oa.torus.icu";
             remoteBuild = true;
           };
         };

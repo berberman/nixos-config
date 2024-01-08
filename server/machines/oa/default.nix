@@ -5,7 +5,7 @@
   networking.hostName = "POTATO-OA";
   networking.firewall.enable = false;
   security.acme.acceptTerms = true;
-  security.acme.defaults.email = "acme@typed.icu";
+  security.acme.defaults.email = "acme@torus.icu";
   boot.zfs.devNodes = "/dev";
   networking.hostId = "c271c48d";
   networking.wireguard.interfaces = {

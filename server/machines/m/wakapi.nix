@@ -17,7 +17,7 @@ in {
         server = {
           listen_ipv4 = "10.100.0.2";
           port = 8223;
-          public_url = "https://wakapi.typed.icu";
+          public_url = "https://wakapi.torus.icu";
         };
         app.import_backoff_min = 1;
         mail.enabled = false;

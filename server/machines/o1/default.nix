@@ -7,7 +7,7 @@
 
   security.acme = {
     acceptTerms = true;
-    defaults.email = "o1@typed.icu";
+    defaults.email = "o1@torus.icu";
   };
 
   services.frps = {
@@ -40,12 +40,12 @@
     enable = true;
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
-    # virtualHosts."nc.typed.icu" = {
+    # virtualHosts."nc.torus.icu" = {
     #   enableACME = true;
     #   forceSSL = true;
     #   locations."/".proxyPass = "http://10.100.0.2";
     # };
-    virtualHosts."s3.typed.icu" = {
+    virtualHosts."s3.torus.icu" = {
       enableACME = true;
       forceSSL = true;
       locations."/" = { proxyPass = "http://10.100.0.2:9000"; };
@@ -57,7 +57,7 @@
         chunked_transfer_encoding off;
       '';
     };
-    virtualHosts."s3c.typed.icu" = {
+    virtualHosts."s3c.torus.icu" = {
       enableACME = true;
       forceSSL = true;
       locations."/" = {
@@ -65,27 +65,27 @@
         proxyWebsockets = true;
       };
     };
-    virtualHosts."f5a.typed.icu" = {
+    virtualHosts."f5a.torus.icu" = {
       enableACME = true;
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://10.100.0.2:8008";
         extraConfig = ''
-          proxy_redirect http://f5a.typed.icu:8008/ http://f5a.typed.icu/;
+          proxy_redirect http://f5a.torus.icu:8008/ http://f5a.torus.icu/;
         '';
       };
     };
-    virtualHosts."netdata.typed.icu" = {
+    virtualHosts."netdata.torus.icu" = {
       enableACME = true;
       forceSSL = true;
       locations."/" = { proxyPass = "http://127.0.0.1:8009"; };
     };
-    virtualHosts."bitwarden.typed.icu" = {
+    virtualHosts."bitwarden.torus.icu" = {
       enableACME = true;
       forceSSL = true;
       locations."/" = { proxyPass = "http://10.100.0.2:8222"; };
     };
-    virtualHosts."wakapi.typed.icu" = {
+    virtualHosts."wakapi.torus.icu" = {
       enableACME = true;
       forceSSL = true;
       locations."/" = { proxyPass = "http://10.100.0.2:8223"; };
