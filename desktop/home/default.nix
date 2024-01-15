@@ -72,7 +72,9 @@
     haskellPackages.cabal-fmt
     texlive.combined.scheme-full
     typst-lsp
+    typst-preview
     wakatime
+    lean4
     (agda.withPackages (p: [ p.standard-library ]))
     zotero
     racket

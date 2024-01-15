@@ -17,6 +17,7 @@
   };
   services.caddy = {
     enable = true;
+    adapter = "caddyfile";
     configFile = config.age.secrets.v2o0c.path;
   };
 }

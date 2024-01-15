@@ -34,5 +34,11 @@
     recommendedOptimisation = true;
     recommendedGzipSettings = true;
     recommendedProxySettings = true;
+    virtualHosts."oa.torus.icu" = {
+      enableACME = true;
+      forceSSL = true;
+      default = true;
+      locations."/".return = "302 https://torus.icu";
+    };
   };
 }

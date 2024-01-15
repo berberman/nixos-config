@@ -11,7 +11,7 @@
         baseDomain = "torus.icu";
       };
       logtail = { enabled = false; };
-      ip_prefixes = [ "100.64.0.0/10" "fdcc:584e:ae4b::/48" ];
+      ip_prefixes = [ "100.64.0.0/10" "fd7a:115c:a1e0::/48" ];
       derp.server = {
         enable = true;
         region_id = 999;

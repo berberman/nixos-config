@@ -45,6 +45,12 @@
     #   forceSSL = true;
     #   locations."/".proxyPass = "http://10.100.0.2";
     # };
+    virtualHosts."o1.torus.icu" = {
+      enableACME = true;
+      forceSSL = true;
+      default = true;
+      locations."/".return = "302 https://torus.icu";
+    };
     virtualHosts."s3.torus.icu" = {
       enableACME = true;
       forceSSL = true;
