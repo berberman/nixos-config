@@ -213,11 +213,11 @@
         "pixiv": "pixiv"
       },
       "locked": {
-        "lastModified": 1691164693,
-        "narHash": "sha256-1rBqq6so7fyhLzYsxBnst1Jnm8LcCtErUagMrGp11S0=",
+        "lastModified": 1705357852,
+        "narHash": "sha256-bCO91zBiP9O1jEBshAMOL9OXpp1o8a518lQgs4UwCng=",
         "owner": "unsafeIO",
         "repo": "ircbot",
-        "rev": "db856b110252f10798d481c9df9c275c0a8d1ab0",
+        "rev": "c8b09027463ae1dca273a9f91b677fa46f7d2bc7",
         "type": "github"
       },
       "original": {
@@ -293,11 +293,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1680409558,
-        "narHash": "sha256-ajaHGv13Zuxu9hWuvRopNNy5grw57ap73Mg8Qyj+/38=",
+        "lastModified": 1705353467,
+        "narHash": "sha256-e+9UtAVfYI3x1yr9g/244uFVCMppiaRnGTMS+DvSdYI=",
         "owner": "The-closed-eye-of-love",
         "repo": "pixiv",
-        "rev": "f86cab64277039b0b693aeae66f1580eeb7ec3e3",
+        "rev": "abeea0a48b77a00f4dcbf09845c33170469e6f89",
         "type": "github"
       },
       "original": {
