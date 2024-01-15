@@ -4,10 +4,14 @@
     address = "127.0.0.1";
     port = 8686;
     settings = {
-      server_url = "https://tailscale.typed.icu";
-      dns_config = { baseDomain = "ts.typed.icu"; };
+      server_url = "https://tailscale.torus.icu";
+      dns_config = {
+        magic_dns = true;
+        nameservers = [ "1.1.1.1" ];
+        baseDomain = "torus.icu";
+      };
       logtail = { enabled = false; };
-      ip_prefixes = [ "100.64.0.0/10" "fdaf:3a5e:a286::/48" ];
+      ip_prefixes = [ "100.64.0.0/10" "fd7a:115c:a1e0::/48" ];
       derp.server = {
         enable = true;
         region_id = 999;
@@ -16,7 +20,7 @@
     };
   };
   environment.systemPackages = [ config.services.headscale.package ];
-  services.nginx.virtualHosts."tailscale.typed.icu" = {
+  services.nginx.virtualHosts."tailscale.torus.icu" = {
     forceSSL = true;
     enableACME = true;
     locations."/" = {

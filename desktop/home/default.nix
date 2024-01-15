@@ -72,7 +72,9 @@
     haskellPackages.cabal-fmt
     texlive.combined.scheme-full
     typst-lsp
+    typst-preview
     wakatime
+    lean4
     (agda.withPackages (p: [ p.standard-library ]))
     zotero
     racket
@@ -166,23 +168,23 @@
         user = "root";
       };
       POTATO-A = { hostname = "192.168.31.88"; };
-      POTATO-HZ = { hostname = "hz.typed.icu"; };
-      POTATO-DE = { hostname = "de.typed.icu"; };
+      POTATO-HZ = { hostname = "hz.torus.icu"; };
+      POTATO-DE = { hostname = "de.torus.icu"; };
       POTATO-O0 = {
-        hostname = "o0.typed.icu";
+        hostname = "o0.torus.icu";
         user = "root";
       };
       POTATO-M = {
-        hostname = "m.typed.icu";
+        hostname = "m.torus.icu";
         user = "root";
         port = 20998;
       };
       POTATO-O1 = {
-        hostname = "o1.typed.icu";
+        hostname = "o1.torus.icu";
         user = "root";
       };
       POTATO-OA = {
-        hostname = "oa.typed.icu";
+        hostname = "oa.torus.icu";
         user = "root";
       };
       ArchCN = {

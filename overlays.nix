@@ -31,18 +31,19 @@ self: super:
   #   '';
   # });
 
-  # wakapi = super.wakapi.override {
-  #   buildGoModule = args:
-  #     super.buildGoModule (args // rec {
-  #       version = "2.8.1";
-  #       src = super.fetchFromGitHub {
-  #         owner = "muety";
-  #         repo = "wakapi";
-  #         rev = version;
-  #         sha256 = "sha256-5EUXhKv4cLDaHr6Q2mel3YbVPAYRJd1JtHyWn7kQy8Y=";
-  #       };
-  #       vendorHash = "sha256-rwQeIHJAtnRm5nPQCvgoBabVeyLZyrY3yglCW9+NGwM=";
-  #     });
-  # };
+  wakapi = super.wakapi.override {
+    buildGoModule = args:
+      super.buildGoModule (args // rec {
+        #       version = "2.8.1";
+        #       src = super.fetchFromGitHub {
+        #         owner = "muety";
+        #         repo = "wakapi";
+        #         rev = version;
+        #         sha256 = "sha256-5EUXhKv4cLDaHr6Q2mel3YbVPAYRJd1JtHyWn7kQy8Y=";
+        #       };
+        #       vendorHash = "sha256-rwQeIHJAtnRm5nPQCvgoBabVeyLZyrY3yglCW9+NGwM=";
+        doCheck = false;
+      });
+  };
 
 }

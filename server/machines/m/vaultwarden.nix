@@ -2,7 +2,7 @@
   services.vaultwarden = {
     enable = true;
     config = {
-      DOMAIN = "https://bitwarden.typed.icu";
+      DOMAIN = "https://bitwarden.torus.icu";
       SIGNUPS_ALLOWED = false;
       ROCKET_ADDRESS = "10.100.0.2";
       ROCKET_PORT = 8222;

@@ -5,7 +5,7 @@
   networking.hostName = "POTATO-OA";
   networking.firewall.enable = false;
   security.acme.acceptTerms = true;
-  security.acme.defaults.email = "acme@typed.icu";
+  security.acme.defaults.email = "acme@torus.icu";
   boot.zfs.devNodes = "/dev";
   networking.hostId = "c271c48d";
   networking.wireguard.interfaces = {
@@ -34,5 +34,11 @@
     recommendedOptimisation = true;
     recommendedGzipSettings = true;
     recommendedProxySettings = true;
+    virtualHosts."oa.torus.icu" = {
+      enableACME = true;
+      forceSSL = true;
+      default = true;
+      locations."/".return = "302 https://torus.icu";
+    };
   };
 }
