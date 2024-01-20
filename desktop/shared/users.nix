@@ -5,7 +5,7 @@
   users.users = {
     berberman = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "networkmanager" "adbusers" "docker" ];
+      extraGroups = [ "wheel" "networkmanager" "adbusers" "docker" "dialout" ];
     };
   };
 }

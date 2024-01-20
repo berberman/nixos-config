@@ -20,4 +20,8 @@
     adapter = "caddyfile";
     configFile = config.age.secrets.v2o0c.path;
   };
+  services.uptime-kuma = {
+    enable = true;
+    settings = { UPTIME_KUMA_HOST = "127.0.0.1"; };
+  };
 }
