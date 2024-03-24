@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  xdg.portal = {
+    enable = true;
+    xdgOpenUsePortal = true;
+  };
   services.xserver = {
     enable = true;
     displayManager.sddm.enable = true;
