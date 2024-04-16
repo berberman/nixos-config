@@ -34,10 +34,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
+    nix-matrix-appservices = {
+      url = "gitlab:coffeetables/nix-matrix-appservices";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, berberman, home-manager, emacs, deploy-rs
-    , flake-utils, agenix, ... }:
+    , flake-utils, agenix, nix-matrix-appservices, ... }:
     let
       cachix = ./cachix;
       global = import ./global.nix;
@@ -67,6 +71,7 @@
           agenix.nixosModules.default
           cachix
           overlay
+          nix-matrix-appservices.nixosModule
         ] ++ shared;
       };
       mkDesktopSystem = { system, modules }:

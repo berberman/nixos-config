@@ -79,4 +79,29 @@ in {
     };
     extraConfigFiles = [ config.age.secrets.matrix-synapse-registration.path ];
   };
+
+  services.matrix-appservices = {
+    homeserverDomain = serverName;
+    homeserverURL = "https://matrix.${serverName}";
+    addRegistrationFiles = true;
+    services.discord = {
+      port = 29334;
+      format = "mautrix-go";
+      package = pkgs.mautrix-discord;
+      settings = {
+        bridge = {
+          permissions = {
+            "*" = "relay";
+            "@berberman:mozilla.org" = "admin";
+          };
+          encryption = {
+            allow = true;
+            default = true;
+            allow_key_sharing = true;
+          };
+        };
+        homeserver = { async_media = true; };
+      };
+    };
+  };
 }
