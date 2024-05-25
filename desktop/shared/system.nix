@@ -9,6 +9,26 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     wireplumber.enable = true;
+    configPackages = [
+      (pkgs.writeTextDir "share/pipewire/pipewire.conf.d/10-roc-source.conf" ''
+        context.modules = [
+         {   name = libpipewire-module-roc-source
+             args = {
+                 local.ip = 0.0.0.0
+                 resampler.profile = medium
+                 fec.code = rs8m
+                 sess.latency.msec = 100
+                 local.source.port = 10001
+                 local.repair.port = 10002
+                 source.name = "ROC Source"
+                 source.props = {
+                    node.name = "roc-source"
+                 }
+             }
+        }
+        ]
+      '')
+    ];
   };
 
   services.openssh.enable = true;
