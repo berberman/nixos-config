@@ -45,7 +45,7 @@
     home-manager
     picom-next
     flameshot
-    nixfmt
+    nixfmt-classic
     tdesktop
     ark
     gwenview
