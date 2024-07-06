@@ -90,6 +90,7 @@ in {
       package = pkgs.mautrix-discord;
       settings = {
         bridge = {
+          message_error_notices = false;
           permissions = {
             "*" = "relay";
             "@berberman:mozilla.org" = "admin";

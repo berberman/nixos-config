@@ -24,7 +24,7 @@
   };
 
   services.ircbot = {
-    enable = true;
+    enable = false;
     environmentFile = config.age.secrets.ircbot.path;
   };
 

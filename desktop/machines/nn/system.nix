@@ -1,9 +1,9 @@
 { config, pkgs, ... }:
 
 {
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    extraPackages = with pkgs; [ vaapiIntel vaapiVdpau libvdpau-va-gl ];
+    extraPackages = with pkgs; [ intel-media-driver intel-vaapi-driver libvdpau-va-gl ];
   };
   time.timeZone = "Asia/Shanghai";
   services.xserver.videoDrivers = [ "nvidia" ];

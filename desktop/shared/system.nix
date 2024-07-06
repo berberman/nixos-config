@@ -52,7 +52,7 @@
 
   programs.java = {
     enable = true;
-    package = pkgs.jdk11;
+    package = pkgs.jdk17;
   };
 
   programs.adb.enable = true;
