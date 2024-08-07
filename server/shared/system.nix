@@ -19,6 +19,8 @@
 
   services.qemuGuest.enable = true;
 
+  programs.mosh.enable = true;
+
   environment.systemPackages = with pkgs; [
     vim
     neofetch
@@ -31,6 +33,9 @@
     iperf
     speedtest-cli
     tmux
+    bind
+    file
+    tree
   ];
 
   services.tailscale.enable = true;

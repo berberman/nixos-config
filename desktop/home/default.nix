@@ -71,8 +71,7 @@
     haskellPackages.ghc
     haskellPackages.cabal-fmt
     texlive.combined.scheme-full
-    typst-lsp
-    typst-preview
+    tinymist
     wakatime
     lean4
     (agda.withPackages (p: [ p.standard-library ]))

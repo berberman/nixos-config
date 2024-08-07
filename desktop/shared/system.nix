@@ -57,8 +57,13 @@
 
   programs.adb.enable = true;
 
+  programs.mosh.enable = true;
+
+  programs.kdeconnect.enable = true;
+
   i18n.inputMethod = {
-    enabled = "fcitx5";
+    type = "fcitx5";
+    enable = true;
 
     fcitx5.addons = with pkgs; [
       fcitx5-chinese-addons
@@ -81,21 +86,23 @@
     zsh
     gparted
     ripgrep
-    plasma5Packages.kdeconnect-kde
     pciutils
     pcsctools
     yubikey-personalization
     yubikey-personalization-gui
     remmina
     tmux
-    nyx
-    tor-browser-bundle-bin
+    # nyx
+    # tor-browser-bundle-bin
+    bind
+    file
+    tree
   ];
 
   services.tailscale.enable = true;
-  services.tor = {
-    enable = true;
-    client.enable = true;
-    settings.ControlPort = 9051;
-  };
+  # services.tor = {
+  #   enable = true;
+  #   client.enable = true;
+  #   settings.ControlPort = 9051;
+  # };
 }
