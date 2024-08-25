@@ -9,7 +9,7 @@
     syntaxHighlighting.enable = true;
     ohMyZsh = {
       enable = true;
-      plugins = [ "tmux" "systemd" "adb" "git" "colored-man-pages" "sudo" ];
+      plugins = [ "tmux" "systemd" "git" "colored-man-pages" "sudo" ];
       theme = "agnoster";
     };
     interactiveShellInit = ''
