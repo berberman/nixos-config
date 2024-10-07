@@ -97,6 +97,7 @@
     bind
     file
     tree
+    typst
   ];
 
   services.tailscale.enable = true;

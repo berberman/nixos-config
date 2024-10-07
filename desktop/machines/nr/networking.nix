@@ -21,14 +21,14 @@
       };
       wgcf = {
         address =
-          [ "172.16.0.2/32" "fd01:5ca1:ab1e:8962:bfd4:20b5:bf0c:f259/128" ];
-        dns = [ "1.1.1.1" ];
+          [ "172.16.0.2/32" "2606:4700:110:8902:c9ad:455d:cf3b:52f8/128" ];
+        dns = [ "1.1.1.1" "1.0.0.1" "2606:4700:4700::1111" "2606:4700:4700::1001" ];
         privateKeyFile = config.age.secrets.wgcf.path;
         mtu = 1280;
         peers = [{
           publicKey = "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=";
           allowedIPs = [ "0.0.0.0/0" "::/0" ];
-          endpoint = "162.159.192.1:2408";
+          endpoint = "engage.cloudflareclient.com:2408";
         }];
       };
     };
