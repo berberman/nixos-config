@@ -74,6 +74,14 @@
     ];
   };
 
+  # https://github.com/dramforever/config/commit/1f3030741ed1d3f6a0af1b61cfa0016083917b58#diff-a1dca4d3e1eda4c2afcfd8301ee3b4ae9363de1d9130966e1a2bd5048aba9c37R47
+  environment.variables.QT_PLUGIN_PATH = let
+    fcitx5Workaround = pkgs.runCommand "fcitx5-workaround" { } ''
+      plugins="${config.i18n.inputMethod.package}/${pkgs.qt6.qtbase.qtPluginPrefix}"
+      cp -r --dereference "$plugins" $out
+    '';
+  in [ "${fcitx5Workaround}" ];
+
   environment.systemPackages = with pkgs; [
     wget
     vim
