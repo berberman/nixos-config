@@ -11,4 +11,5 @@
     nixPath = [ "nixpkgs=${pkgs.path}" ];
     registry.nixpkgs.flake = inputs.nixpkgs;
   };
+  nixpkgs.config.allowUnfree = true;
 }

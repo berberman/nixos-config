@@ -5,10 +5,8 @@
     port = 8686;
     settings = {
       server_url = "https://tailscale.torus.icu";
-      dns_config = {
-        magic_dns = true;
-        nameservers = [ "1.1.1.1" ];
-        baseDomain = "torus.icu";
+      dns = {
+        base_domain = "tailnet.torus.icu";
       };
       logtail = { enabled = false; };
       ip_prefixes = [ "100.64.0.0/10" "fd7a:115c:a1e0::/48" ];
