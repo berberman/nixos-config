@@ -114,4 +114,6 @@
   #   client.enable = true;
   #   settings.ControlPort = 9051;
   # };
+  programs.nix-ld.enable = true;
+
 }

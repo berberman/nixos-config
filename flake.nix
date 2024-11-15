@@ -38,6 +38,10 @@
       url = "gitlab:coffeetables/nix-matrix-appservices";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    vscode-server = {
+      flake = false;
+      url = "github:nix-community/nixos-vscode-server";
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, berberman, home-manager, emacs, deploy-rs

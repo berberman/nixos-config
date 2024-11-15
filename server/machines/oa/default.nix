@@ -1,7 +1,24 @@
-{ pkgs, config, global, ... }: {
-  imports =
-    [ ./hardware-configuration.nix ./secrets.nix ./matrix.nix ./znc.nix ];
-
+{ pkgs, config, global, inputs, ... }: {
+  imports = [
+    ./hardware-configuration.nix
+    ./secrets.nix
+    ./matrix.nix
+    ./znc.nix
+    inputs.home-manager.nixosModules.home-manager
+  ];
+  # for trixnity
+  nixpkgs.config.permittedInsecurePackages = [ "olm-3.2.16" ];
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
+  home-manager.users.berberman = import ./home.nix;
+  home-manager.extraSpecialArgs = { inherit inputs global; };
+  users.users = {
+    berberman = {
+      isNormalUser = true;
+      extraGroups = [ "wheel" ];
+      openssh.authorizedKeys.keys = global.pubKeys;
+    };
+  };
   networking.hostName = "POTATO-OA";
   networking.firewall.enable = false;
   security.acme.acceptTerms = true;

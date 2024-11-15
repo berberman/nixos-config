@@ -46,4 +46,6 @@
     apiKey = global.netdataApiKey;
     dest = "10.100.0.1:19999";
   };
+
+  programs.nix-ld.enable = true;
 }
