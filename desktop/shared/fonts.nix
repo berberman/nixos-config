@@ -15,11 +15,12 @@
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
       apple-emoji
-      (nerdfonts.override { fonts = [ "CascadiaCode" "VictorMono"]; })
       cascadia-code
+      nerd-fonts.caskaydia-cove
       liberation_ttf
       freefont_ttf
       victor-mono
+      nerd-fonts.victor-mono
     ];
   };
 }

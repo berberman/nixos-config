@@ -95,6 +95,13 @@
 
 (use-package haskell-mode)
 
+(use-package elpy
+  :ensure t
+  :init
+  (setq python-shell-interpreter "python3"
+      python-shell-interpreter-args "-i")
+  (elpy-enable))
+
 (use-package lsp-mode
   :init
   (setq lsp-keymap-prefix "C-c l")
@@ -151,8 +158,6 @@
   :config
   (setq dired-recursive-deletes 'always
         dired-recursive-copies 'always))
-
-(use-package dired-single)
 
 (use-package diredfl
   :init (diredfl-global-mode 1))
