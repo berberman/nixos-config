@@ -14,4 +14,5 @@ in {
   "v2o0c.age".publicKeys = keys;
   "vaultwarden.age".publicKeys = keys;
   "ircbot.age".publicKeys = keys;
+  "github-token.age".publicKeys = keys;
 }

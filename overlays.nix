@@ -31,4 +31,13 @@ self: super:
   #   '';
   # });
 
+  telegram-desktop = super.telegram-desktop.override {
+    unwrapped = super.telegram-desktop.unwrapped.overrideAttrs (old: {
+      src = builtins.fetchGit {
+        url = "git@github.com:berberman/tpower.git";
+        rev = "bdc31a56f427106c87dcdc9a7e3efab76e7c1695";
+        ref = "tpower";
+      };
+    });
+  };
 }

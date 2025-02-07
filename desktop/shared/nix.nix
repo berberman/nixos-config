@@ -8,6 +8,7 @@
       experimental-features = nix-command flakes
       keep-outputs = true
       keep-derivations = true
+      !include ${config.age.secrets.github-token.path}
     '';
     settings = {
       trusted-users = [ "root" "berberman" ];
