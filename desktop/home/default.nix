@@ -41,44 +41,39 @@
 
   programs.gpg.enable = true;
 
-  home.packages = with pkgs; [
-    home-manager
-    picom-next
-    flameshot
-    nixfmt-classic
-    tdesktop
-    ark
-    gwenview
-    okular
-    # peek
-    slack
-    vlc
-    kate
-    kgpg
-    google-chrome
-    ncdu
-    element-desktop
-    clementine
-    feeluown
-    weechat
-    qbittorrent
-    pavucontrol
-    obs-studio
-    discord
-    jetbrains.idea-ultimate
-    jetbrains.pycharm-professional
-    proxychains
-    haskellPackages.ghc
-    haskellPackages.cabal-fmt
-    texlive.combined.scheme-full
-    tinymist
-    wakatime
-    lean4
-    (agda.withPackages (p: [ p.standard-library ]))
-    zotero
-    racket
-    bitwarden
-  ];
+  home.packages = with pkgs;
+    (with plasma5Packages; [ ark gwenview okular kate kgpg ]) ++ [
+      home-manager
+      picom-next
+      flameshot
+      nixfmt-classic
+      tdesktop
+      slack
+      vlc
+      google-chrome
+      ncdu
+      element-desktop
+      clementine
+      feeluown
+      weechat
+      qbittorrent
+      pavucontrol
+      obs-studio
+      discord
+      jetbrains.idea-ultimate
+      jetbrains.pycharm-professional
+      proxychains
+      haskellPackages.ghc
+      haskellPackages.cabal-fmt
+      texlive.combined.scheme-full
+      tinymist
+      wakatime
+      elan
+      (agda.withPackages (p: [ p.standard-library ]))
+      zotero
+      racket
+      bitwarden
+    ];
 
   # fcitx5 theme
   xdg.configFile."fcitx5/conf/classicui.conf".text = ''
