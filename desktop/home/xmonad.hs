@@ -42,7 +42,7 @@ myKeys =
     ((mod4Mask .|. controlMask, xK_t), mySpawnOn "IM" tg),
     ((mod4Mask .|. controlMask, xK_e), mySpawnOn "IM" element),
     ((mod4Mask .|. controlMask, xK_d), spawn "dolphin"),
-    ((mod4Mask .|. controlMask, xK_s), spawn "systemsettings5"),
+    ((mod4Mask .|. controlMask, xK_s), spawn "systemsettings"),
     ((mod4Mask .|. controlMask, xK_w), spawn "flameshot gui")
   ]
 

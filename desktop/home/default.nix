@@ -42,7 +42,7 @@
   programs.gpg.enable = true;
 
   home.packages = with pkgs;
-    (with plasma5Packages; [ ark gwenview okular kate kgpg ]) ++ [
+    (with kdePackages; [ ark gwenview okular kate kgpg ]) ++ [
       home-manager
       picom-next
       flameshot
