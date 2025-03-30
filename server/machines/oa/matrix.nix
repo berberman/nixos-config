@@ -36,8 +36,8 @@ in {
         locations."/".extraConfig = ''
           return 404;
         '';
-        locations."/_matrix".proxyPass = "http://[::1]:8008";
-        locations."/_synapse/client".proxyPass = "http://[::1]:8008";
+        locations."/_matrix".proxyPass = "http://127.0.0.1:8008";
+        locations."/_synapse/client".proxyPass = "http://127.0.0.1:8008";
       };
       "chat.${serverName}" = {
         enableACME = true;
@@ -67,7 +67,7 @@ in {
       server_name = serverName;
       listeners = [{
         port = 8008;
-        bind_addresses = [ "::1" ];
+        bind_addresses = [ "127.0.0.1" ];
         type = "http";
         tls = false;
         x_forwarded = true;
@@ -76,6 +76,8 @@ in {
           compress = true;
         }];
       }];
+      app_service_config_files =
+        [ "/var/lib/matrix-synapse/telegram-registration.yaml" ];
     };
     extraConfigFiles = [ config.age.secrets.matrix-synapse-registration.path ];
   };
@@ -104,5 +106,55 @@ in {
         homeserver = { async_media = true; };
       };
     };
+  };
+
+  services.mautrix-telegram = {
+    enable = true;
+
+    environmentFile = config.age.secrets.mautrix-telegram.path;
+
+    settings = {
+      homeserver = {
+        address = "http://127.0.0.1:8008";
+        domain = serverName;
+      };
+      appservice = let port = 29317;
+      in {
+        address = "http://127.0.0.1:${toString port}";
+        hostname = "127.0.0.1";
+        inherit port;
+        provisioning.enabled = false;
+        id = "telegram";
+        public = { enabled = false; };
+        database = "postgresql:///mautrix-telegram?host=/run/postgresql";
+      };
+      bridge = {
+        animated_sticker = {
+          target = "webp";
+          convert_from_webm = true;
+        };
+        permissions = {
+          "*" = "relaybot";
+          "@berberman:mozilla.org" = "admin";
+        };
+        encryption = {
+          allow = true;
+          default = true;
+          allow_key_sharing = true;
+        };
+        relaybot = { authless_portals = false; };
+      };
+      telegram = {
+        api_id = 611335;
+        api_hash = "d524b414d21f4d37f08684c1df41ac9c";
+        device_info = { app_version = "3.5.2"; };
+      };
+    };
+  };
+
+  systemd.services.mautrix-telegram.serviceConfig = {
+    User = "matrix-synapse";
+    Group = "matrix-synapse";
+    DynamicUser = lib.mkForce false;
   };
 }

@@ -15,4 +15,5 @@ in {
   "vaultwarden.age".publicKeys = keys;
   "ircbot.age".publicKeys = keys;
   "github-token.age".publicKeys = keys;
+  "mautrix-telegram.age".publicKeys = keys;
 }
