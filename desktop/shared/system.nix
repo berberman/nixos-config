@@ -95,7 +95,7 @@
     bind
     file
     tree
-    typst
+    ncdu
   ];
 
   services.tailscale.enable = true;

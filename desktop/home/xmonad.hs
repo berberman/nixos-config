@@ -18,7 +18,7 @@ main =
         manageHook = manageHook kde4Config <+> myManageHook <+> manageDocks,
         layoutHook = myLayoutHook,
         workspaces = myWorkspaces,
-        startupHook = startupHook kde4Config >> spawn "picom --experimental-backends &",
+        startupHook = startupHook kde4Config >> spawn "picom &",
         borderWidth = 0,
         terminal = "alacritty"
       }
@@ -36,7 +36,7 @@ myKeys =
   [ ((mod4Mask, xK_r), spawn "rofi -no-lazy-grab -show drun -modi drun -theme ~/.config/rofi/colorful/style.rasi"),
     ( (mod4Mask .|. controlMask, xK_r),
       spawn "xmonad --restart"
-        >> spawn "killall picom && picom --experimental-backends &"
+        >> spawn "killall picom && picom &"
     ),
     ((mod4Mask .|. controlMask, xK_p), mySpawnOn "Web" chrome),
     ((mod4Mask .|. controlMask, xK_t), mySpawnOn "IM" tg),
