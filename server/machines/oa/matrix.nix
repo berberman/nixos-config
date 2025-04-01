@@ -110,7 +110,8 @@ in {
 
   services.mautrix-telegram = {
     enable = true;
-
+    # We handle this manually
+    registerToSynapse = false;
     environmentFile = config.age.secrets.mautrix-telegram.path;
 
     settings = {
@@ -152,9 +153,10 @@ in {
     };
   };
 
+  # Run mautrix-telegram as the matrix-synapse user
   systemd.services.mautrix-telegram.serviceConfig = {
-    User = "matrix-synapse";
-    Group = "matrix-synapse";
+    User = lib.mkForce "matrix-synapse";
+    Group = lib.mkForce "matrix-synapse";
     DynamicUser = lib.mkForce false;
   };
 }
