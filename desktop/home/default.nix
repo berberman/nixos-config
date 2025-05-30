@@ -51,7 +51,6 @@
     vlc
     google-chrome
     element-desktop
-    clementine
     feeluown
     weechat
     qbittorrent

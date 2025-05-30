@@ -31,13 +31,13 @@ self: super:
   #   '';
   # });
 
-  telegram-desktop = super.telegram-desktop.override {
-    unwrapped = super.telegram-desktop.unwrapped.overrideAttrs (old: {
-      src = builtins.fetchGit {
-        url = "git@github.com:tpower-org/tpower.git";
-        rev = "3d6e99ca40e9c445cf76fdbcb116a903c105cb0b";
-        ref = "tpower";
-      };
-    });
-  };
+  # telegram-desktop = super.telegram-desktop.override {
+  #   unwrapped = super.telegram-desktop.unwrapped.overrideAttrs (old: {
+  #     src = builtins.fetchGit {
+  #       url = "git@github.com:tpower-org/tpower.git";
+  #       rev = "3d6e99ca40e9c445cf76fdbcb116a903c105cb0b";
+  #       ref = "tpower";
+  #     };
+  #   });
+  # };
 }
