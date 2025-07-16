@@ -15,7 +15,7 @@ in {
       ((lib.generators.toYAML { }) {
         env = "production";
         server = {
-          listen_ipv4 = "10.100.0.2";
+          listen_ipv4 = "10.100.0.6";
           port = 8223;
           public_url = "https://wakapi.torus.icu";
         };

@@ -3,12 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./nextcloud.nix
     ./secrets.nix
-    ./minio.nix
-    ./fdroid.nix
-    ./vaultwarden.nix
-    ./wakapi.nix
     ./transmission.nix
   ];
 
@@ -70,7 +65,7 @@
       ${pkgs.iproute2}/bin/ip netns exec lu ${pkgs.iproute2}/bin/ip link set ens19 up
       ${pkgs.iproute2}/bin/ip netns exec lu ${pkgs.iproute2}/bin/ip addr add 10.0.2.109/24 dev ens19
       ${pkgs.iproute2}/bin/ip netns exec lu ${pkgs.iproute2}/bin/ip route add default via 10.0.2.1
-      
+
       ${pkgs.iproute2}/bin/ip link add type veth
       ${pkgs.iproute2}/bin/ip link set veth0 netns lu
       ${pkgs.iproute2}/bin/ip netns exec lu ${pkgs.iproute2}/bin/ip link set veth0 up
@@ -99,4 +94,5 @@
       ExecStart = startScript;
     };
   };
+  system.stateVersion = "22.05";
 }

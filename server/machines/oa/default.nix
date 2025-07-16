@@ -58,4 +58,5 @@
       locations."/".return = "302 https://torus.icu";
     };
   };
+  system.stateVersion = "22.05";
 }

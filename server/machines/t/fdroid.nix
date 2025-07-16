@@ -19,7 +19,7 @@ in {
   services.nginx.enable = true;
   services.nginx.virtualHosts."fdroid" = {
     listen = [{
-      addr = "10.100.0.2";
+      addr = "10.100.0.6";
       port = 8008;
     }];
     locations."/" = {

@@ -17,6 +17,7 @@ rec {
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILVnYqmTUjCR+RJxXwHJyJrX0u3qjXrnPFwPIBOCfXHu POTATO-OA"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA7tqOZvLlTcmx1j1LZUjIVqy+GnIfxTj5XOvWR6Ddcq POTATO-NN"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJjKibWubbMbpIqwhpLZ76obXatOxmSY//1Ln3PcDwct POTATO-RM"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOnREg/xEmAlq2ZRlLDplh6X7ZTMUVGlvtWtLDWTUp7Q POTATO-T"
   ];
   netdataApiKey = "b9a20226-d54a-49e0-b63b-8eed5234ac18";
   wg = let
@@ -65,6 +66,12 @@ rec {
       public = "JlYqeP3QvfY+YTHg1374+D/mz7QIqkIpXHayIqgnlWo=";
       private = "wg-nr-private";
       nat = true;
+    };
+    t = mkPeer {
+      ip = "10.100.0.6";
+      public = "uHbuzDivJCU+uR4UZnhg1uynTQMYXyfVe0xPJpAgkzo=";
+      private = "wg-t-private";
+      endpoint = "t.torus.icu:${toString listenPort}";
     };
   };
 }

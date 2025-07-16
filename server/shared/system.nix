@@ -13,8 +13,6 @@
 
   users.users.root.openssh.authorizedKeys.keys = global.pubKeys;
 
-  system.stateVersion = "22.05";
-
   documentation.nixos.enable = false;
 
   services.qemuGuest.enable = true;

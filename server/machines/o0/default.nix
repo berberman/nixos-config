@@ -24,4 +24,5 @@
     enable = true;
     settings = { UPTIME_KUMA_HOST = "127.0.0.1"; };
   };
+  system.stateVersion = "22.05";
 }

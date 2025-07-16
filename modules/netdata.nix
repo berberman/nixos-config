@@ -31,6 +31,7 @@ in with lib; {
     (mkIf parentCfg.enable {
       services.netdata = {
         enable = true;
+        package = pkgs.netdata.override { withCloudUi = true; };
         config = { ml.enabled = "yes"; };
         configDir = {
           "stream.conf" = pkgs.writeText "stream.conf" ''

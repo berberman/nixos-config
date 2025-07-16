@@ -147,6 +147,10 @@
             system = "aarch64-linux";
             modules = [ ./server/machines/oa ];
           };
+          POTATO-T = mkServerSystem {
+            system = "x86_64-linux";
+            modules = [ ./server/machines/t ];
+          };
         };
 
         deploy.nodes = {
@@ -174,6 +178,13 @@
             profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos
               self.nixosConfigurations.POTATO-OA;
             hostname = "oa.torus.icu";
+            remoteBuild = true;
+          };
+          POTATO-T = {
+            sshUser = "root";
+            profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos
+              self.nixosConfigurations.POTATO-T;
+            hostname = "t.torus.icu";
             remoteBuild = true;
           };
         };

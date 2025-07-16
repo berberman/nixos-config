@@ -8,4 +8,5 @@
     networkmanager.enable = true;
     firewall.enable = false;
   };
+  services.resolved.enable = true;
 }
