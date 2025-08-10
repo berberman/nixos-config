@@ -1,7 +1,8 @@
 { pkgs, ... }:
 
 {
-  imports = [ ./xmonad.nix ];
+  # Disable xmonad for now
+  # imports = [ ./xmonad.nix ];
 
   programs.git = {
     enable = true;

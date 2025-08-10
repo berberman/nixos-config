@@ -7,6 +7,7 @@
       server_url = "https://tailscale.torus.icu";
       dns = {
         base_domain = "tailnet.torus.icu";
+        override_local_dns = false;
       };
       logtail = { enabled = false; };
       ip_prefixes = [ "100.64.0.0/10" "fd7a:115c:a1e0::/48" ];

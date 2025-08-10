@@ -87,7 +87,7 @@
     pciutils
     pcsctools
     yubikey-personalization
-    yubikey-personalization-gui
+    yubioath-flutter
     remmina
     tmux
     # nyx
@@ -96,6 +96,7 @@
     file
     tree
     ncdu
+    unrar
   ];
 
   services.tailscale.enable = true;

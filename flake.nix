@@ -115,7 +115,7 @@
             (final: prev: import ./overlays.nix final prev)
             berberman.overlays.default
             emacs.overlay
-            deploy-rs.overlay
+            deploy-rs.overlays.default
           ]) final prev;
 
         nixosConfigurations = {

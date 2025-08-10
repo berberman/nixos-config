@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  time.timeZone = "America/New_York";
+  time.timeZone = "America/Los_Angeles";
   hardware.bluetooth.enable = true;
   virtualisation.docker.enable = true;
   environment.systemPackages = with pkgs; [ mathematica ];
@@ -9,5 +9,4 @@
   virtualisation.virtualbox.host.enableExtensionPack = true;
   virtualisation.virtualbox.host.enable = true;
   hardware.nvidia = { open = true; };
-  kdeVersion = "6";
 }

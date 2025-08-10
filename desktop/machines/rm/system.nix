@@ -11,12 +11,13 @@
   system.replaceDependencies.replacements = [{
     oldDependency = pkgs.openconnect;
     newDependency = pkgs.openconnect.overrideAttrs (old: {
-    src = pkgs.fetchFromGitLab {
-      owner = "openconnect";
-      repo = "openconnect";
-      rev = "f17fe20d337b400b476a73326de642a9f63b59c8";
-      hash = "sha256-OBEojqOf7cmGtDa9ToPaJUHrmBhq19/CyZ5agbP7WUw=";
-    };
-  });
+      src = pkgs.fetchFromGitLab {
+        owner = "openconnect";
+        repo = "openconnect";
+        rev = "f17fe20d337b400b476a73326de642a9f63b59c8";
+        hash = "sha256-OBEojqOf7cmGtDa9ToPaJUHrmBhq19/CyZ5agbP7WUw=";
+      };
+    });
   }];
+  kdeVersion = "5";
 }

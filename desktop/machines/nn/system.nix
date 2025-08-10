@@ -11,7 +11,6 @@
   };
   time.timeZone = "Asia/Shanghai";
   services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia = {
-    open = false;
-  };
+  hardware.nvidia = { open = false; };
+  kdeVersion = "5";
 }
