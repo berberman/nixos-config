@@ -44,7 +44,7 @@
 
   home.packages = with pkgs; [
     home-manager
-    picom-next
+    # picom-next
     flameshot
     nixfmt-classic
     tdesktop
@@ -109,7 +109,7 @@
   '';
 
   # picom
-  xdg.configFile."picom.conf".source = ./picom.conf;
+  # xdg.configFile."picom.conf".source = ./picom.conf;
 
   # rofi
   programs.rofi.enable = true;

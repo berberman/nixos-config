@@ -15,6 +15,7 @@
         kate
         kgpg
         kdeconnect-kde
+        sddm-kcm
       ];
   in lib.mkMerge [
     # Use X11 for KDE 5

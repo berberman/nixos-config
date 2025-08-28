@@ -43,9 +43,15 @@
     };
   };
 
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
   services.printing = {
     enable = true;
-    drivers = [ pkgs.hplip ];
+    drivers = with pkgs; [ hplip cups-filters cups-browsed ];
   };
 
   services.gnome.gnome-keyring.enable = true;
