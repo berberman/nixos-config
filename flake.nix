@@ -122,8 +122,6 @@
               inputs.agenix.packages.${system}.default
               pkgs.deploy-rs.deploy-rs
               pkgs.wireguard-tools
-              # (pkgs.haskellPackages.ghcWithPackages
-              #   (p: with p; [ xmonad xmonad-contrib ]))
             ];
           };
         };

@@ -1,8 +1,6 @@
 { pkgs, ... }:
 
 {
-  # Disable xmonad for now
-  # imports = [ ./xmonad.nix ];
 
   programs.git = {
     enable = true;
@@ -44,7 +42,6 @@
 
   home.packages = with pkgs; [
     home-manager
-    # picom-next
     flameshot
     nixfmt-classic
     tdesktop
@@ -107,15 +104,6 @@
     :set prompt "\ESC[38;5;208m\STXλ>\ESC[m\STX "
     :set -ferror-spans -freverse-errors -fprint-expanded-synonyms
   '';
-
-  # picom
-  # xdg.configFile."picom.conf".source = ./picom.conf;
-
-  # rofi
-  programs.rofi.enable = true;
-
-  # adi1090x/rofi theme 
-  xdg.configFile."rofi/colorful/style.rasi".source = ./style.rasi;
 
   # alacritty
   programs.alacritty = {
