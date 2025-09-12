@@ -44,17 +44,12 @@ in {
     global = import ../global.nix;
     overlayModule = { nixpkgs.overlays = [ self.overlays.default ]; };
     desktop = rec {
-      home = {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.users.berberman = import ../desktop/home;
-      };
       shared = let dir = ../desktop/shared;
       in with builtins; map (x: dir + ("/" + x)) (attrNames (readDir dir));
       modules = [
         self.nixosModules.default
         inputs.agenix.nixosModules.default
-        home
+        inputs.niri.nixosModules.niri
         inputs.home-manager.nixosModules.home-manager
         cachix
         overlayModule

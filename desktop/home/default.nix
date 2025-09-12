@@ -42,7 +42,6 @@
 
   home.packages = with pkgs; [
     home-manager
-    flameshot
     nixfmt-classic
     tdesktop
     slack
@@ -57,7 +56,6 @@
     discord
     jetbrains.idea-ultimate
     jetbrains.pycharm-professional
-    proxychains
     haskellPackages.ghc
     haskellPackages.cabal-fmt
     texlive.combined.scheme-full
@@ -82,23 +80,7 @@
     Theme=Material-Color-Indigo
   '';
 
-  # proxychains config
-  home.file.".proxychains/proxychains.conf".text = ''
-    strict_chain
-
-    proxy_dns 
-
-    remote_dns_subnet 224
-
-    tcp_read_time_out 15000
-    tcp_connect_time_out 8000
-
-    localnet 127.0.0.0/255.0.0.0
-
-    [ProxyList]
-    socks5 192.168.31.88 1080
-  '';
-
+ 
   # ghci
   home.file.".ghc/ghci.conf".text = ''
     :set prompt "\ESC[38;5;208m\STXλ>\ESC[m\STX "

@@ -1,0 +1,215 @@
+/* https://raw.githubusercontent.com/arkboix/sway/refs/heads/main/files/.config/waybar/style.css */
+/*Colorschemes, there are Gruvbox, Tokyo Night, and Everforest by default. The way it works is whichever colorscheme section is defined last will be used. Here everforest is last, but put any one you want to use as the last one.*/
+
+
+
+/* Tokyo Night */
+@define-color background #1a1b26;
+@define-color background-light #24283b;
+@define-color foreground #c0caf5;
+@define-color black #15161e;
+@define-color red #f7768e;
+@define-color green #9ece6a;
+@define-color yellow #e0af68;
+@define-color blue #7aa2f7;
+@define-color magenta #bb9af7;
+@define-color cyan #7dcfff;
+@define-color white #a9b1d6;
+@define-color orange #ff9e64;
+
+
+/* Everforest Dark Colors */
+@define-color background #2b3339;
+@define-color background-light #323c41;
+@define-color foreground #d3c6aa;
+@define-color black #3c474d;
+@define-color red #e67e80;
+@define-color green #a7c080;
+@define-color yellow #dbbc7f;
+@define-color blue #7fbbb3;
+@define-color magenta #d699b6;
+@define-color cyan #83c092;
+@define-color white #d3c6aa;
+@define-color orange #e69875;
+
+/* Pastel TTY Colors */
+@define-color background #212121;
+@define-color background-light #3a3a3a;
+@define-color foreground #e0e0e0;
+@define-color black #5a5a5a;
+@define-color red #ff9a9e;
+@define-color green #b5e8a9;
+@define-color yellow #ffe6a7;
+@define-color blue #63a4ff;
+@define-color magenta #dda0dd;
+@define-color cyan #a3e8e8;
+@define-color white #ffffff;
+@define-color orange #ff8952;
+
+
+
+/* Gruvbox Dark Colors */
+@define-color background #282828;
+@define-color background-light #3c3836;
+@define-color foreground #ebdbb2;
+@define-color black #32302f;
+@define-color red #cc241d;
+@define-color green #98971a;
+@define-color yellow #d79921;
+@define-color blue #458588;
+@define-color magenta #b16286;
+@define-color cyan #689d6a;
+@define-color white #ebdbb2;
+@define-color orange #d65d0e;
+
+
+
+/* Module-specific colors */
+@define-color workspaces-color @foreground;
+@define-color workspaces-focused-bg @green;
+@define-color workspaces-focused-fg @cyan;
+@define-color workspaces-urgent-bg @red;
+@define-color workspaces-urgent-fg @black;
+
+/* Text and border colors for modules */
+@define-color clock-color @blue;
+@define-color cpu-color @green;
+@define-color memory-color @magenta;
+@define-color battery-color @cyan;
+@define-color battery-charging-color @green;
+@define-color battery-warning-color @yellow;
+@define-color battery-critical-color @red;
+@define-color network-color @blue;
+@define-color network-disconnected-color @red;
+@define-color wireplumber-color @orange;
+@define-color wireplumber-muted-color @red;
+@define-color disk-color @cyan;
+@define-color uptime-color @green;
+
+* {
+    /* Base styling for all modules */
+    border: none;
+    border-radius: 0;
+    font-family: "Iosevka Nerd Font";
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: @background;
+    color: @foreground;
+}
+
+
+
+/* Common module styling with border-bottom */
+ #clock, #cpu,
+#memory,  #battery, #network, #wireplumber,
+#backlight,#custom-uptime,
+#idle_inhibitor, #tray {
+    padding: 0 10px;
+    margin: 0 2px;
+    border-bottom: 2px solid transparent;
+    background-color: transparent;
+}
+
+/* Workspaces styling */
+#workspaces button {
+    padding: 0 10px;
+    background-color: transparent;
+    color: @workspaces-color;
+    margin: 0;
+}
+
+#workspaces button:hover {
+    background: @background-light;
+    box-shadow: inherit;
+}
+
+#workspaces button.focused {
+    box-shadow: inset 0 -2px @workspaces-focused-fg;
+    color: @workspaces-focused-fg;
+    font-weight: 900;
+}
+
+#workspaces button.urgent {
+    background-color: @workspaces-urgent-bg;
+    color: @workspaces-urgent-fg;
+}
+
+
+#clock {
+    color: @clock-color;
+    border-bottom-color: @clock-color;
+}
+
+#cpu {
+    color: @cpu-color;
+    border-bottom-color: @cpu-color;
+}
+
+#memory {
+    color: @memory-color;
+    border-bottom-color: @memory-color;
+}
+
+#battery {
+    color: @battery-color;
+    border-bottom-color: @battery-color;
+}
+
+#battery.charging, #battery.plugged {
+    color: @battery-charging-color;
+    border-bottom-color: @battery-charging-color;
+}
+
+#battery.warning:not(.charging) {
+    color: @battery-warning-color;
+    border-bottom-color: @battery-warning-color;
+}
+
+#battery.critical:not(.charging) {
+    color: @battery-critical-color;
+    border-bottom-color: @battery-critical-color;
+}
+
+#network {
+    color: @network-color;
+    border-bottom-color: @network-color;
+}
+
+#network.disconnected {
+    color: @network-disconnected-color;
+    border-bottom-color: @network-disconnected-color;
+}
+
+#wireplumber {
+    color: @wireplumber-color;
+    border-bottom-color: @wireplumber-color;
+}
+
+#wireplumber.muted {
+    color: @wireplumber-muted-color;
+    border-bottom-color: @wireplumber-muted-color;
+}
+
+#custom-uptime {
+    color: @uptime-color;
+    border-bottom-color: @uptime-color;
+}
+
+#tray {
+    background-color: transparent;
+    padding: 0 10px;
+    margin: 0 2px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    color: @red;
+    border-bottom-color: @red;
+}

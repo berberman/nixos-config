@@ -21,7 +21,7 @@
 
   environment.systemPackages = with pkgs; [
     vim
-    neofetch
+    fastfetch
     htop
     git
     rsync

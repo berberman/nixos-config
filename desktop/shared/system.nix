@@ -79,13 +79,14 @@
   };
 
   environment.systemPackages = with pkgs; [
+    helvum
     wget
     vim
     firefox
     htop
     bat
     rsync
-    neofetch
+    fastfetch
     git
     zsh
     gparted

@@ -20,5 +20,23 @@ in {
     http_proxy = myProxy;
     https_proxy = myProxy;
   };
+  bhome = { pkgs, ... }: {
+    # proxychains config
+    home.file.".proxychains/proxychains.conf".text = ''
+      strict_chain
 
+      proxy_dns 
+
+      remote_dns_subnet 224
+
+      tcp_read_time_out 15000
+      tcp_connect_time_out 8000
+
+      localnet 127.0.0.0/255.0.0.0
+
+      [ProxyList]
+      socks5 192.168.31.88 1080
+    '';
+    home.packages = with pkgs; [ proxychains ];
+  };
 }

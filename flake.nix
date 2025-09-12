@@ -39,6 +39,10 @@
       flake = false;
       url = "github:nix-community/nixos-vscode-server";
     };
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ flake-parts, ... }:
@@ -108,6 +112,7 @@
               inputs.berberman.overlays.default
               inputs.emacs.overlay
               inputs.deploy-rs.overlays.default
+              inputs.niri.overlays.niri
             ]) final prev;
         };
 

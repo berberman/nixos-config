@@ -1,0 +1,130 @@
+// https://raw.githubusercontent.com/arkboix/sway/refs/heads/main/files/.config/waybar/config.jsonc
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "spacing": 1,
+    "margin": 0,
+    "modules-left": [
+        "niri/workspaces",
+        "niri/window"
+    ],
+    "modules-center": [],
+    "modules-right": [
+        "clock",
+        "wireplumber",
+        "wireplumber#source",
+        "network",
+        "cpu",
+        "memory",
+        "battery",
+        // "custom/uptime",
+        "tray"
+    ],
+    "niri/workspaces": {
+        "format": "{icon} {name}",
+        "format-icons": {
+            "active": "",
+            "default": ""
+        }
+    },
+    "niri/window": {
+        "format": "{title}"
+    },
+    // "custom/uptime": {
+    //     "format": "󰔟 {}",
+    //     "exec": "uptime -p | sed 's/up //; s/ days/d/; s/ hours/h/; s/ minutes/m/'",
+    //     "interval": 60
+    // },
+    "clock": {
+        "format": "󰥔 {:%H:%M}",
+        "format-alt": "󰃮 {:%Y-%m-%d}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "on-click-right": "mode",
+            "format": {
+                "months": "<span color='#d3c6aa'><b>{}</b></span>",
+                "days": "<span color='#e67e80'>{}</span>",
+                "weeks": "<span color='#a7c080'><b>W{}</b></span>",
+                "weekdays": "<span color='#7fbbb3'><b>{}</b></span>",
+                "today": "<span color='#dbbc7f'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-click-forward": "tz_up",
+            "on-click-backward": "tz_down",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+    "cpu": {
+        "format": "󰘚 {usage}%",
+        "tooltip": true,
+        "interval": 1,
+        "on-click": "alacritty -e htop"
+    },
+    "memory": {
+        "format": "󰍛 {}%",
+        "interval": 1,
+        "on-click": "alacritty -e htop"
+    },
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰚥 {capacity}%",
+        "format-alt": "{icon} {time}",
+        "format-icons": [
+            "󰂎",
+            "󰁺",
+            "󰁻",
+            "󰁼",
+            "󰁽",
+            "󰁾",
+            "󰁿",
+            "󰂀",
+            "󰂁",
+            "󰂂",
+            "󰁹"
+        ]
+    },
+    "network": {
+        "format-wifi": "󰖩 {essid} ({signalStrength}%)",
+        "format-ethernet": "󰈀 {ifname}",
+        "format-linked": "󰈀 {ifname} (No IP)",
+        "format-disconnected": "󰖪 Disconnected",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip-format": "{ifname}: {ipaddr}",
+        "on-click": "alacritty -e nmtui"
+    },
+    "wireplumber": {
+        "format": "{volume}% {icon}",
+        "format-muted": "",
+        "on-click": "helvum",
+        "format-icons": [
+            "",
+            "",
+            ""
+        ]
+    },
+    // "wireplumber#source": {
+    //     "node-type": "Audio/Source",
+    //     "format": "{volume}% 󰍬",
+    //     "format-muted": "󰍭",
+    //     "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+    //     "scroll-step": 5
+    // },
+    "tray": {
+        "icon-size": 18,
+        "spacing": 5
+    }
+}

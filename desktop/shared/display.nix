@@ -1,1 +1,1 @@
-{ config, pkgs, lib, ... }: { enableKDE = true; }
+{ config, pkgs, lib, ... }: { enableNiri = true; }
