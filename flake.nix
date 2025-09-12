@@ -17,7 +17,7 @@
       url = "github:serokell/deploy-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    flake-utils.url = "github:numtide/flake-utils";
+    flake-parts.url = "github:hercules-ci/flake-parts";
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,12 +26,10 @@
     ircbot = {
       url = "github:unsafeIO/ircbot";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
     };
     yandere-pic-bot = {
       url = "github:unsafeIO/yandere-pic-bot";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
     };
     nix-matrix-appservices = {
       url = "gitlab:coffeetables/nix-matrix-appservices";
@@ -43,150 +41,92 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, berberman, home-manager, emacs, deploy-rs
-    , flake-utils, agenix, nix-matrix-appservices, ... }:
-    let
-      cachix = ./cachix;
-      global = import ./global.nix;
-      overlay = { nixpkgs.overlays = [ self.overlays.default ]; };
-      desktop = rec {
-        home = {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.berberman = import ./desktop/home;
-        };
-        shared = let dir = ./desktop/shared;
-        in with builtins; map (x: dir + ("/" + x)) (attrNames (readDir dir));
-        modules = [
-          self.nixosModules.default
-          agenix.nixosModules.default
-          home
-          home-manager.nixosModules.home-manager
-          cachix
-          overlay
-        ] ++ shared;
-      };
-      server = rec {
-        shared = let dir = ./server/shared;
-        in with builtins; map (x: dir + ("/" + x)) (attrNames (readDir dir));
-        modules = [
-          self.nixosModules.default
-          agenix.nixosModules.default
-          cachix
-          overlay
-          nix-matrix-appservices.nixosModule
-        ] ++ shared;
-      };
-      mkDesktopSystem = { system, modules }:
-        nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit global inputs; };
-          inherit system;
-          modules = desktop.modules ++ modules;
-        };
-      mkServerSystem = { system, modules }:
-        nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit global inputs; };
-          inherit system;
-          modules = server.modules ++ modules;
-        };
-    in flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (system:
-      let
-        pkgs = import nixpkgs {
-          inherit system;
-          overlays = [ self.overlays.default ];
-        };
+  outputs = inputs@{ flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; }
+    ({ self, withSystem, flake-parts-lib, ... }:
+      let flakeModules.default = ./flake-modules/default.nix;
       in {
-        legacyPackages = pkgs;
-        devShells.default = pkgs.mkShell {
-          buildInputs = [
-            agenix.packages.${system}.default
-            pkgs.deploy-rs.deploy-rs
-            pkgs.wireguard-tools
-            (pkgs.haskellPackages.ghcWithPackages
-              (p: with p; [ xmonad xmonad-contrib ]))
-          ];
-        };
-      }) // {
+        imports =
+          [ flakeModules.default flake-parts.flakeModules.flakeModules ];
 
-        nixosModules.default = import ./modules;
-
-        overlays.default = final: prev:
-          (nixpkgs.lib.composeManyExtensions [
-            (final: prev: import ./overlays.nix final prev)
-            berberman.overlays.default
-            emacs.overlay
-            deploy-rs.overlays.default
-          ]) final prev;
-
-        nixosConfigurations = {
-          POTATO-NN = mkDesktopSystem {
-            system = "x86_64-linux";
+        hosts = {
+          POTATO-NN = {
+            isDesktop = true;
             modules = [ ./desktop/machines/nn ];
           };
-          POTATO-NR = mkDesktopSystem {
-            system = "x86_64-linux";
+          POTATO-NR = {
+            isDesktop = true;
             modules = [ ./desktop/machines/nr ];
           };
-          POTATO-RM = mkDesktopSystem {
-            system = "x86_64-linux";
+          POTATO-RM = {
+            isDesktop = true;
             modules = [ ./desktop/machines/rm ];
           };
-          POTATO-O0 = mkServerSystem {
-            system = "x86_64-linux";
-            modules = [ ./server/machines/o0 ];
-          };
-          POTATO-M = mkServerSystem {
-            system = "x86_64-linux";
-            modules = [ ./server/machines/m ];
-          };
-          POTATO-O1 = mkServerSystem {
-            system = "x86_64-linux";
-            modules = [ ./server/machines/o1 ];
-          };
-          POTATO-OA = mkServerSystem {
-            system = "aarch64-linux";
-            modules = [ ./server/machines/oa ];
-          };
-          POTATO-T = mkServerSystem {
-            system = "x86_64-linux";
-            modules = [ ./server/machines/t ];
-          };
-        };
-
-        deploy.nodes = {
           POTATO-O0 = {
-            sshUser = "root";
-            profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos
-              self.nixosConfigurations.POTATO-O0;
-            hostname = "o0.torus.icu";
-          };
-          POTATO-M = {
-            sshUser = "root";
-            sshOpts = [ "-p" "20998" ];
-            profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos
-              self.nixosConfigurations.POTATO-M;
-            hostname = "m.torus.icu";
+            isDesktop = false;
+            modules = [ ./server/machines/o0 ];
+            deploy = {
+              enabled = true;
+              hostname = "o0.torus.icu";
+            };
           };
           POTATO-O1 = {
-            sshUser = "root";
-            profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos
-              self.nixosConfigurations.POTATO-O1;
-            hostname = "o1.torus.icu";
+            isDesktop = false;
+            modules = [ ./server/machines/o1 ];
+            deploy = {
+              enabled = true;
+              hostname = "o1.torus.icu";
+            };
           };
           POTATO-OA = {
-            sshUser = "root";
-            profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos
-              self.nixosConfigurations.POTATO-OA;
-            hostname = "oa.torus.icu";
-            remoteBuild = true;
+            isDesktop = false;
+            system = "aarch64-linux";
+            modules = [ ./server/machines/oa ];
+            deploy = {
+              enabled = true;
+              hostname = "oa.torus.icu";
+              remoteBuild = true;
+            };
           };
           POTATO-T = {
-            sshUser = "root";
-            profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos
-              self.nixosConfigurations.POTATO-T;
-            hostname = "t.torus.icu";
-            remoteBuild = true;
+            isDesktop = false;
+            modules = [ ./server/machines/t ];
+            deploy = {
+              enabled = true;
+              hostname = "t.torus.icu";
+              remoteBuild = true;
+            };
           };
         };
-      };
+        flake = let
+        in {
+          inherit flakeModules;
+          nixosModules.default = import ./modules;
+          overlays.default = final: prev:
+            (inputs.nixpkgs.lib.composeManyExtensions [
+              (final: prev: import ./overlays.nix final prev)
+              inputs.berberman.overlays.default
+              inputs.emacs.overlay
+              inputs.deploy-rs.overlays.default
+            ]) final prev;
+        };
+
+        systems = [ "x86_64-linux" "aarch64-linux" ];
+        perSystem = { system, pkgs, ... }: {
+          _module.args.pkgs = import inputs.nixpkgs {
+            inherit system;
+            overlays = [ self.overlays.default ];
+          };
+          devShells.default = pkgs.mkShell {
+            buildInputs = [
+              inputs.agenix.packages.${system}.default
+              pkgs.deploy-rs.deploy-rs
+              pkgs.wireguard-tools
+              # (pkgs.haskellPackages.ghcWithPackages
+              #   (p: with p; [ xmonad xmonad-contrib ]))
+            ];
+          };
+        };
+      });
 }
+

@@ -2,6 +2,7 @@
 
 {
   systemd.services.NetworkManager-wait-online.enable = false;
+  services.zerotier.enable = true;
   networking = {
     hostName = "POTATO-NR";
     useDHCP = false;

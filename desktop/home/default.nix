@@ -167,11 +167,6 @@
         hostname = "o0.torus.icu";
         user = "root";
       };
-      POTATO-M = {
-        hostname = "m.torus.icu";
-        user = "root";
-        port = 20998;
-      };
       POTATO-O1 = {
         hostname = "o1.torus.icu";
         user = "root";
