@@ -40,4 +40,17 @@ self: super:
   #     };
   #   });
   # };
+  # kdePackages = super.kdePackages.overrideScope (kfinal: kprev: {
+  #   dolphin = self.symlinkJoin {
+  #     name = "dolphin-wrapped";
+  #     paths = [ kprev.dolphin ];
+  #     nativeBuildInputs = [ self.makeWrapper ];
+  #     postBuild = ''
+  #       wrapProgram $out/bin/dolphin \
+  #           --set XDG_CONFIG_DIRS "${kprev.plasma-workspace}/etc/xdg:$XDG_CONFIG_DIRS" \
+  #           --set XDG_MENU_PREFIX "plasma-" \
+  #           --run "${kprev.kservice}/bin/kbuildsycoca6 --noincremental ${kprev.plasma-workspace}/etc/xdg/menus/plasma-applications.menu"
+  #     '';
+  #   };
+  # });
 }

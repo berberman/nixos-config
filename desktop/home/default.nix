@@ -48,7 +48,7 @@
     vlc
     google-chrome
     element-desktop
-    feeluown
+    # feeluown
     weechat
     qbittorrent
     pavucontrol

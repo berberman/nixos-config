@@ -46,9 +46,9 @@ layout {
     }
 }
 
-// spawn-at-startup "waypaper --restore"
 spawn-at-startup "swww-daemon"
 spawn-at-startup "waybar"
+spawn-at-startup "dconf write /org/gnome/desktop/interface/color-scheme '\"prefer-light\"'"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
@@ -112,6 +112,10 @@ window-rule {
     // - host Firefox (app-id is "firefox")
     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+window-rule {
+    match app-id=r#"^org\.telegram\.desktop$"# title="^Media viewer$"
     open-floating true
 }
 
