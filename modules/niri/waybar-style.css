@@ -33,7 +33,7 @@
 @define-color wireplumber-muted-color @red;
 @define-color disk-color @cyan;
 @define-color uptime-color @green;
-
+@define-color backlight-color @yellow;
 /* Base Styling */
 * {
     border: none;
@@ -150,6 +150,12 @@ window#waybar {
 #custom-uptime {
     color: @uptime-color;
     border-bottom-color: @uptime-color;
+}
+
+
+#backlight {
+    color: @backlight-color;
+    border-bottom-color: @backlight-color;
 }
 
 /* Tray styling */

@@ -20,7 +20,7 @@ in {
     http_proxy = myProxy;
     https_proxy = myProxy;
   };
-  bhome = { pkgs, ... }: {
+  _bhome = { pkgs, ... }: {
     # proxychains config
     home.file.".proxychains/proxychains.conf".text = ''
       strict_chain

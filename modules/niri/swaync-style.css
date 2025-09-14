@@ -1,0 +1,212 @@
+ :root {
+     /* ====== Light Theme Core Colors ====== */
+     --cc-bg: rgba(255, 255, 255, 0.85);
+     --noti-border-color: rgba(0, 0, 0, 0.1);
+     --noti-bg: 255, 255, 255;
+     --noti-bg-alpha: 1.0;
+     --noti-bg-darker: rgb(245, 245, 245);
+     --noti-bg-hover: rgb(240, 240, 240);
+     --noti-bg-focus: rgba(0, 120, 212, 0.1);
+     /* subtle blue focus */
+     --noti-close-bg: rgba(0, 0, 0, 0.05);
+     --noti-close-bg-hover: rgba(0, 0, 0, 0.1);
+
+     --text-color: rgb(51, 51, 51);
+     /* #333 */
+     --text-color-disabled: rgb(119, 119, 119);
+     /* #777 */
+     --bg-selected: rgb(0, 120, 212);
+     /* modern blue accent */
+
+     /* Sizes */
+     --notification-icon-size: 64px;
+     --notification-app-icon-size: calc(var(--notification-icon-size) / 3);
+     --notification-group-icon-size: 32px;
+
+     /* Borders & Shadows */
+     --border: 1px solid var(--noti-border-color);
+     --border-radius: 10px;
+     --notification-shadow:
+         0 1px 3px rgba(0, 0, 0, 0.05),
+         0 2px 8px rgba(0, 0, 0, 0.08);
+
+     /* Typography */
+     --font-size-body: 15px;
+     --font-size-summary: 16px;
+
+     /* Legacy transition vars */
+     --hover-tranistion: background 0.15s ease-in-out;
+     --group-collapse-tranistion: opacity 300ms ease-in-out;
+     --hover-transition: var(--hover-tranistion);
+     --group-collapse-transition: var(--group-collapse-tranistion);
+ }
+
+ /* Fallback for older GTK themes */
+ @define-color cc-bg rgba(255, 255, 255, 0.85);
+ @define-color noti-border-color rgba(0, 0, 0, 0.1);
+ @define-color noti-bg rgba(255, 255, 255, 1);
+ @define-color noti-bg-opaque rgb(255, 255, 255);
+ @define-color noti-bg-darker rgb(245, 245, 245);
+ @define-color noti-bg-hover rgb(240, 240, 240);
+ @define-color noti-bg-hover-opaque rgb(240, 240, 240);
+ @define-color noti-bg-focus rgba(0, 120, 212, 0.1);
+ @define-color noti-close-bg rgba(0, 0, 0, 0.05);
+ @define-color noti-close-bg-hover rgba(0, 0, 0, 0.1);
+ @define-color text-color rgb(51, 51, 51);
+ @define-color text-color-disabled rgb(119, 119, 119);
+ @define-color bg-selected rgb(0, 120, 212);
+
+ /* ====== Notifications ====== */
+ .notification-row .notification-background .notification {
+     background: rgba(var(--noti-bg), var(--noti-bg-alpha));
+     border: var(--border);
+     border-radius: var(--border-radius);
+     box-shadow: var(--notification-shadow);
+     transition: var(--hover-transition);
+ }
+
+ .notification-row .notification-background .notification:hover {
+     background: var(--noti-bg-hover);
+ }
+
+ /* Summary/title */
+ .notification-row .summary {
+     font-size: var(--font-size-summary);
+     font-weight: 600;
+     color: var(--text-color);
+ }
+
+ /* Body text */
+ .notification-row .body {
+     font-size: var(--font-size-body);
+     color: var(--text-color);
+ }
+
+ /* Time label */
+ .notification-row .time {
+     font-size: 13px;
+     color: var(--text-color-disabled);
+ }
+
+ /* Close button */
+ .close-button {
+     background: var(--noti-close-bg);
+     color: var(--text-color);
+     border: none;
+     border-radius: 50%;
+     min-width: 24px;
+     min-height: 24px;
+     margin-top: 8px;
+     margin-right: 8px;
+     transition: background 0.2s ease;
+ }
+
+ .close-button:hover {
+     background: var(--noti-close-bg-hover);
+ }
+
+ /* ====== Control Center ====== */
+ .control-center {
+     background: var(--cc-bg);
+     color: var(--text-color);
+     border-radius: var(--border-radius);
+     box-shadow: var(--notification-shadow);
+     backdrop-filter: blur(10px);
+ }
+
+ .control-center .control-center-list .notification {
+     margin: 8px;
+     box-shadow: var(--notification-shadow);
+     border-radius: var(--border-radius);
+ }
+
+ /* Placeholder when no notifications */
+ .control-center .control-center-list-placeholder {
+     color: var(--text-color-disabled);
+     opacity: 0.7;
+ }
+
+ /* ====== Inline Reply ====== */
+ .inline-reply-entry {
+     background: var(--noti-bg-darker);
+     color: var(--text-color);
+     border: var(--border);
+     border-radius: var(--border-radius);
+ }
+
+ .inline-reply-button {
+     background: rgba(var(--noti-bg), var(--noti-bg-alpha));
+     border: var(--border);
+     color: var(--text-color);
+     border-radius: var(--border-radius);
+ }
+
+ .inline-reply-button:hover {
+     background: var(--noti-bg-hover);
+ }
+
+ /* ====== Widgets ====== */
+ .widget {
+     background: rgba(255, 255, 255, 0.8);
+     border: var(--border);
+     border-radius: var(--border-radius);
+     padding: 8px;
+     margin: 8px;
+     box-shadow: var(--notification-shadow);
+ }
+
+ .widget-title>label {
+     font-size: 1.4rem;
+     color: var(--text-color);
+ }
+
+ .widget-dnd label {
+     color: var(--text-color);
+     font-size: 1.1rem;
+ }
+
+ .widget-buttons-grid flowboxchild>button {
+     border-radius: var(--border-radius);
+     background: var(--noti-bg-darker);
+     color: var(--text-color);
+ }
+
+ .widget-buttons-grid flowboxchild>button:hover {
+     background: var(--noti-bg-hover);
+ }
+
+ /* ====== Volume Widget ====== */
+ .widget-volume row image {
+     -gtk-icon-size: 24px;
+ }
+
+ .per-app-volume {
+     background-color: var(--noti-bg-darker);
+     border-radius: var(--border-radius);
+     padding: 8px;
+ }
+
+ /* ====== MPRIS Player ====== */
+ :root {
+     --mpris-album-art-overlay: rgba(255, 255, 255, 0.6);
+     --mpris-button-hover: rgba(0, 0, 0, 0.05);
+     --mpris-album-art-icon-size: 96px;
+     --mpris-album-art-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+ }
+
+ .widget-mpris .widget-mpris-player {
+     background: var(--noti-bg-darker);
+     border-radius: var(--border-radius);
+     box-shadow: var(--mpris-album-art-shadow);
+ }
+
+ .widget-mpris .mpris-overlay button:hover {
+     background: var(--mpris-button-hover);
+ }
+
+ /* ====== Focus & Selection ====== */
+ .notification-row:focus,
+ .notification-group:focus {
+     outline: none;
+     background: var(--noti-bg-focus);
+ }

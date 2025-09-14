@@ -32,6 +32,8 @@
       grim
       slurp
       swww
+      brightnessctl
+      nautilus
     ]) ++ (with pkgs.kdePackages; [
       dolphin
       ark
@@ -47,7 +49,9 @@
       qtsvg
       kio
       kio-extras
+      kio-admin
       dolphin-plugins
+      kde-cli-tools
     ]);
 
     xdg.portal = with pkgs; {
@@ -55,19 +59,82 @@
       extraPortals = [ xdg-desktop-portal-gnome xdg-desktop-portal-gtk ];
     };
 
-    bhome = {
-      programs.niri.config = let base = builtins.readFile ./config.kdl;
+    _bhome = {
+      programs.niri.config = let base = builtins.readFile ./niri-config.kdl;
       in ''
         ${base}
         ${config.niriExtra}
       '';
       programs.fuzzel.enable = true;
-      programs.swaylock.enable = true;
-      services.swaync.enable = true;
+      programs.swaylock = {
+        enable = true;
+        package = pkgs.swaylock-effects;
+        settings = {
+          screenshots = true;
+          clock = true;
+          indicator = true;
+          indicator-radius = 100;
+          indicator-thickness = 7;
+          effect-blur = "7x5";
+          fade-in = 1.0;
+          grace = 5;
+          grace-no-mouse = true;
+        };
+      };
+      services.swayidle = let
+        lock = "${pkgs.swaylock}/bin/swaylock";
+        display = status:
+          "${pkgs.niri}/bin/niri msg action power-${status}-monitors";
+      in {
+        enable = true;
+        timeouts = [
+          {
+            timeout = 1800; # in seconds
+            command =
+              "${pkgs.libnotify}/bin/notify-send 'Locking in 5 seconds' -t 5000";
+          }
+          {
+            timeout = 1805;
+            command = lock;
+          }
+          {
+            timeout = 1810;
+            command = display "off";
+            resumeCommand = display "on";
+          }
+          {
+            timeout = 36000;
+            command = "${pkgs.systemd}/bin/systemctl suspend";
+          }
+        ];
+        events = [
+          {
+            event = "before-sleep";
+            # adding duplicated entries for the same event may not work
+            command = (display "off") + "; " + lock;
+          }
+          {
+            event = "after-resume";
+            command = display "on";
+          }
+          {
+            event = "lock";
+            command = (display "off") + "; " + lock;
+          }
+          {
+            event = "unlock";
+            command = display "on";
+          }
+        ];
+      };
+      services.swaync = {
+        enable = true;
+        style = builtins.readFile ./swaync-style.css;
+      };
       programs.waybar.enable = true;
 
-      xdg.configFile."waybar/config.jsonc".source = ./config.jsonc;
-      xdg.configFile."waybar/style.css".source = ./style.css;
+      xdg.configFile."waybar/config.jsonc".source = ./waybar-config.jsonc;
+      xdg.configFile."waybar/style.css".source = ./waybar-style.css;
 
       home.pointerCursor = {
         gtk.enable = true;
@@ -84,7 +151,7 @@
           name = "breeze";
           package = pkgs.kdePackages.breeze;
         };
-        platformTheme.name = "kde";
+        platformTheme.name = "qtct";
       };
 
       gtk = {
@@ -92,7 +159,7 @@
         theme.name = "Breeze";
         theme.package = pkgs.kdePackages.breeze-gtk;
         iconTheme = {
-          name = "Papirus";
+          name = "Papirus-Light";
           package = pkgs.papirus-icon-theme;
         };
         cursorTheme = {
@@ -115,6 +182,7 @@
           gtk-application-prefer-dark-theme = false;
         };
       };
+
     };
   };
 }
