@@ -20,6 +20,7 @@
         "memory",
         "battery",
         // "custom/uptime",
+        // "idle_inhibitor",
         "tray",
         "custom/notification"
     ],
@@ -29,6 +30,14 @@
             "active": "",
             "default": ""
         }
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "󰈈",
+            "deactivated": "󰈉"
+        },
+        "tooltip": true
     },
     "niri/window": {
         "format": "{title}"

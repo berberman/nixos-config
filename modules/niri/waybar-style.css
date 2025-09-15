@@ -34,6 +34,9 @@
 @define-color disk-color @cyan;
 @define-color uptime-color @green;
 @define-color backlight-color @yellow;
+@define-color idle-inhibitor-color @foreground;
+@define-color idle-inhibitor-active-color @red;
+
 /* Base Styling */
 * {
     border: none;
@@ -58,6 +61,7 @@ window#waybar {
 #wireplumber,
 #backlight,
 #custom-uptime,
+#idle_inhibitor,
 #tray {
     padding: 0 10px;
     margin: 0 2px;
@@ -156,6 +160,16 @@ window#waybar {
 #backlight {
     color: @backlight-color;
     border-bottom-color: @backlight-color;
+}
+
+#idle_inhibitor {
+    color: @idle-inhibitor-color;
+    border-bottom-color: transparent;
+}
+
+#idle_inhibitor.activated {
+    color: @idle-inhibitor-active-color;
+    border-bottom-color: @idle-inhibitor-active-color;
 }
 
 /* Tray styling */

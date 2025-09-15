@@ -1,17 +1,16 @@
 { lib, config, pkgs, ... }:
 
-{
-  options.enableNiri = lib.mkOption {
-    type = lib.types.bool;
-    default = false;
-    description = "Enable Niri desktop environment.";
+let cfg = config.niri;
+in {
+  options.niri = {
+    enable = lib.mkEnableOption "Enable niri components.";
+    ex = lib.mkOption {
+      type = lib.types.str;
+      default = "";
+      description = "Extra niri config";
+    };
   };
-  options.niriExtra = lib.mkOption {
-    type = lib.types.str;
-    default = "";
-    description = "Extra niri config";
-  };
-  config = lib.mkIf config.enableNiri {
+  config = lib.mkIf cfg.enable {
     programs.nm-applet.enable = true;
     niri-flake.cache.enable = true;
     programs.niri = {
@@ -56,14 +55,44 @@
 
     xdg.portal = with pkgs; {
       enable = true;
-      extraPortals = [ xdg-desktop-portal-gnome xdg-desktop-portal-gtk ];
+      extraPortals = [
+        xdg-desktop-portal-gnome
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-wlr
+      ];
     };
 
-    _bhome = {
+    environment.etc."nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool-in-wayland-compositors.json".text =
+      lib.mkIf (lib.elem "nvidia" config.services.xserver.videoDrivers) ''
+        {
+            "rules": [
+                {
+                    "pattern": {
+                        "feature": "procname",
+                        "matches": "niri"
+                    },
+                    "profile": "Limit Free Buffer Pool On Wayland Compositors"
+                }
+            ],
+            "profiles": [
+                {
+                    "name": "Limit Free Buffer Pool On Wayland Compositors",
+                    "settings": [
+                        {
+                            "key": "GLVidHeapReuseRatio",
+                            "value": 0
+                        }
+                    ]
+                }
+            ]
+        }
+      '';
+
+    _bhome.imports = [{
       programs.niri.config = let base = builtins.readFile ./niri-config.kdl;
       in ''
         ${base}
-        ${config.niriExtra}
+        ${cfg.ex}
       '';
       programs.fuzzel.enable = true;
       programs.swaylock = {
@@ -103,7 +132,7 @@
             resumeCommand = display "on";
           }
           {
-            timeout = 36000;
+            timeout = 3600;
             command = "${pkgs.systemd}/bin/systemctl suspend";
           }
         ];
@@ -130,6 +159,7 @@
       services.swaync = {
         enable = true;
         style = builtins.readFile ./swaync-style.css;
+        settings = builtins.readFile ./swaync-config.json;
       };
       programs.waybar.enable = true;
 
@@ -183,6 +213,6 @@
         };
       };
 
-    };
+    }];
   };
 }

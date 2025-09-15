@@ -43,40 +43,36 @@ in {
     cachix = ../cachix;
     global = import ../global.nix;
     overlayModule = { nixpkgs.overlays = [ self.overlays.default ]; };
-    desktop = rec {
-      shared = let dir = ../desktop/shared;
-      in with builtins; map (x: dir + ("/" + x)) (attrNames (readDir dir));
-      modules = [
-        self.nixosModules.default
-        inputs.agenix.nixosModules.default
-        inputs.niri.nixosModules.niri
-        inputs.home-manager.nixosModules.home-manager
-        cachix
-        overlayModule
-      ] ++ shared;
-    };
-    server = rec {
-      shared = let dir = ../server/shared;
-      in with builtins; map (x: dir + ("/" + x)) (attrNames (readDir dir));
-      modules = [
-        self.nixosModules.default
-        inputs.agenix.nixosModules.default
-        cachix
-        overlayModule
-        inputs.nix-matrix-appservices.nixosModule
-      ] ++ shared;
-    };
+
+    importedModules = [
+      self.nixosModules.default
+      inputs.agenix.nixosModules.default
+      inputs.niri.nixosModules.niri
+      inputs.home-manager.nixosModules.home-manager
+      cachix
+      overlayModule
+      inputs.nix-matrix-appservices.nixosModule
+    ];
+
+    readModules = dir:
+      with builtins;
+      map (x: dir + ("/" + x)) (attrNames (readDir dir));
+
+    sharedDesktopModules = readModules ../desktop/shared;
+
+    sharedServerModules = readModules ../server/shared;
+
     mkDesktopSystem = { system, modules }:
       inputs.nixpkgs.lib.nixosSystem {
         specialArgs = { inherit global inputs; };
         inherit system;
-        modules = desktop.modules ++ modules;
+        modules = importedModules ++ sharedDesktopModules ++ modules;
       };
     mkServerSystem = { system, modules }:
       inputs.nixpkgs.lib.nixosSystem {
         specialArgs = { inherit global inputs; };
         inherit system;
-        modules = server.modules ++ modules;
+        modules = importedModules ++ sharedServerModules ++ modules;
       };
   in lib.concatMapAttrs (hostName: hostConfig:
     let

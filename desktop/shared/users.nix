@@ -8,4 +8,5 @@
       extraGroups = [ "wheel" "networkmanager" "adbusers" "docker" "dialout" ];
     };
   };
+  _bhome.enable = true;
 }

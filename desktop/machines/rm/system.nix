@@ -19,4 +19,5 @@
       };
     });
   }];
+  niri = { enable = true; };
 }

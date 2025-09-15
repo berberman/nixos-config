@@ -4,7 +4,6 @@
     ./secrets.nix
     ./matrix.nix
     ./znc.nix
-    inputs.home-manager.nixosModules.home-manager
   ];
   # for trixnity
   nixpkgs.config.permittedInsecurePackages = [ "olm-3.2.16" ];

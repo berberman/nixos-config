@@ -12,4 +12,5 @@
   time.timeZone = "Asia/Shanghai";
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = { open = false; };
+  niri = { enable = true; };
 }
