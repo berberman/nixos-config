@@ -22,7 +22,11 @@ in {
       NIXOS_OZONE_WL = "1";
       ELECTRON_ENABLE_WAYLAND_IME = "1";
     };
-    services.displayManager.gdm.enable = true;
+
+    services.displayManager.sddm.enable = true;
+    services.displayManager.sddm.wayland.enable = true;
+    services.displayManager.sddm.settings.General.DisplayServer = "wayland";
+
     services.udisks2.enable = true;
     environment.systemPackages = (with pkgs; [
       wl-clipboard
@@ -94,6 +98,11 @@ in {
         ${base}
         ${cfg.ex}
       '';
+      services.clipse = {
+        enable = true;
+        theme = builtins.readFile ./clipse-theme.json;
+      };
+
       programs.fuzzel.enable = true;
       programs.swaylock = {
         enable = true;
@@ -111,9 +120,8 @@ in {
         };
       };
       services.swayidle = let
-        lock = "${pkgs.swaylock}/bin/swaylock";
-        display = status:
-          "${pkgs.niri}/bin/niri msg action power-${status}-monitors";
+        lock = "swaylock";
+        display = status: "niri msg action power-${status}-monitors";
       in {
         enable = true;
         timeouts = [
@@ -133,7 +141,7 @@ in {
           }
           {
             timeout = 3600;
-            command = "${pkgs.systemd}/bin/systemctl suspend";
+            command = "systemctl suspend";
           }
         ];
         events = [

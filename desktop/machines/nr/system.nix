@@ -8,7 +8,10 @@
   services.xserver.videoDrivers = [ "nvidia" ];
   virtualisation.virtualbox.host.enableExtensionPack = true;
   virtualisation.virtualbox.host.enable = true;
-  hardware.nvidia = { open = true; };
+  hardware.nvidia = {
+    open = true;
+    powerManagement.enable = true;
+  };
   niri = {
     enable = true;
     ex = ''

@@ -4,6 +4,7 @@
     ./secrets.nix
     ./matrix.nix
     ./znc.nix
+    ./authentik.nix
   ];
   # for trixnity
   nixpkgs.config.permittedInsecurePackages = [ "olm-3.2.16" ];

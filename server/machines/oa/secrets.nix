@@ -5,13 +5,10 @@
       owner = "matrix-synapse";
       group = "matrix-synapse";
     };
-     mautrix-telegram = {
+    mautrix-telegram = {
       file = global.secretFile "mautrix-telegram";
       owner = "matrix-synapse";
       group = "matrix-synapse";
     };
-  } // global.mkSecrets [
-    "wg-oa-private"
-    "ircbot"
-  ];
+  } // global.mkSecrets [ "wg-oa-private" "ircbot" "authentik" ];
 }
