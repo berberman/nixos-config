@@ -18,4 +18,5 @@ in {
   "github-token.age".publicKeys = keys;
   "mautrix-telegram.age".publicKeys = keys;
   "authentik.age".publicKeys = keys;
+  "netbird.age".publicKeys = keys;
 }

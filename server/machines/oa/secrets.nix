@@ -10,5 +10,5 @@
       owner = "matrix-synapse";
       group = "matrix-synapse";
     };
-  } // global.mkSecrets [ "wg-oa-private" "ircbot" "authentik" ];
+  } // global.mkSecrets [ "wg-oa-private" "ircbot" "authentik" "netbird" ];
 }

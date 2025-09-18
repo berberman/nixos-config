@@ -5,6 +5,7 @@
     ./matrix.nix
     ./znc.nix
     ./authentik.nix
+    ./netbird.nix
   ];
   # for trixnity
   nixpkgs.config.permittedInsecurePackages = [ "olm-3.2.16" ];
@@ -58,5 +59,18 @@
       locations."/".return = "302 https://torus.icu";
     };
   };
+  virtualisation.podman = {
+    enable = true;
+    autoPrune.enable = true;
+    dockerCompat = true;
+    dockerSocket.enable = true;
+    defaultNetwork.settings.dns_enabled = true;
+  };
+  virtualisation.oci-containers.backend = "podman";
+  # Enable container name DNS for all Podman networks.
+  networking.firewall.interfaces = let
+    matchAll =
+      if !config.networking.nftables.enable then "podman+" else "podman*";
+  in { "${matchAll}".allowedUDPPorts = [ 53 ]; };
   system.stateVersion = "22.05";
 }
