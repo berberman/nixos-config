@@ -173,6 +173,7 @@ in {
 
       xdg.configFile."waybar/config.jsonc".source = ./waybar-config.jsonc;
       xdg.configFile."waybar/style.css".source = ./waybar-style.css;
+      xdg.configFile."waybar/network_traffic.sh".source = ./waybar-network_traffic.sh;
 
       home.pointerCursor = {
         gtk.enable = true;

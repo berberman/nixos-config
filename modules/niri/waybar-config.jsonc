@@ -16,6 +16,7 @@
         "wireplumber#source",
         "backlight",
         "network",
+        "custom/network_traffic",
         "cpu",
         "memory",
         "battery",
@@ -128,6 +129,11 @@
         "format-alt": "{ifname}: {ipaddr}/{cidr}",
         "tooltip-format": "{ifname}: {ipaddr}",
         "on-click": "alacritty -e nmtui"
+    },
+    "custom/network_traffic": {
+        "exec": "~/.config/waybar/network_traffic.sh",
+        "return-type": "json",
+        "format-ethernet": "{icon} {ifname} {bandwidthDownBytes:>4}⇣ {bandwidthUpBytes:>4}⇡"
     },
     "wireplumber": {
         "format": "{volume}% {icon}",
