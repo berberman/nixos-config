@@ -133,7 +133,8 @@
     "custom/network_traffic": {
         "exec": "~/.config/waybar/network_traffic.sh",
         "return-type": "json",
-        "format-ethernet": "{icon} {ifname} {bandwidthDownBytes:>4}⇣ {bandwidthUpBytes:>4}⇡"
+        "format-ethernet": "{icon} {ifname} {bandwidthDownBytes:>4}⇣ {bandwidthUpBytes:>4}⇡",
+        "min-length": 14
     },
     "wireplumber": {
         "format": "{volume}% {icon}",
