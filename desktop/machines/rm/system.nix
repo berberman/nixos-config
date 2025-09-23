@@ -19,5 +19,12 @@
       };
     });
   }];
-  niri = { enable = true; };
+  niri = {
+    enable = true;
+    ex = ''
+      output "Thermotrex Corporation TL156MDMP31-0 Unknown" {
+          scale 2
+      }
+    '';
+  };
 }
