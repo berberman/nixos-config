@@ -95,8 +95,8 @@ in {
           };
         };
         services.swayidle = let
-          lock = "swaylock -f";
-          display = status: "niri msg action power-${status}-monitors";
+          lock = "${pkgs.swaylock-effects} -f";
+          display = status: "${pkgs.niri}/bin/niri msg action power-${status}-monitors";
         in {
           enable = true;
           timeouts = [
@@ -116,7 +116,7 @@ in {
             }
             {
               timeout = 900;
-              command = "systemctl suspend";
+              command = "${pkgs.systemd}/bin/systemctl suspend";
             }
           ];
           events = [
