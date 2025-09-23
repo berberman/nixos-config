@@ -95,27 +95,27 @@ in {
           };
         };
         services.swayidle = let
-          lock = "swaylock";
+          lock = "swaylock -f";
           display = status: "niri msg action power-${status}-monitors";
         in {
           enable = true;
           timeouts = [
             {
-              timeout = 1800; # in seconds
+              timeout = 600; # in seconds
               command =
                 "${pkgs.libnotify}/bin/notify-send 'Locking in 5 seconds' -t 5000";
             }
             {
-              timeout = 1805;
+              timeout = 605;
               command = lock;
             }
             {
-              timeout = 1810;
+              timeout = 610;
               command = display "off";
               resumeCommand = display "on";
             }
             {
-              timeout = 3600;
+              timeout = 900;
               command = "systemctl suspend";
             }
           ];
