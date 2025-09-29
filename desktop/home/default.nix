@@ -67,6 +67,7 @@
     racket
     bitwarden
     typst
+    zulip
   ];
 
   # fcitx5 theme
