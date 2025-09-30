@@ -107,6 +107,7 @@
   ];
 
   services.tailscale.enable = true;
+  services.netbird.enable = true;
   # services.tor = {
   #   enable = true;
   #   client.enable = true;
