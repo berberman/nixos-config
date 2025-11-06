@@ -115,7 +115,7 @@ in {
               resumeCommand = display "on";
             }
             {
-              timeout = 900;
+              timeout = 1800;
               command = "${pkgs.systemd}/bin/systemctl suspend";
             }
           ];

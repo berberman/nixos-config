@@ -42,8 +42,8 @@
 
   home.packages = with pkgs; [
     home-manager
-    nixfmt-classic
-    tdesktop
+    nixfmt
+    telegram-desktop
     slack
     vlc
     google-chrome
@@ -60,12 +60,12 @@
     haskellPackages.cabal-fmt
     texlive.combined.scheme-full
     tinymist
-    wakatime
+    wakatime-cli
     elan
     (agda.withPackages (p: [ p.standard-library ]))
     zotero
     racket
-    bitwarden
+    bitwarden-desktop
     typst
     zulip
   ];

@@ -3,6 +3,7 @@
 {
   systemd.services.NetworkManager-wait-online.enable = false;
   services.zerotier.enable = true;
+  networking.interfaces.enp3s0.wakeOnLan.enable = true;
   networking = {
     hostName = "POTATO-NR";
     useDHCP = false;
