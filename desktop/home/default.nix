@@ -10,7 +10,10 @@
       key = "C4F93F1ED397E8CF";
       signByDefault = true;
     };
-    ignores = [ ".envrc" ".direnv" ];
+    ignores = [
+      ".envrc"
+      ".direnv"
+    ];
   };
 
   programs.direnv = {
@@ -25,12 +28,14 @@
 
   programs.emacs = {
     enable = true;
-    package = (pkgs.emacsWithPackagesFromUsePackage {
-      package = pkgs.emacs;
-      alwaysEnsure = true;
-      extraEmacsPackages = p: with p; [ use-package ];
-      config = ./init.el;
-    });
+    package = (
+      pkgs.emacsWithPackagesFromUsePackage {
+        package = pkgs.emacs;
+        alwaysEnsure = true;
+        extraEmacsPackages = p: with p; [ use-package ];
+        config = ./init.el;
+      }
+    );
   };
 
   home.file.".emacs".source = ./init.el;
@@ -54,8 +59,8 @@
     pavucontrol
     obs-studio
     discord
-    jetbrains.idea-ultimate
-    jetbrains.pycharm-professional
+    jetbrains.idea
+    jetbrains.pycharm
     haskellPackages.ghc
     haskellPackages.cabal-fmt
     texlive.combined.scheme-full
@@ -81,7 +86,6 @@
     Theme=Material-Color-Indigo
   '';
 
- 
   # ghci
   home.file.".ghc/ghci.conf".text = ''
     :set prompt "\ESC[38;5;208m\STXλ>\ESC[m\STX "
@@ -131,9 +135,15 @@
         hostname = "192.168.31.1";
         user = "root";
       };
-      POTATO-A = { hostname = "192.168.31.88"; };
-      POTATO-HZ = { hostname = "hz.torus.icu"; };
-      POTATO-DE = { hostname = "de.torus.icu"; };
+      POTATO-A = {
+        hostname = "192.168.31.88";
+      };
+      POTATO-HZ = {
+        hostname = "hz.torus.icu";
+      };
+      POTATO-DE = {
+        hostname = "de.torus.icu";
+      };
       POTATO-O0 = {
         hostname = "o0.torus.icu";
         user = "root";
