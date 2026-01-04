@@ -36,9 +36,9 @@ in {
       (final: prev:
         with prev; {
           androidComposition = androidenv.composeAndroidPackages {
-            platformVersions = [ "34" ];
-            buildToolsVersions = [ "34.0.0" ];
-            platformToolsVersion = "34.0.5";
+            platformVersions = [ "35" ];
+            buildToolsVersions = [ "35.0.0" ];
+            platformToolsVersion = "35.0.1";
             includeNDK = false;
             includeEmulator = false;
             includeSources = false;
