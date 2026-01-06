@@ -68,6 +68,26 @@
     wakatime-cli
     elan
     (agda.withPackages (p: [ p.standard-library ]))
+    (
+      let
+        rocqPkgs = rocqPackages_9_0;
+      in
+      (symlinkJoin {
+        name = "rocq-dev-env";
+        buildInputs = [ makeWrapper ];
+        paths = with rocqPkgs; [
+          vsrocq-language-server
+          rocq-core
+        ];
+        postBuild = ''
+          LIB="${rocqPkgs.stdlib}/lib/coq/9.0/user-contrib"
+          wrapProgram $out/bin/rocq \
+            --set ROCQPATH $LIB
+          wrapProgram $out/bin/vsrocqtop \
+            --set ROCQPATH $LIB
+        '';
+      })
+    )
     zotero
     racket
     bitwarden-desktop
