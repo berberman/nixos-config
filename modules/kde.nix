@@ -17,6 +17,7 @@
         kgpg
         kdeconnect-kde
         sddm-kcm
+        kimageformats
       ];
   in lib.mkIf config.enableKDE ({
     services.desktopManager.plasma6.enable = true;

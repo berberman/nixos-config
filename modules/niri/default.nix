@@ -56,6 +56,7 @@ in {
         kio-admin
         dolphin-plugins
         kde-cli-tools
+        kimageformats
       ]);
 
       xdg.portal = with pkgs; {
