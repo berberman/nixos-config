@@ -61,8 +61,6 @@
     package = pkgs.jdk17;
   };
 
-  programs.adb.enable = true;
-
   programs.mosh.enable = true;
 
   i18n.inputMethod = {
@@ -104,6 +102,7 @@
     tree
     ncdu
     unrar
+    android-tools
   ];
 
   services.tailscale.enable = true;
