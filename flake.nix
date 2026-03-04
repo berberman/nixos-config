@@ -43,9 +43,13 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ flake-parts, ... }:
+  outputs = inputs@{ flake-parts, nix-darwin, ... }:
     flake-parts.lib.mkFlake { inherit inputs; }
     ({ self, withSystem, flake-parts-lib, ... }:
       let flakeModules.default = ./flake-modules/default.nix;
@@ -130,6 +134,12 @@
             ];
           };
         };
-      });
+      })//{
+          darwinConfigurations."POTATO-I" = nix-darwin.lib.darwinSystem {
+        specialArgs = { inherit  inputs; };
+
+      modules = [ ./darwin/machines/i ];
+    };
+      };
 }
 
