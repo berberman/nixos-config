@@ -36,7 +36,7 @@
   services.udev.packages = [ pkgs.yubikey-personalization ];
 
   programs = {
-    ssh.startAgent = false;
+    ssh.startAgent = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = false;
@@ -51,10 +51,16 @@
 
   services.printing = {
     enable = true;
-    drivers = with pkgs; [ hplip cups-filters cups-browsed ];
+    drivers = with pkgs; [
+      hplip
+      cups-filters
+      cups-browsed
+    ];
   };
 
   services.gnome.gnome-keyring.enable = true;
+  # use ssh-agent instead of gcr
+  services.gnome.gcr-ssh-agent.enable = false;
 
   programs.java = {
     enable = true;
