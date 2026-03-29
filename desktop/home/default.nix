@@ -4,8 +4,8 @@
 
   programs.git = {
     enable = true;
-    userName = "Potato Hatsue";
-    userEmail = "1793913507@qq.com";
+    settings.user.name = "Potato Hatsue";
+    settings.user.email = "1793913507@qq.com";
     signing = {
       key = "C4F93F1ED397E8CF";
       signByDefault = true;
@@ -146,7 +146,20 @@
 
   programs.ssh = {
     enable = true;
+    enableDefaultConfig = false;
     matchBlocks = {
+      "*" = {
+        forwardAgent = false;
+        addKeysToAgent = "no";
+        hashKnownHosts = true;
+        controlMaster = "auto";
+        controlPersist = "10m";
+        controlPath = "~/.ssh/cm-%C";
+        identityFile = [
+          "~/.ssh/id_ed25519_sk_yk1"
+          "~/.ssh/id_ed25519_sk_yk2"
+        ];
+      };
       PVE = {
         hostname = "192.168.31.10";
         user = "root";
@@ -160,9 +173,6 @@
       };
       POTATO-HZ = {
         hostname = "hz.torus.icu";
-      };
-      POTATO-DE = {
-        hostname = "de.torus.icu";
       };
       POTATO-O0 = {
         hostname = "o0.torus.icu";

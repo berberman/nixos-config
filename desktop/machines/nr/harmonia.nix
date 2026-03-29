@@ -1,1 +1,1 @@
-{ pkgs, ... }: { services.harmonia.enable = true; }
+{ pkgs, ... }: { services.harmonia.cache.enable = true; }
