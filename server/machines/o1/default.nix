@@ -100,7 +100,7 @@
 
   services.netdata-child.enable = false;
   services.netdata-parent = {
-    enable = true;
+    enable = false;
     apiKey = global.netdataApiKey;
     allowFrom = "10.*";
   };
