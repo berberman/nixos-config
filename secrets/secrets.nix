@@ -1,4 +1,4 @@
-let keys = (import ../global.nix).pubKeys;
+let keys = (import ../global.nix).ageKeys;
 in {
   "matrix-synapse-registration.age".publicKeys = keys;
   "nextcloud-admin-password.age".publicKeys = keys;

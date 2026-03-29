@@ -103,10 +103,11 @@
     ncdu
     unrar
     android-tools
+    uv
   ];
 
   services.tailscale.enable = true;
-  services.netbird.enable = true;
+  services.netbird.enable = false;
   # services.tor = {
   #   enable = true;
   #   client.enable = true;
