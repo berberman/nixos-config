@@ -14,6 +14,8 @@
     wget
     ripgrep
     fastfetch
+    # fido
+    openssh
   ];
   networking.hostName = "POTATO-I";
   users.users.berberman = {
@@ -73,10 +75,12 @@
       "discord"
       "obs"
       "maccy"
-      "istat-menus"
+      "stats"
       "slack"
       "zulip"
       "shottr"
+      "thaw"
+      "jetbrains-toolbox"
     ];
     masApps = {
       "Yubico Authenticator" = 1497506650;
