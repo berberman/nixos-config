@@ -67,6 +67,8 @@
     tinymist
     wakatime-cli
     elan
+    opencode
+    obsidian
     (agda.withPackages (p: [ p.standard-library ]))
     (
       let
@@ -94,6 +96,8 @@
     typst
     zulip
   ];
+
+  services.syncthing.enable = true;
 
   # fcitx5 theme
   xdg.configFile."fcitx5/conf/classicui.conf".text = ''

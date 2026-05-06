@@ -1,7 +1,14 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
-let fdroidDir = "/var/lib/fdroid";
-in {
+let
+  fdroidDir = "/var/lib/fdroid";
+in
+{
   users.users.fdroid = {
     description = "Fdroid repo";
     isSystemUser = true;
@@ -10,18 +17,25 @@ in {
     group = "fdroid";
     homeMode = "755";
     useDefaultShell = true;
-    openssh.authorizedKeys.keys = [''
-      ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ8B/MfMbtFfwF2YVlo5E4jFnJj0zcXgXQgCeBnAozS3 fdroid
-    ''];
-    packages = with pkgs; [ fdroidserver openjdk11 ];
+    openssh.authorizedKeys.keys = [
+      ''
+        ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ8B/MfMbtFfwF2YVlo5E4jFnJj0zcXgXQgCeBnAozS3 fdroid
+      ''
+    ];
+    packages = with pkgs; [
+      fdroidserver
+      openjdk11
+    ];
   };
   users.groups.fdroid = { };
   services.nginx.enable = true;
   services.nginx.virtualHosts."fdroid" = {
-    listen = [{
-      addr = "10.100.0.6";
-      port = 8008;
-    }];
+    listen = [
+      {
+        addr = "10.100.0.6";
+        port = 8008;
+      }
+    ];
     locations."/" = {
       root = "${fdroidDir}/web";
       extraConfig = ''
@@ -33,12 +47,12 @@ in {
   };
   nixpkgs = {
     overlays = [
-      (final: prev:
-        with prev; {
+      (
+        final: prev: with prev; {
           androidComposition = androidenv.composeAndroidPackages {
-            platformVersions = [ "35" ];
-            buildToolsVersions = [ "35.0.0" ];
-            platformToolsVersion = "35.0.1";
+            platformVersions = [ "36" ];
+            buildToolsVersions = [ "36.1.0" ];
+            platformToolsVersion = "36.0.2";
             includeNDK = false;
             includeEmulator = false;
             includeSources = false;
@@ -47,7 +61,8 @@ in {
             export ANDROID_HOME="${final.androidComposition.androidsdk}/libexec/android-sdk"
             exec -a "$0" ${fdroidserver}/bin/fdroid "$@"
           '';
-        })
+        }
+      )
     ];
     config = {
       android_sdk.accept_license = true;

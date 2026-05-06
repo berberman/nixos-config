@@ -121,4 +121,6 @@
   # };
   programs.nix-ld.enable = true;
 
+  boot.blacklistedKernelModules = [ "algif_aead" ];
+
 }

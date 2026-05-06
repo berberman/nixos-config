@@ -46,7 +46,7 @@ layout {
     }
 }
 
-spawn-at-startup "swww-daemon"
+spawn-at-startup "awww-daemon"
 spawn-at-startup "waybar"
 spawn-at-startup "dconf write /org/gnome/desktop/interface/color-scheme '\"prefer-light\"'"
 

@@ -44,7 +44,7 @@ in
           xwayland-satellite
           grim
           slurp
-          swww
+          awww
           brightnessctl
           nautilus
         ])

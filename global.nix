@@ -47,7 +47,7 @@ rec {
             listenPort
             ip
             ;
-          ips = [ (ip + "/24") ];
+          ips = [ (ip + "/32") ];
           privateKeyFile = config: config.age.secrets.${private}.path;
           dynamicEndpointRefreshSeconds = 5;
           peers =
@@ -69,12 +69,6 @@ rec {
         public = "0tlbloisrfwumvqhZGirdyDg05S9Ex9LEGGG+8vsNFg=";
         private = "wg-o1-private";
         endpoint = "o1.torus.icu:${toString listenPort}";
-      };
-      m = mkPeer {
-        ip = "10.100.0.2";
-        public = "fxv+DpMAXw71JuiO/kNMUwhOzFVPOcVVpm1zLBaJKH8=";
-        private = "wg-m-private";
-        endpoint = "m.torus.icu:${toString listenPort}";
       };
       o0 = mkPeer {
         ip = "10.100.0.3";

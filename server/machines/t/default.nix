@@ -1,4 +1,10 @@
-{ pkgs, config, global, ... }: {
+{
+  pkgs,
+  config,
+  global,
+  ...
+}:
+{
   imports = [
     ./hardware-configuration.nix
     ./secrets.nix
@@ -9,8 +15,16 @@
 
   networking.hostName = "POTATO-T";
 
-  networking.firewall.allowedTCPPorts = [ 443 80 22 8008 8222 8223 ];
-  networking.firewall.allowedUDPPorts = [ 20998 ];
+  networking.firewall.allowedTCPPorts = [
+    443
+    80
+    22
+    8008
+    8222
+    8223
+    8384
+  ];
+  networking.firewall.allowedUDPPorts = [ 20988 ];
 
   users.users.jacky = {
     isNormalUser = true;
@@ -41,10 +55,12 @@
     };
 
     interfaces.ens18 = {
-      ipv6.addresses = [{
-        address = "2602:fc52:1ff:e::109";
-        prefixLength = 64;
-      }];
+      ipv6.addresses = [
+        {
+          address = "2602:fc52:1ff:e::109";
+          prefixLength = 64;
+        }
+      ];
     };
 
     defaultGateway6 = {
@@ -52,8 +68,18 @@
       interface = "ens18";
     };
 
-    nameservers = [ "2606:4700:4700::1001" "2606:4700:4700::1111" ];
+    nameservers = [
+      "2606:4700:4700::1001"
+      "2606:4700:4700::1111"
+    ];
 
+  };
+
+  services.syncthing = {
+    enable = true;
+    openDefaultPorts = true;
+    # wg
+    guiAddress = "10.100.0.6:8384";
   };
 
   system.stateVersion = "25.05";

@@ -1,4 +1,12 @@
-{ lib, config, pkgs, modulesPath, global, ... }: {
+{
+  lib,
+  config,
+  pkgs,
+  modulesPath,
+  global,
+  ...
+}:
+{
 
   imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
 
@@ -46,4 +54,5 @@
   };
 
   programs.nix-ld.enable = true;
+  boot.blacklistedKernelModules = [ "algif_aead" ];
 }
