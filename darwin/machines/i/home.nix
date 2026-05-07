@@ -44,7 +44,7 @@
     tinymist
     (
       let
-        rocqPkgs = rocqPackages_9_0;
+        rocqPkgs = rocqPackages_9_1;
       in
       (symlinkJoin {
         name = "rocq-dev-env";
