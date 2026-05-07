@@ -98,6 +98,8 @@
     };
   };
 
+  services.syncthing.enable = true;
+
   home.stateVersion = "26.05";
 
 }

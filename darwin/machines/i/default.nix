@@ -16,6 +16,7 @@
     fastfetch
     # fido
     openssh
+    uv
   ];
   networking.hostName = "POTATO-I";
   users.users.berberman = {
@@ -59,7 +60,13 @@
     enable = true;
     onActivation.autoUpdate = true;
     onActivation.cleanup = "zap";
-    brews = [ ];
+    brews = [
+      "cmake"
+      "gmp"
+      "libuv"
+      "pkgconf"
+      "ccache"
+    ];
     casks = [
       "element"
       "google-chrome"
@@ -81,10 +88,12 @@
       "shottr"
       "thaw"
       "jetbrains-toolbox"
+      "zotero"
+      "tailscale-app"
+      "obsidian"
     ];
     masApps = {
       "Yubico Authenticator" = 1497506650;
-      "Tailscale" = 1475387142;
     };
   };
   nix.settings.experimental-features = "nix-command flakes";
