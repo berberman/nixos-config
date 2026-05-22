@@ -113,12 +113,13 @@ in
             let
               lock = "${pkgs.swaylock-effects}/bin/swaylock -f";
               display = status: "${pkgs.niri}/bin/niri msg action power-${status}-monitors";
+              lockThenOff = lock + "; sleep 0.2; " + (display "off");
             in
             {
               enable = true;
               timeouts = [
                 {
-                  timeout = 600; # in seconds
+                  timeout = 600;
                   command = "${pkgs.libnotify}/bin/notify-send 'Locking in 5 seconds' -t 5000";
                 }
                 {
@@ -136,9 +137,9 @@ in
                 }
               ];
               events = {
-                "before-sleep" = (display "off") + "; " + lock;
+                "before-sleep" = lockThenOff;
                 "after-resume" = display "on";
-                "lock" = (display "off") + "; " + lock;
+                "lock" = lockThenOff;
                 "unlock" = display "on";
               };
             };
