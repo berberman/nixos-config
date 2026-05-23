@@ -49,13 +49,23 @@
     };
   };
 
-  outputs = inputs@{ flake-parts, nix-darwin, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; }
-    ({ self, withSystem, flake-parts-lib, ... }:
-      let flakeModules.default = ./flake-modules/default.nix;
-      in {
-        imports =
-          [ flakeModules.default flake-parts.flakeModules.flakeModules ];
+  outputs =
+    inputs@{ flake-parts, nix-darwin, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } (
+      {
+        self,
+        withSystem,
+        flake-parts-lib,
+        ...
+      }:
+      let
+        flakeModules.default = ./flake-modules/default.nix;
+      in
+      {
+        imports = [
+          flakeModules.default
+          flake-parts.flakeModules.flakeModules
+        ];
 
         hosts = {
           POTATO-NN = {
@@ -106,40 +116,54 @@
             };
           };
         };
-        flake = let
-        in {
-          inherit flakeModules;
-          nixosModules.default = import ./modules;
-          overlays.default = final: prev:
-            (inputs.nixpkgs.lib.composeManyExtensions [
-              (final: prev: import ./overlays.nix final prev)
-              inputs.berberman.overlays.default
-              inputs.emacs.overlay
-              inputs.deploy-rs.overlays.default
-              inputs.niri.overlays.niri
-            ]) final prev;
-        };
-
-        systems = [ "x86_64-linux" "aarch64-linux" ];
-        perSystem = { system, pkgs, ... }: {
-          _module.args.pkgs = import inputs.nixpkgs {
-            inherit system;
-            overlays = [ self.overlays.default ];
+        flake =
+          let
+          in
+          {
+            inherit flakeModules;
+            nixosModules.default = import ./modules;
+            overlays.default =
+              final: prev:
+              (inputs.nixpkgs.lib.composeManyExtensions [
+                (final: prev: import ./overlays.nix final prev)
+                inputs.berberman.overlays.default
+                inputs.emacs.overlay
+                inputs.deploy-rs.overlays.default
+                inputs.niri.overlays.niri
+              ])
+                final
+                prev;
           };
-          devShells.default = pkgs.mkShell {
-            buildInputs = [
-              inputs.agenix.packages.${system}.default
-              pkgs.deploy-rs.deploy-rs
-              pkgs.wireguard-tools
-            ];
-          };
-        };
-      })//{
-          darwinConfigurations."POTATO-I" = nix-darwin.lib.darwinSystem {
-        specialArgs = { inherit  inputs; };
 
-      modules = [ ./darwin/machines/i ];
-    };
+        systems = [
+          "x86_64-linux"
+          "aarch64-linux"
+        ];
+        perSystem =
+          { system, pkgs, ... }:
+          {
+            _module.args.pkgs = import inputs.nixpkgs {
+              inherit system;
+              overlays = [ self.overlays.default ];
+            };
+            devShells.default = pkgs.mkShell {
+              buildInputs = [
+                inputs.agenix.packages.${system}.default
+                pkgs.deploy-rs.deploy-rs
+                pkgs.wireguard-tools
+              ];
+            };
+          };
+      }
+    )
+    // {
+      darwinConfigurations."POTATO-I" = nix-darwin.lib.darwinSystem {
+        specialArgs = { inherit inputs; };
+
+        modules = [
+          ./darwin/machines/i
+          { nixpkgs.overlays = [ inputs.emacs.overlay ]; }
+        ];
       };
+    };
 }
-

@@ -185,5 +185,7 @@
 (load-file (let ((coding-system-for-read 'utf-8))
 	     (shell-command-to-string "agda-mode locate")))
 
+(setq agda2-program-name "/run/current-system/sw/bin/agda")
+
 (provide 'init)
 ;;; init.el ends here

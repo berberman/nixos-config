@@ -18,13 +18,29 @@
     ];
   };
   programs.htop.enable = true;
-
+  programs.emacs = {
+    enable = true;
+    package = (
+      pkgs.emacsWithPackagesFromUsePackage {
+        package = pkgs.emacs;
+        alwaysEnsure = true;
+        extraEmacsPackages = p: with p; [ use-package ];
+        config = ../../../desktop/home/init.el;
+      }
+    );
+  };
+  home.file.".emacs".source = ../../../desktop/home/init.el;
   programs.gpg.enable = true;
   programs.starship.enable = true;
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
     enableCompletion = true;
+    envExtra = ''
+      unset LC_ALL
+      export LANG=en_US.UTF-8
+      export LC_CTYPE=en_US.UTF-8
+    '';
     oh-my-zsh = {
       enable = true;
       plugins = [

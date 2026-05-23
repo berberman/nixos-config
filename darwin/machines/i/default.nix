@@ -17,6 +17,7 @@
     # fido
     openssh
     uv
+    (agda.withPackages (p: [ p.standard-library ]))
   ];
   networking.hostName = "POTATO-I";
   users.users.berberman = {
@@ -66,6 +67,7 @@
       "libuv"
       "pkgconf"
       "ccache"
+      "ymtdzzz/tap/otel-tui"
     ];
     casks = [
       "element"
