@@ -18,6 +18,10 @@
     openssh
     uv
     (agda.withPackages (p: [ p.standard-library ]))
+    bat
+  ];
+  environment.systemPath = [
+    "/opt/homebrew/bin"
   ];
   networking.hostName = "POTATO-I";
   users.users.berberman = {
@@ -60,7 +64,7 @@
   homebrew = {
     enable = true;
     onActivation.autoUpdate = true;
-    onActivation.cleanup = "zap";
+    # onActivation.cleanup = "zap";
     brews = [
       "cmake"
       "gmp"

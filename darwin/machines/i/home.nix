@@ -41,6 +41,15 @@
       export LANG=en_US.UTF-8
       export LC_CTYPE=en_US.UTF-8
     '';
+    profileExtra=''
+      # Added by Toolbox App
+      export PATH="$PATH:/Users/berberman/Library/Application Support/JetBrains/Toolbox/scripts"
+      # Setting PATH for Python 3.12
+      export PATH="/Library/Frameworks/Python.framework/Versions/3.12/bin:$PATH"
+      # Bun and Opencode
+      export BUN_INSTALL="$HOME/.bun"
+      export PATH="$BUN_INSTALL/bin:$HOME/.opencode/bin:$PATH"
+    '';
     oh-my-zsh = {
       enable = true;
       plugins = [
