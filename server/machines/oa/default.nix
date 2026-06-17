@@ -4,7 +4,6 @@
     ./secrets.nix
     ./matrix.nix
     ./znc.nix
-    ./authentik.nix
     ./netbird.nix
   ];
   # for trixnity
