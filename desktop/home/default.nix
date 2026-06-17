@@ -92,7 +92,7 @@
     )
     zotero
     racket
-    bitwarden-desktop
+    # bitwarden-desktop
     typst
     zulip
   ];
