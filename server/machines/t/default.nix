@@ -9,7 +9,6 @@
     ./hardware-configuration.nix
     ./secrets.nix
     ./fdroid.nix
-    ./vaultwarden.nix
     ./wakapi.nix
   ];
 
