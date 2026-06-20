@@ -9,7 +9,6 @@
     ./hardware-configuration.nix
     ./secrets.nix
     ./fdroid.nix
-    ./wakapi.nix
   ];
 
   networking.hostName = "POTATO-T";

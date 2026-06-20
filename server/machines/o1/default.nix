@@ -86,16 +86,6 @@
       forceSSL = true;
       locations."/" = { proxyPass = "http://127.0.0.1:8009"; };
     };
-    virtualHosts."bitwarden.torus.icu" = {
-      enableACME = true;
-      forceSSL = true;
-      locations."/" = { proxyPass = "http://10.100.0.6:8222"; };
-    };
-    virtualHosts."wakapi.torus.icu" = {
-      enableACME = true;
-      forceSSL = true;
-      locations."/" = { proxyPass = "http://10.100.0.6:8223"; };
-    };
   };
 
   services.netdata-child.enable = false;
