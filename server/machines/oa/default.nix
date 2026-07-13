@@ -1,10 +1,20 @@
-{ pkgs, config, global, inputs, ... }: {
+{
+  pkgs,
+  config,
+  global,
+  inputs,
+  ...
+}:
+{
   imports = [
     ./hardware-configuration.nix
     ./secrets.nix
     ./matrix.nix
     ./znc.nix
     ./netbird.nix
+    # ./grafana.nix
+    # ./curl-monitor.nix
+    ./union-spectra-monitor.nix
   ];
   # for trixnity
   nixpkgs.config.permittedInsecurePackages = [ "olm-3.2.16" ];
@@ -31,10 +41,12 @@
       privateKeyFile = global.wg.oa.privateKeyFile config;
     };
   };
-  networking.interfaces.enp0s3.ipv6.addresses = [{
-    address = "2603:c024:c008:faff:12f3:41a2:58e8:8125";
-    prefixLength = 128;
-  }];
+  networking.interfaces.enp0s3.ipv6.addresses = [
+    {
+      address = "2603:c024:c008:faff:12f3:41a2:58e8:8125";
+      prefixLength = 128;
+    }
+  ];
   networking.defaultGateway6 = {
     address = "fe80::1";
     interface = "enp0s3";
@@ -67,9 +79,12 @@
   };
   virtualisation.oci-containers.backend = "podman";
   # Enable container name DNS for all Podman networks.
-  networking.firewall.interfaces = let
-    matchAll =
-      if !config.networking.nftables.enable then "podman+" else "podman*";
-  in { "${matchAll}".allowedUDPPorts = [ 53 ]; };
+  networking.firewall.interfaces =
+    let
+      matchAll = if !config.networking.nftables.enable then "podman+" else "podman*";
+    in
+    {
+      "${matchAll}".allowedUDPPorts = [ 53 ];
+    };
   system.stateVersion = "22.05";
 }

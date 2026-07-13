@@ -13,10 +13,10 @@ in {
   "telegram-token.age".publicKeys = keys;
   "v2o0.age".publicKeys = keys;
   "v2o0c.age".publicKeys = keys;
-  "vaultwarden.age".publicKeys = keys;
   "ircbot.age".publicKeys = keys;
   "github-token.age".publicKeys = keys;
   "mautrix-telegram.age".publicKeys = keys;
-  "authentik.age".publicKeys = keys;
   "netbird.age".publicKeys = keys;
+  "grafana-admin-password.age".publicKeys = keys;
+  "grafana-secret-key.age".publicKeys = keys;
 }

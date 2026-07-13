@@ -26,7 +26,6 @@ rec {
   pubKeys = [
     "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIJB2bgfrNKPxT6EiePkWlcoLCrKvel/UxmVLWUWhwWdmAAAABHNzaDo= ssh yubikey primary 2026"
     "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIIcQEIPXRIxgKV9lkUt/FcNPm84ghRMQLW7UT/TLOrjzAAAABHNzaDo= ssh yubikey backup 2026"
-
   ];
   netdataApiKey = "b9a20226-d54a-49e0-b63b-8eed5234ac18";
   wg =
