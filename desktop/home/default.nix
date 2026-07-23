@@ -162,6 +162,7 @@
         identityFile = [
           "~/.ssh/id_ed25519_sk_yk1"
           "~/.ssh/id_ed25519_sk_yk2"
+          "~/.ssh/id_ed25519"
         ];
       };
       PVE = {
