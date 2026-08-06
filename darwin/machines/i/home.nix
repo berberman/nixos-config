@@ -10,11 +10,12 @@
     };
     signing = {
       key = "C4F93F1ED397E8CF";
-      signByDefault = true;
+      signByDefault = false;
     };
     ignores = [
       ".envrc"
       ".direnv"
+      ".omo"
     ];
   };
   programs.htop.enable = true;

@@ -19,6 +19,7 @@
     uv
     (agda.withPackages (p: [ p.standard-library ]))
     bat
+    yq
   ];
   environment.systemPath = [
     "/opt/homebrew/bin"
@@ -63,15 +64,14 @@
   };
   homebrew = {
     enable = true;
-    onActivation.autoUpdate = true;
-    # onActivation.cleanup = "zap";
+    onActivation.cleanup = "zap";
     brews = [
       "cmake"
       "gmp"
       "libuv"
       "pkgconf"
       "ccache"
-      "ymtdzzz/tap/otel-tui"
+      "cliproxyapi"
     ];
     casks = [
       "element"
@@ -95,8 +95,8 @@
       "thaw"
       "jetbrains-toolbox"
       "zotero"
-      "tailscale-app"
       "obsidian"
+      # "neteasemusic"
     ];
     masApps = {
       "Yubico Authenticator" = 1497506650;
@@ -107,4 +107,5 @@
   system.stateVersion = 6;
 
   nixpkgs.hostPlatform = "aarch64-darwin";
+  services.tailscale.enable = true;
 }
