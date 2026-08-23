@@ -160,9 +160,9 @@
         controlPersist = "10m";
         controlPath = "~/.ssh/cm-%C";
         identityFile = [
+          "~/.ssh/id_ed25519"
           "~/.ssh/id_ed25519_sk_yk1"
           "~/.ssh/id_ed25519_sk_yk2"
-          "~/.ssh/id_ed25519"
         ];
       };
       PVE = {
@@ -175,9 +175,6 @@
       };
       POTATO-A = {
         hostname = "192.168.31.88";
-      };
-      POTATO-HZ = {
-        hostname = "hz.torus.icu";
       };
       POTATO-O0 = {
         hostname = "o0.torus.icu";

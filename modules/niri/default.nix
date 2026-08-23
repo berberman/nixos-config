@@ -23,7 +23,7 @@ in
       niri-flake.cache.enable = true;
       programs.niri = {
         enable = true;
-        # package = pkgs.niri;
+        package = pkgs.niri;
       };
       environment.variables = {
         ELECTRON_OZONE_PLATFORM_HINT = "auto";
