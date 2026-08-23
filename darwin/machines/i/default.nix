@@ -108,4 +108,21 @@
 
   nixpkgs.hostPlatform = "aarch64-darwin";
   services.tailscale.enable = true;
+  launchd.daemons.prevent-system-sleep = {
+    command = "/usr/bin/caffeinate -s";
+
+    serviceConfig = {
+      KeepAlive = true;
+      RunAtLoad = true;
+    };
+  };
+  power = {
+    sleep = {
+      computer = "never";
+      allowSleepByPowerButton = false;
+    };
+
+    restartAfterPowerFailure = true;
+    restartAfterFreeze = true;
+  };
 }
