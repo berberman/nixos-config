@@ -172,6 +172,9 @@ in
             platformTheme.name = "qtct";
           };
 
+          # Niri owns output scaling; an extra text scale compounds it in Chromium.
+          dconf.settings."org/gnome/desktop/interface".text-scaling-factor = 1.0;
+
           gtk = {
             enable = true;
             theme.name = "Breeze";
