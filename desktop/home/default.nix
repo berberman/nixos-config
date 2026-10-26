@@ -95,6 +95,8 @@
     # bitwarden-desktop
     typst
     zulip
+    bun
+    python3
   ];
 
   services.syncthing.enable = true;

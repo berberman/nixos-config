@@ -12,9 +12,6 @@
     ./matrix.nix
     ./znc.nix
     ./netbird.nix
-    # ./grafana.nix
-    # ./curl-monitor.nix
-    ./union-spectra-monitor.nix
   ];
   # for trixnity
   nixpkgs.config.permittedInsecurePackages = [ "olm-3.2.16" ];

@@ -11,16 +11,6 @@
       owner = "matrix-synapse";
       group = "matrix-synapse";
     };
-    grafana-secret-key = {
-      file = global.secretFile "grafana-secret-key";
-      owner = "grafana";
-      group = "grafana";
-    };
-    grafana-admin-password = {
-      file = global.secretFile "grafana-admin-password";
-      owner = "grafana";
-      group = "grafana";
-    };
   }
   // global.mkSecrets [
     "wg-oa-private"

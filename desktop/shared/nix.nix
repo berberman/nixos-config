@@ -1,4 +1,10 @@
-{ config, lib, pkgs, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   nix = {
@@ -11,12 +17,20 @@
       !include ${config.age.secrets.github-token.path}
     '';
     settings = {
-      trusted-users = [ "root" "berberman" ];
+      trusted-users = [
+        "root"
+        "berberman"
+      ];
       auto-optimise-store = true;
     };
     registry.nixpkgs.flake = inputs.nixpkgs;
+
   };
 
   nixpkgs.config.allowUnfree = true;
 
+  # TODO: For zotero
+  nixpkgs.config.permittedInsecurePackages = [
+    "firefox-esr-140-bin-unwrapped-140.17.0esr"
+  ];
 }
