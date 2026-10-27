@@ -19,4 +19,7 @@
     };
   };
   boot.kernelParams = [ "amdgpu.sg_display=0" ];
+  # TODO: Linux 6.18.57/58 can bind this alongside button and signal PID 1 to power off.
+  # https://discourse.nixos.org/t/tiny-power-button-kernel-module-causing-confusion/80683
+  boot.blacklistedKernelModules = [ "tiny_power_button" ];
 }
